@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Página Profesional CSS Animada</title>
+
+  <style>
+    body {
+      font-family: "Arial", sans-serif;
+      margin: 0;
+      background: #f5f7fb;
+      color: #333;
+    }
+
+    header {
+      background: #2c3e50;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1000px;
+      margin: auto;
+      padding: 20px;
+    }
+
+    /* TARJETAS */
+    .card {
+      background: white;
+      padding: 20px;
+      margin: 15px 0;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+
+      transition: 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    }
+
+    /* TARJETAS INTERNAS */
+    .cards {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .box {
+      flex: 1;
+      min-width: 150px;
+      padding: 20px;
+      color: white;
+      border-radius: 10px;
+      text-align: center;
+      font-weight: bold;
+
+      transition: 0.3s ease;
+    }
+
+    .box:hover {
+      transform: scale(1.1);
+    }
+
+    .red { background: #e74c3c; }
+    .green { background: #27ae60; }
+    .blue { background: #3498db; }
+
+    /* LISTAS */
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    ul li {
+      background: #ecf0f1;
+      margin: 8px 0;
+      padding: 10px;
+      border-radius: 8px;
+
+      transition: 0.3s;
+    }
+
+    ul li:hover {
+      background: #d0e6ff;
+      transform: translateX(5px);
+    }
+
+    ol li {
+      margin: 8px 0;
+      padding: 10px;
+      background: #fff3cd;
+      border-radius: 8px;
+    }
+
+    /* FORMULARIO */
+    input {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      margin-bottom: 15px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+
+    label {
+      font-weight: bold;
+    }
+
+    button {
+      padding: 10px 15px;
+      background: #2c3e50;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background: #e74c3c;
+      transform: scale(1.05);
+    }
+
+    /* POSITION */
+    .mover {
+      width: 250px;
+      background: #8e44ad;
+      color: white;
+      padding: 15px;
+      border-radius: 10px;
+
+      position: relative;
+      left: 60px;
+
+      transition: 0.3s;
+    }
+
+    .mover:hover {
+      left: 80px;
+    }
+
+    .oculto {
+      display: none;
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <h1>Mi Página Profesional CSS Animada 🚀</h1>
+  </header>
+
+  <div class="container">
+
+    <div class="card">
+      <h2>Introducción</h2>
+      <p>Diseño moderno con animaciones CSS.</p>
+    </div>
+
+    <!-- TARJETAS -->
+    <div class="card">
+      <h2>Tarjetas</h2>
+      <div class="cards">
+        <div class="box red">HTML</div>
+        <div class="box green">CSS</div>
+        <div class="box blue">JS</div>
+      </div>
+    </div>
+
+    <!-- LISTAS -->
+    <div class="card">
+      <h2>Lenguajes Web</h2>
+      <ul>
+        <li>HTML estructura</li>
+        <li>CSS diseño</li>
+        <li>JavaScript lógica</li>
+      </ul>
+    </div>
+
+    <!-- FORMULARIO -->
+    <div class="card">
+      <h2>Formulario</h2>
+
+      <form>
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre">
+
+        <label for="email">Email:</label>
+        <input type="email" id="email">
+
+        <button>Enviar</button>
+      </form>
+    </div>
+
+    <!-- POSITION -->
+    <div class="card">
+      <h2>Position + Animación</h2>
+
+      <div class="mover">
+        Soy un div que se mueve
+      </div>
+
+      <div class="oculto">
+        Este div está oculto
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>
