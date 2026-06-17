@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ejercicio CSS Position</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+    background:#f4f4f4;
+}
+
+h1{
+    margin:20px 0 20px 70px;
+    font-size:60px;
+    color:#34495e;
+}
+
+.contenedor{
+    width:85%;
+    height:720px;
+    margin:auto;
+    background:#0097a7;
+    position:relative;
+    padding-top:30px;
+}
+
+/* RELATIVE */
+.relative{
+    width:150px;
+    height:60px;
+    background:#ff0080;
+    color:white;
+    position:relative;
+    left:120px;
+    top:35px;
+    z-index:100;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-size:22px;
+    font-weight:bold;
+}
+
+/* CAJA AZUL */
+.azul{
+    width:80%;
+    height:360px;
+    background:blue;
+    margin:auto;
+    margin-top:-5px;
+    position:relative;
+}
+
+/* STICKY */
+.sticky{
+    width:120px;
+    height:100px;
+    background:#ecf0f1;
+    border:1px solid #bdc3c7;
+
+    position:absolute;
+    left:20px;
+    top:180px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-size:20px;
+}
+
+/* ABSOLUTE */
+.absolute{
+    width:130px;
+    height:120px;
+    background:#f8cdd3;
+    border:1px solid #d6a3ab;
+
+    position:absolute;
+    right:80px;
+    top:190px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-size:20px;
+}
+
+/* BARRA VERDE */
+.barra{
+    width:95%;
+    height:25px;
+    background:#39ff14;
+    margin:20px auto;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-size:18px;
+    color:#2c3e50;
+}
+
+/* STATIC */
+.static{
+    width:140px;
+    height:60px;
+    background:#ff6b57;
+    color:white;
+
+    position:absolute;
+    left:0;
+    bottom:0;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-size:22px;
+    font-weight:bold;
+}
+
+/* FIXED */
+.fixed{
+    width:120px;
+    height:120px;
+    background:#d4e600;
+    border:1px solid #999;
+
+    position:fixed;
+    right:20px;
+    bottom:20px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-size:22px;
+    font-weight:bold;
+}
+
+</style>
+</head>
+<body>
+
+<h1>Ejercicio</h1>
+
+<div class="contenedor">
+
+    <div class="relative">
+        relative
+    </div>
+
+    <div class="azul">
+
+        <div class="sticky">
+            sticky
+        </div>
+
+        <div class="absolute">
+            absolute
+        </div>
+
+    </div>
+
+    <div class="barra">
+        Aprendiz: Yibert Eduardo Pino Fernandez
+    </div>
+
+    <div class="static">
+        static
+    </div>
+
+</div>
+
+<div class="fixed">
+    fixed
+</div>
+
+</body>
+</html>

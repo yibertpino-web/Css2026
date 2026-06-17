@@ -1,0 +1,267 @@
+html
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Vida Salvaje</title>
+
+  <style>
+
+    /* =========================
+            RESET
+    ========================== */
+    *{
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    body{
+      background: #f5f2ed;
+      color: #333;
+    }
+
+    /* =========================
+            HEADER
+    ========================== */
+
+    header{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 25px 50px;
+      background: white;
+      border-bottom: 1px solid #d8d2ca;
+    }
+
+    .logo{
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .logo span{
+      font-size: 45px;
+    }
+
+    .logo h1{
+      font-size: 42px;
+      color: #3d2614;
+    }
+
+    nav a{
+      text-decoration: none;
+      margin-left: 40px;
+      font-size: 22px;
+      color: #222;
+      position: relative;
+      transition: 0.3s;
+    }
+
+    nav a:hover{
+      color: #8b5a2b;
+    }
+
+    nav .active::after{
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -15px;
+      width: 100%;
+      height: 4px;
+      background: #8b5a2b;
+      border-radius: 10px;
+    }
+
+    /* =========================
+            CONTENEDOR
+    ========================== */
+
+    .container{
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 30px;
+      padding: 50px;
+    }
+
+    /* =========================
+            TARJETAS
+    ========================== */
+
+    .card{
+      width: 400px;
+      background: white;
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+      transition: 0.3s;
+    }
+
+    .card:hover{
+      transform: translateY(-10px);
+    }
+
+    .card img{
+      width: 100%;
+      height: 500px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .card-content{
+      padding: 25px;
+    }
+
+    .card-content h2{
+      font-size: 38px;
+      color: #4a2d18;
+      margin-bottom: 15px;
+    }
+
+    .card-content p{
+      font-size: 22px;
+      line-height: 1.6;
+      margin-bottom: 25px;
+    }
+
+    /* =========================
+            BOTÓN
+    ========================== */
+
+    .btn{
+      display: inline-block;
+      padding: 15px 35px;
+      background: #8b5a2b;
+      color: white;
+      text-decoration: none;
+      border-radius: 12px;
+      font-size: 22px;
+      transition: 0.3s;
+    }
+
+    .btn:hover{
+      background: #6d431d;
+    }
+
+    /* =========================
+            FOOTER
+    ========================== */
+
+    footer{
+      margin-top: 30px;
+      padding: 30px;
+      text-align: center;
+      background: white;
+      border-top: 1px solid #d8d2ca;
+      font-size: 22px;
+      color: #555;
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <header>
+
+    <div class="logo">
+      <span>🐾</span>
+      <h1>Vida Salvaje</h1>
+    </div>
+
+    <nav>
+      <a href="#">Inicio</a>
+      <a href="#" class="active">Animales</a>
+      <a href="#">Contacto</a>
+    </nav>
+
+  </header>
+
+  <!-- CONTENIDO -->
+  <section class="container">
+
+    <!-- TARJETA 1 -->
+    <div class="card">
+
+      <img 
+        src="https://images.unsplash.com/photo-1589656966895-2f33e7653819?q=80&w=1200&auto=format&fit=crop"
+        alt="Oso Polar"
+      >
+
+      <div class="card-content">
+
+        <h2>Oso Polar</h2>
+
+        <p>
+          El oso polar es el mayor carnívoro terrestre del planeta.
+          Vive en regiones árticas y su espeso pelaje lo protege
+          del frío extremo.
+        </p>
+
+        <a href="#" class="btn">Ver más</a>
+
+      </div>
+    </div>
+
+    <!-- TARJETA 2 -->
+    <div class="card">
+
+      <img 
+        src="https://images.unsplash.com/photo-1547721064-da6cfb341d50?q=80&w=1200&auto=format&fit=crop"
+        alt="Jirafa"
+      >
+
+      <div class="card-content">
+
+        <h2>Jirafa</h2>
+
+        <p>
+          La jirafa es el animal terrestre más alto del mundo.
+          Vive en las sabanas africanas y se alimenta de hojas
+          de árboles altos.
+        </p>
+
+        <a href="#" class="btn">Ver más</a>
+
+      </div>
+    </div>
+
+    <!-- TARJETA 3 -->
+    <div class="card">
+
+      <img 
+        src="https://upload.wikimedia.org/wikipedia/commons/7/73/Lion_waiting_in_Namibia.jpg"
+        alt="León"
+      >
+
+      <div class="card-content">
+
+        <h2>León</h2>
+
+        <p>
+          El león es conocido como el rey de la selva.
+          Vive en manadas y es un excelente cazador.
+        </p>
+
+        <a href="#" class="btn">Ver más</a>
+
+      </div>
+    </div>
+
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    🐾 © 2026 Vida Salvaje. Todos los derechos reservados.
+  </footer>
+
+</body>
+
+</html>
+

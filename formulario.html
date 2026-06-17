@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enterprise Dashboard | Pro</title>
+    <style>
+        :root {
+            --card-bg: rgba(255, 255, 255, 0.75);
+            --text-dark: #0f172a;
+            --text-muted: #334155;
+            --border-glass: rgba(255, 255, 255, 0.4);
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: 'Inter', -apple-system, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            /* Fondo corporativo */
+            background: url('https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2069&auto=format&fit=crop') no-repeat center center fixed;
+            background-size: cover;
+        }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            width: 90%;
+            max-width: 1100px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid var(--border-glass);
+            border-top: 1px solid rgba(255,255,255,0.5);
+            border-left: 1px solid rgba(255,255,255,0.5);
+            padding: 2rem;
+            border-radius: 24px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .card:hover { transform: translateY(-10px); }
+
+        .label { 
+            font-size: 0.75rem; 
+            font-weight: 700; 
+            color: var(--text-muted); 
+            text-transform: uppercase; 
+            letter-spacing: 0.15em;
+            text-shadow: 0 1px 1px rgba(255,255,255,0.8);
+        }
+
+        .value { 
+            font-size: 2.25rem; 
+            font-weight: 800; 
+            color: var(--text-dark); 
+            margin: 0.5rem 0;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.08);
+        }
+
+        .btn {
+            border: none;
+            padding: 0.9rem;
+            border-radius: 12px;
+            color: white;
+            font-weight: 600;
+            font-size: 0.9rem;
+            width: 100%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .btn:hover { filter: brightness(1.15); transform: scale(1.02); }
+
+        .btn-cpu { background: #4f46e5; }
+        .btn-ram { background: #059669; }
+        .btn-net { background: #d97706; }
+    </style>
+</head>
+<body>
+
+    <main class="dashboard-grid">
+        <article class="card">
+            <div class="label">CPU Usage</div>
+            <div class="value">12.4%</div>
+            <button class="btn btn-cpu">Ver Detalles</button>
+        </article>
+
+        <article class="card">
+            <div class="label">Memory RAM</div>
+            <div class="value">4.2 GB</div>
+            <button class="btn btn-ram">Optimizar</button>
+        </article>
+
+        <article class="card">
+            <div class="label">Network Status</div>
+            <div class="value">Stable</div>
+            <button class="btn btn-net">Configurar</button>
+        </article>
+    </main>
+
+</body>
+</html>

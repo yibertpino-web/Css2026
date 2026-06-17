@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>SENA Profesional 3D</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:
+    radial-gradient(circle at top,#ffffff,#dfe7ee);
+    overflow:hidden;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+/* ESCENA */
+.scene{
+    position:relative;
+    width:1200px;
+    height:800px;
+}
+
+/* SOMBRA GENERAL */
+.global-shadow{
+    position:absolute;
+    width:700px;
+    height:120px;
+    background:rgba(0,0,0,.20);
+    border-radius:50%;
+    filter:blur(35px);
+    left:50%;
+    bottom:40px;
+    transform:translateX(-50%);
+}
+
+/* BASE SUPERIOR */
+.platform-top{
+    position:absolute;
+    width:850px;
+    height:260px;
+    background:
+    radial-gradient(circle at 30% 20%,
+    #42c4ff,
+    #0087d5 60%,
+    #005f9c 100%);
+    border-radius:50%;
+    left:50%;
+    bottom:120px;
+    transform:translateX(-50%);
+    overflow:hidden;
+    box-shadow:
+    inset -30px -25px 40px rgba(0,0,0,.30),
+    inset 20px 20px 40px rgba(255,255,255,.15),
+    0 35px 50px rgba(0,0,0,.25);
+}
+
+/* GROSOR 3D */
+.platform-side{
+    position:absolute;
+    width:850px;
+    height:90px;
+    background:
+    linear-gradient(to bottom,
+    #00659f,
+    #003f65);
+    border-radius:0 0 50% 50%;
+    left:50%;
+    bottom:70px;
+    transform:translateX(-50%);
+}
+
+/* BRILLO */
+.platform-light{
+    position:absolute;
+    width:500px;
+    height:90px;
+    border-radius:50%;
+    background:rgba(255,255,255,.14);
+    top:30px;
+    left:120px;
+    filter:blur(5px);
+}
+
+/* MAPA */
+.colombia{
+    position:absolute;
+    width:420px;
+    height:250px;
+    left:50%;
+    bottom:165px;
+    transform:translateX(-50%);
+    opacity:.95;
+}
+
+/* SOMBRA CENTRAL */
+.center-shadow{
+    position:absolute;
+    width:220px;
+    height:70px;
+    background:rgba(0,0,0,.45);
+    border-radius:50%;
+    left:50%;
+    bottom:220px;
+    transform:translateX(-50%);
+    filter:blur(18px);
+}
+
+/* PIN */
+.pin{
+    position:absolute;
+    width:320px;
+    height:600px;
+    left:50%;
+    top:20px;
+    transform:translateX(-50%);
+    filter:
+    drop-shadow(0 25px 20px rgba(0,0,0,.25));
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="scene">
+
+    <!-- SOMBRA -->
+    <div class="global-shadow"></div>
+
+    <!-- BASE -->
+    <div class="platform-side"></div>
+
+    <div class="platform-top">
+
+        <div class="platform-light"></div>
+
+    </div>
+
+    <!-- MAPA COLOMBIA -->
+    <svg class="colombia" viewBox="0 0 500 300">
+
+        <defs>
+
+            <linearGradient id="mapGrad" x1="0" y1="0" x2="1" y2="1">
+
+                <stop offset="0%" stop-color="#8fd8ff"/>
+
+                <stop offset="100%" stop-color="#4ba9e6"/>
+
+            </linearGradient>
+
+        </defs>
+
+        <path
+        d="
+        M125,25
+        L210,5
+        L295,40
+        L350,80
+        L395,145
+        L375,220
+        L315,270
+        L240,295
+        L170,270
+        L100,235
+        L65,175
+        L60,115
+        L85,70
+        Z"
+        fill="url(#mapGrad)"
+        stroke="#2e83c2"
+        stroke-width="3"/>
+
+    </svg>
+
+    <!-- SOMBRA CENTRAL -->
+    <div class="center-shadow"></div>
+
+    <!-- PIN SVG -->
+    <svg class="pin" viewBox="0 0 320 600">
+
+        <defs>
+
+            <!-- Gradientes -->
+
+            <linearGradient id="greenGrad" x1="0" y1="0" x2="1" y2="1">
+
+                <stop offset="0%" stop-color="#31ff21"/>
+
+                <stop offset="100%" stop-color="#108b00"/>
+
+            </linearGradient>
+
+            <linearGradient id="yellowGrad" x1="0" y1="0" x2="1" y2="1">
+
+                <stop offset="0%" stop-color="#ffe95e"/>
+
+                <stop offset="100%" stop-color="#ffc400"/>
+
+            </linearGradient>
+
+            <linearGradient id="glass" x1="0" y1="0" x2="1" y2="1">
+
+                <stop offset="0%" stop-color="rgba(255,255,255,.55)"/>
+
+                <stop offset="100%" stop-color="rgba(255,255,255,0)"/>
+
+            </linearGradient>
+
+        </defs>
+
+        <!-- sombra -->
+        <polygon
+        points="160,560 85,110 255,40"
+        fill="rgba(0,0,0,.16)"/>
+
+        <!-- verde -->
+        <polygon
+        points="160,560 55,110 160,45"
+        fill="url(#greenGrad)"/>
+
+        <!-- amarillo -->
+        <polygon
+        points="160,560 160,45 255,40"
+        fill="url(#yellowGrad)"/>
+
+        <!-- brillo -->
+        <polygon
+        points="150,520 90,130 150,80"
+        fill="rgba(255,255,255,.22)"/>
+
+        <!-- borde -->
+        <polygon
+        points="160,560 55,110 255,40"
+        fill="none"
+        stroke="#8d8400"
+        stroke-width="5"/>
+
+        <!-- vidrio -->
+        <polygon
+        points="160,520 105,145 215,95"
+        fill="url(#glass)"/>
+
+        <!-- LOGO -->
+
+        <circle
+        cx="160"
+        cy="175"
+        r="18"
+        fill="#111"/>
+
+        <text
+        x="160"
+        y="235"
+        text-anchor="middle"
+        font-size="52"
+        font-weight="bold"
+        fill="#111">
+
+        SENA
+
+        </text>
+
+        <!-- cuerpo -->
+
+        <line
+        x1="160"
+        y1="250"
+        x2="160"
+        y2="370"
+        stroke="#111"
+        stroke-width="14"/>
+
+        <line
+        x1="100"
+        y1="275"
+        x2="220"
+        y2="275"
+        stroke="#111"
+        stroke-width="14"/>
+
+        <line
+        x1="160"
+        y1="365"
+        x2="118"
+        y2="470"
+        stroke="#111"
+        stroke-width="14"/>
+
+        <line
+        x1="160"
+        y1="365"
+        x2="202"
+        y2="470"
+        stroke="#111"
+        stroke-width="14"/>
+
+        <!-- texto -->
+
+        <text
+        x="160"
+        y="505"
+        text-anchor="middle"
+        font-size="18"
+        font-weight="bold"
+        fill="#111">
+
+        CONSTRUCTOR DE
+
+        </text>
+
+        <text
+        x="160"
+        y="528"
+        text-anchor="middle"
+        font-size="18"
+        font-weight="bold"
+        fill="#111">
+
+        PAZ, JUSTICIA
+
+        </text>
+
+        <text
+        x="160"
+        y="551"
+        text-anchor="middle"
+        font-size="18"
+        font-weight="bold"
+        fill="#111">
+
+        Y EQUIDAD
+
+        </text>
+
+    </svg>
+
+</div>
+
+</body>
+</html>

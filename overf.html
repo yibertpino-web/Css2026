@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Blue Neon City Fixed</title>
+
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: system-ui, Arial;
+  }
+
+  body {
+    color: white;
+    overflow-x: hidden;
+    background: black;
+  }
+
+  /* 🌆 FONDO CIUDAD */
+  .bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: -1;
+  }
+
+  .bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+
+    /* 💙 FILTRO AZUL NEÓN */
+    filter: brightness(0.5) contrast(1.3) saturate(1.8) hue-rotate(200deg);
+  }
+
+  /* 🌈 NAVBAR FIXED NEÓN AZUL */
+  .navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 15px 25px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    background: rgba(0, 40, 80, 0.5);
+    backdrop-filter: blur(12px);
+
+    border-bottom: 1px solid rgba(0, 200, 255, 0.3);
+    box-shadow: 0 0 20px rgba(0, 200, 255, 0.3);
+    z-index: 1000;
+  }
+
+  .logo {
+    font-weight: 800;
+    color: #00c8ff;
+    text-shadow: 0 0 10px #00c8ff;
+  }
+
+  .menu a {
+    margin-left: 15px;
+    text-decoration: none;
+    color: #bfefff;
+    font-weight: 600;
+    transition: 0.3s;
+  }
+
+  .menu a:hover {
+    color: #00c8ff;
+    text-shadow: 0 0 10px #00c8ff;
+  }
+
+  /* 🌟 HERO */
+  .hero {
+    margin-top: 80px;
+    height: 320px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+
+  .hero h1 {
+    font-size: 34px;
+    color: #00c8ff;
+    text-shadow:
+      0 0 10px #00c8ff,
+      0 0 20px #00c8ff,
+      0 0 40px #0099ff;
+  }
+
+  /* 📦 SECCIONES GLOW */
+  .section {
+    margin: 20px;
+    height: 220px;
+    border-radius: 16px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background: rgba(0, 80, 140, 0.15);
+    backdrop-filter: blur(10px);
+
+    border: 1px solid rgba(0, 200, 255, 0.2);
+    box-shadow: 0 0 20px rgba(0, 200, 255, 0.2);
+
+    font-size: 20px;
+    font-weight: bold;
+  }
+
+  /* 💬 BOTÓN FIXED NEÓN */
+  .btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+
+    background: #00c8ff;
+    color: black;
+    padding: 14px 16px;
+    border-radius: 50px;
+    font-weight: bold;
+
+    box-shadow:
+      0 0 10px #00c8ff,
+      0 0 20px #00c8ff;
+
+    cursor: pointer;
+  }
+
+</style>
+</head>
+
+<body>
+
+  <!-- 🌆 FONDO CIUDAD -->
+  <div class="bg">
+    <img src="https://images.unsplash.com/photo-1496307653780-42ee777d4833" alt="ciudad">
+  </div>
+
+  <!-- 🌈 NAVBAR FIXED -->
+  <div class="navbar">
+    <div class="logo">💙 NEON CITY</div>
+    <div class="menu">
+      <a href="#">Inicio</a>
+      <a href="#">Mapa</a>
+      <a href="#">Contacto</a>
+    </div>
+  </div>
+
+  <!-- 🌟 HERO -->
+  <div class="hero">
+    <h1>CIUDAD POPAYAN ⚡</h1>
+  </div>
+
+  <!-- 📦 SECCIONES -->
+  <div class="section">Sección 1</div>
+  <div class="section">Sección 2</div>
+  <div class="section">Sección 3</div>
+  <div class="section">Sección 4</div>
+
+  <!-- 💬 BOTÓN FIXED -->
+  <div class="btn">
+    💬 Chat
+  </div>
+
+</body>
+</html>

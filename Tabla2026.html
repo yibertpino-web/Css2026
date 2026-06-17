@@ -1,0 +1,298 @@
+Perfecto 👍 ahora te lo integro **sin dañar nada del diseño ni del fondo**, y manteniendo tu dashboard completo.
+
+Solo añadí nuevamente la sección de **las 3 tablas secundarias** que tenías antes.
+
+Aquí tienes tu código completo ya corregido e integrado:
+
+```html
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Dashboard Administrativo</title>
+
+    <style>
+
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body{
+            background-color: #eef2f7;
+            color: #1a202c;
+
+            background-image: url("https://images.unsplash.com/photo-1497366754035-f200968a6e72");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+
+        /* HEADER */
+
+        .header{
+            background: linear-gradient(90deg, #1e3a5f, #2c5282);
+            color: white;
+            text-align: center;
+            padding: 30px;
+            border-bottom: 5px solid #0f172a;
+        }
+
+        .header h1{
+            font-size: 38px;
+            text-transform: uppercase;
+        }
+
+        /* CONTENEDOR PRINCIPAL */
+
+        .contenedor{
+            width: 92%;
+            max-width: 1300px;
+            margin: 40px auto;
+            background: rgba(255,255,255,0.95);
+            padding: 30px;
+            border-radius: 15px;
+        }
+
+        .titulo-seccion h2{
+            background-color: #1e3a5f;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            border-radius: 10px;
+        }
+
+        /* TABLA PRINCIPAL */
+
+        .tabla{
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            border: 3px solid #1e3a5f;
+        }
+
+        .tabla th,
+        .tabla td{
+            padding: 15px;
+            border: 1px solid #d1d5db;
+            text-align: center;
+        }
+
+        .tabla img{
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            border: 3px solid #1e3a5f;
+        }
+
+        /* ESTADOS */
+
+        .estado-activo{ color: green; font-weight: bold; }
+        .estado-inactivo{ color: red; font-weight: bold; }
+        .estado-pendiente{ color: orange; font-weight: bold; }
+
+        /* CONTENEDOR TABLAS SECUNDARIAS */
+
+        .contenedor-tablas{
+            width: 92%;
+            max-width: 1300px;
+            margin: 30px auto;
+            display: flex;
+            gap: 25px;
+            flex-wrap: wrap;
+        }
+
+        .tabla-extra{
+            width: 32%;
+            background: rgba(255,255,255,0.95);
+            border-radius: 15px;
+            overflow: hidden;
+            border: 3px solid #e2e8f0;
+        }
+
+        .tabla-extra th{
+            background-color: #1e3a5f;
+            color: white;
+            padding: 16px;
+        }
+
+        .tabla-extra td{
+            padding: 14px;
+            text-align: center;
+        }
+
+        /* FOOTER */
+
+        .footer{
+            margin-top: 30px;
+            text-align: center;
+            color: #718096;
+        }
+
+        /* RESPONSIVE */
+
+        @media (max-width: 768px){
+            .contenedor-tablas{
+                flex-direction: column;
+            }
+
+            .tabla-extra{
+                width: 100%;
+            }
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <!-- HEADER -->
+
+    <header class="header">
+        <h1>DASHBOARD ADMINISTRATIVO</h1>
+    </header>
+
+    <!-- CONTENIDO PRINCIPAL -->
+
+    <main>
+
+        <div class="contenedor">
+
+            <div class="titulo-seccion">
+                <h2>SISTEMA DE GESTIÓN DE USUARIOS</h2>
+            </div>
+
+            <!-- TABLA PRINCIPAL -->
+
+            <table class="tabla">
+
+                <thead>
+                    <tr>
+                        <th colspan="7">REGISTROS GENERALES</th>
+                    </tr>
+                    <tr>
+                        <th>Foto</th>
+                        <th>Código</th>
+                        <th>Nombre</th>
+                        <th>Apellido</th>
+                        <th>Correo</th>
+                        <th>Ciudad</th>
+                        <th>Estado</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td><img src="https://randomuser.me/api/portraits/men/32.jpg"></td>
+                        <td>001</td>
+                        <td>Juan</td>
+                        <td>Pérez</td>
+                        <td>juan@gmail.com</td>
+                        <td>Bogotá</td>
+                        <td class="estado-activo">Activo</td>
+                    </tr>
+
+                    <tr>
+                        <td><img src="https://randomuser.me/api/portraits/women/44.jpg"></td>
+                        <td>002</td>
+                        <td>María</td>
+                        <td>Gómez</td>
+                        <td>maria@gmail.com</td>
+                        <td>Cali</td>
+                        <td class="estado-pendiente">Pendiente</td>
+                    </tr>
+
+                    <tr>
+                        <td><img src="https://randomuser.me/api/portraits/men/75.jpg"></td>
+                        <td>003</td>
+                        <td>Carlos</td>
+                        <td>Ramírez</td>
+                        <td>carlos@gmail.com</td>
+                        <td>Medellín</td>
+                        <td class="estado-inactivo">Inactivo</td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+        <!-- ================= TABLAS SECUNDARIAS ================= -->
+
+        <div class="contenedor-tablas">
+
+            <table class="tabla-extra">
+
+                <thead>
+                    <tr><th colspan="2">USUARIOS ACTIVOS</th></tr>
+                    <tr><th>ID</th><th>Usuario</th></tr>
+                </thead>
+
+                <tbody>
+                    <tr><td>01</td><td>Juan</td></tr>
+                    <tr><td>02</td><td>María</td></tr>
+                    <tr><td>03</td><td>Carlos</td></tr>
+                </tbody>
+
+            </table>
+
+            <table class="tabla-extra">
+
+                <thead>
+                    <tr><th colspan="2">CIUDADES</th></tr>
+                    <tr><th>ID</th><th>Ciudad</th></tr>
+                </thead>
+
+                <tbody>
+                    <tr><td>01</td><td>Bogotá</td></tr>
+                    <tr><td>02</td><td>Cali</td></tr>
+                    <tr><td>03</td><td>Medellín</td></tr>
+                </tbody>
+
+            </table>
+
+            <table class="tabla-extra">
+
+                <thead>
+                    <tr><th colspan="2">ESTADOS</th></tr>
+                    <tr><th>ID</th><th>Estado</th></tr>
+                </thead>
+
+                <tbody>
+                    <tr><td>01</td><td class="estado-activo">Activo</td></tr>
+                    <tr><td>02</td><td class="estado-pendiente">Pendiente</td></tr>
+                    <tr><td>03</td><td class="estado-inactivo">Inactivo</td></tr>
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </main>
+
+    <!-- FOOTER -->
+
+    <div class="footer">
+        © 2026 Sistema Empresarial | Desarrollado por Yibert
+    </div>
+
+</body>
+
+</html>
+```
+
+Si quieres el siguiente nivel, puedo ayudarte a:
+
+* hacer el dashboard tipo **sistema profesional (Admin Panel moderno)**
+* agregar **menú lateral (sidebar)**
+* o animaciones tipo sistema real 🔥

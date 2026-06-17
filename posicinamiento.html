@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Contenedores en Movimiento</title>
+
+<style>
+  body {
+    margin: 0;
+    font-family: system-ui, Arial;
+    background: #0b1220;
+    overflow: hidden;
+  }
+
+  /* CONTENEDOR GENERAL */
+  .dashboard {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+  }
+
+  /* CARD BASE */
+  .card {
+    position: absolute;
+    width: 220px;
+    height: 140px;
+    border-radius: 14px;
+    overflow: hidden;
+    color: white;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+  }
+
+  .card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.7);
+  }
+
+  /* TEXTO ABSOLUTE */
+  .text {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    font-size: 13px;
+    font-weight: 600;
+  }
+
+  /* BADGE */
+  .badge {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    background: rgba(34,197,94,0.9);
+    padding: 6px 10px;
+    border-radius: 8px;
+    font-size: 11px;
+    animation: float 3s infinite ease-in-out;
+  }
+
+  /* ANIMACIÓN FLOAT */
+  @keyframes float {
+    0%   { transform: translateY(0); }
+    50%  { transform: translateY(10px); }
+    100% { transform: translateY(0); }
+  }
+
+  /* MOVIMIENTOS INDIVIDUALES */
+  .c1 {
+    top: 60px;
+    left: 60px;
+    animation: move1 6s infinite alternate ease-in-out;
+  }
+
+  .c2 {
+    top: 120px;
+    right: 80px;
+    animation: move2 7s infinite alternate ease-in-out;
+  }
+
+  .c3 {
+    bottom: 100px;
+    left: 120px;
+    animation: move3 5s infinite alternate ease-in-out;
+  }
+
+  .c4 {
+    bottom: 80px;
+    right: 120px;
+    animation: move4 8s infinite alternate ease-in-out;
+  }
+
+  /* KEYFRAMES MOVIMIENTO */
+  @keyframes move1 {
+    from { transform: translate(0,0); }
+    to   { transform: translate(30px, 20px); }
+  }
+
+  @keyframes move2 {
+    from { transform: translate(0,0); }
+    to   { transform: translate(-30px, 25px); }
+  }
+
+  @keyframes move3 {
+    from { transform: translate(0,0); }
+    to   { transform: translate(25px, -20px); }
+  }
+
+  @keyframes move4 {
+    from { transform: translate(0,0); }
+    to   { transform: translate(-25px, -25px); }
+  }
+
+</style>
+</head>
+
+<body>
+
+<div class="dashboard">
+
+  <!-- CARD 1 -->
+  <div class="card c1">
+    <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee">
+    <div class="badge">ONLINE</div>
+    <div class="text">Card 1</div>
+  </div>
+
+  <!-- CARD 2 -->
+  <div class="card c2">
+    <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d">
+    <div class="badge">NEW</div>
+    <div class="text">Card 2</div>
+  </div>
+
+  <!-- CARD 3 -->
+  <div class="card c3">
+    <img src="https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d">
+    <div class="badge">HOT</div>
+    <div class="text">Card 3</div>
+  </div>
+
+  <!-- CARD 4 -->
+  <div class="card c4">
+    <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085">
+    <div class="badge">LIVE</div>
+    <div class="text">Card 4</div>
+  </div>
+
+</div>
+
+</body>
+</html>

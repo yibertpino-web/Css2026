@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SENA Render Pro</title>
+
+<style>
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: radial-gradient(circle at top, #ffffff, #b9c7d6);
+    overflow: hidden;
+}
+
+.scene {
+    width: 800px;
+    height: 800px;
+    position: relative;
+    perspective: 1000px;
+}
+
+/* BASE */
+.base {
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    left: 50%;
+    top: 55%;
+    transform: translate(-50%, -50%) rotateX(65deg);
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, #4fb3ff, #1c5f9f);
+    box-shadow:
+        inset 0 20px 40px rgba(255,255,255,.3),
+        0 40px 80px rgba(0,0,0,.3);
+    z-index: 1;
+}
+
+/* RING */
+.ring {
+    position: absolute;
+    width: 520px;
+    height: 520px;
+    left: 50%;
+    top: 55%;
+    transform: translate(-50%, -50%) rotateX(65deg);
+    border-radius: 50%;
+    border: 10px solid rgba(212,175,55,.8);
+    box-shadow: 0 0 25px rgba(212,175,55,.4);
+    z-index: 2;
+}
+
+/* GLOW */
+.glow {
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    left: 50%;
+    top: 35%;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(circle, rgba(255,255,255,0.8), transparent 70%);
+    filter: blur(15px);
+    pointer-events: none;
+    z-index: 3;
+}
+
+/* PIN (Contenedor principal del pin) */
+.pin {
+    position: absolute;
+    left: 50%;
+    top: 40%; /* Subido ligeramente para mejor balance óptico */
+    transform: translate(-50%, -50%);
+    width: 200px;
+    height: 260px;
+    filter: drop-shadow(0 20px 30px rgba(0,0,0,0.4));
+    z-index: 4;
+}
+
+/* CUERPO PIN */
+.pin-body {
+    width: 100%;
+    height: 100%;
+    clip-path: polygon(50% 100%, 0 0, 100% 0);
+    /* Corrección de degradado: cortes limpios (Hard-stop color stops) */
+    background: linear-gradient(90deg,
+        #ffdd00 0%, #ffdd00 33.33%,
+        #0033a0 33.33%, #0033a0 66.66%,
+        #d71920 66.66%, #d71920 100%);
+    position: relative;
+}
+
+/* Brillo del Pin */
+.pin-body::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(255,255,255,.4), transparent 60%);
+    top: 0;
+    left: 0;
+}
+
+/* LOGO (Corregido: Ahora se posiciona de forma relativa al contenedor .scene) */
+.logo {
+    position: absolute;
+    width: 95px;
+    height: 95px;
+    left: 50%;
+    top: 32%; /* Ajustado para quedar centrado en la parte ancha del pin */
+    transform: translate(-50%, -50%);
+    background: white;
+    border-radius: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 10px 25px rgba(0,0,0,.25);
+    z-index: 5; /* Por encima de todo */
+}
+
+/* SVG logo */
+.logo svg {
+    width: 80%;
+    height: 80%;
+}
+</style>
+</head>
+
+<body>
+
+<div class="scene">
+    <div class="base"></div>
+    <div class="ring"></div>
+    <div class="glow"></div>
+
+    <div class="pin">
+        <div class="pin-body"></div>
+    </div> 
+
+    <div class="logo">
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: 100%; display: block;">
+            <defs>
+                <linearGradient id="senaVerdePro" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#39A900" />
+                    <stop offset="100%" stop-color="#2B7E00" />
+                </linearGradient>
+
+                <filter id="sombraSuave" x="-10%" y="-10%" width="120%" height="120%">
+                    <feDropShadow dx="0" dy="1.5" stdDeviation="1" flood-color="#000000" flood-opacity="0.15"/>
+                </filter>
+            </defs>
+
+            <g filter="url(#sombraSuave)">
+                <circle cx="50" cy="50" r="44" fill="none" stroke="url(#senaVerdePro)" stroke-width="5" stroke-dasharray="21.6 12.96" stroke-linecap="butt"/>
+                <circle cx="50" cy="50" r="40" fill="none" stroke="url(#senaVerdePro)" stroke-width="4"/>
+                
+                <circle cx="50" cy="21" r="5.5" fill="url(#senaVerdePro)"/>
+                <path d="M50 29 L50 62" stroke="url(#senaVerdePro)" stroke-width="5" stroke-linecap="round"/>
+                
+                <path d="M50 41 L26 55" stroke="url(#senaVerdePro)" stroke-width="5" stroke-linecap="round"/>
+                <path d="M50 41 L74 55" stroke="url(#senaVerdePro)" stroke-width="5" stroke-linecap="round"/>
+                
+                <path d="M50 62 L32 82" stroke="url(#senaVerdePro)" stroke-width="5" stroke-linecap="round"/>
+                <path d="M50 62 L68 82" stroke="url(#senaVerdePro)" stroke-width="5" stroke-linecap="round"/>
+                
+                <circle cx="50" cy="50" r="4.5" fill="#ffffff" />
+                <circle cx="50" cy="50" r="2.5" fill="url(#senaVerdePro)"/>
+            </g>
+        </svg>
+    </div> 
+</div>
+
+</body>
+</html>

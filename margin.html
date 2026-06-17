@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Estudio de Grabación - Margin Auto</title>
+
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: system-ui, Arial;
+  }
+
+  body {
+    color: white;
+    background: #000;
+    overflow-x: hidden;
+  }
+
+  /* 🎧 FONDO ESTUDIO */
+  .bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: -1;
+  }
+
+  .bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+
+    /* 🔥 efecto estudio pro */
+    filter: brightness(0.4) contrast(1.3) saturate(1.2);
+  }
+
+  /* 🌟 TITULO */
+  h1 {
+    text-align: center;
+    margin-top: 30px;
+    text-shadow: 0 0 12px #00c8ff;
+  }
+
+  /* 📦 CAJAS */
+  .box {
+    width: 320px;
+    height: 140px;
+
+    margin: 25px auto; /* 🔥 CENTRADO */
+    border-radius: 14px;
+
+    display: flex;
+    align-items: center;
+
+    box-shadow: 0 0 20px rgba(0,200,255,0.3);
+    backdrop-filter: blur(6px);
+  }
+
+  /* 🔵 AZUL */
+  .blue {
+    background: rgba(0, 200, 255, 0.15);
+    padding-left: 20px;
+  }
+
+  /* 🟢 VERDE */
+  .green {
+    background: rgba(34, 197, 94, 0.15);
+    padding-left: 40px;
+  }
+
+  /* 🟣 MORADO */
+  .purple {
+    background: rgba(168, 85, 247, 0.15);
+    padding-left: 60px;
+  }
+
+  /* 🔴 ROJO */
+  .red {
+    background: rgba(239, 68, 68, 0.15);
+    padding-left: 30px;
+  }
+
+  p {
+    font-size: 14px;
+    text-shadow: 0 0 5px black;
+  }
+
+</style>
+</head>
+
+<body>
+
+<!-- 🎧 FONDO ESTUDIO -->
+<div class="bg">
+  <img src="https://images.unsplash.com/photo-1511379938547-c1f69419868d" alt="estudio de grabacion">
+</div>
+
+<h1>🎧 Estudio Pro + Margin Auto + Padding Left</h1>
+
+<!-- 🔵 -->
+<div class="box blue">
+  🔵 margin: auto + padding-left: 20px
+</div>
+
+<!-- 🟢 -->
+<div class="box green">
+  🟢 padding-left: 40px (más espacio interno)
+</div>
+
+<!-- 🟣 -->
+<div class="box purple">
+  🟣 padding-left: 60px (contenido desplazado)
+</div>
+
+<!-- 🔴 -->
+<div class="box red">
+  🔴 diseño tipo estudio profesional
+</div>
+
+</body>
+</html>

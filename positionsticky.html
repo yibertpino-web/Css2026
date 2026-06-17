@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Sticky con carro luminoso</title>
+
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: system-ui, Arial;
+  }
+
+  body {
+    color: white;
+    background: #000;
+  }
+
+  /* 🚗 FONDO CARRO LUMINOSO */
+  .bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: -1;
+  }
+
+  .bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+
+    /* 💡 EFECTO NEÓN */
+    filter: brightness(0.5) contrast(1.4) saturate(1.8) hue-rotate(210deg);
+  }
+
+  /* 🌈 HEADER */
+  header {
+    background: linear-gradient(90deg, #00c8ff, #6d28d9, #ff0066);
+    padding: 20px;
+    text-align: center;
+    font-weight: bold;
+    text-shadow: 0 0 10px black;
+  }
+
+  /* 📌 MENU STICKY */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+
+    padding: 12px;
+    background: rgba(0,0,0,0.6);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(0,200,255,0.3);
+  }
+
+  nav a {
+    color: #00c8ff;
+    text-decoration: none;
+    font-weight: 700;
+    padding: 8px 12px;
+    border-radius: 10px;
+    transition: 0.3s;
+  }
+
+  nav a:hover {
+    box-shadow: 0 0 12px #00c8ff;
+    background: rgba(0,200,255,0.1);
+  }
+
+  /* 📦 SECCIONES */
+  section {
+    height: 500px;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  h2 {
+    font-size: 28px;
+    text-shadow: 0 0 12px #00c8ff;
+  }
+
+  p {
+    max-width: 600px;
+    margin-top: 10px;
+    line-height: 1.6;
+    text-shadow: 0 0 5px black;
+  }
+
+  /* 🎨 COLORES POR SECCIÓN */
+  .s1 { background: rgba(0, 200, 255, 0.1); }
+  .s2 { background: rgba(34, 197, 94, 0.1); }
+  .s3 { background: rgba(245, 158, 11, 0.1); }
+  .s4 { background: rgba(239, 68, 68, 0.1); }
+
+  /* 💬 BOTÓN FIXED */
+  .btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+
+    background: #00c8ff;
+    color: black;
+    padding: 14px 16px;
+    border-radius: 50px;
+    font-weight: bold;
+
+    box-shadow: 0 0 15px #00c8ff;
+    cursor: pointer;
+  }
+
+</style>
+</head>
+
+<body>
+
+<!-- 🚗 FONDO CARRO -->
+<div class="bg">
+  <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70" alt="carro luminoso">
+</div>
+
+<header>
+  🚗 MENÚ STICKY + CARRO NEÓN
+</header>
+
+<nav>
+  <a href="#s1">Inicio</a>
+  <a href="#s2">Velocidad</a>
+  <a href="#s3">Diseño</a>
+  <a href="#s4">Contacto</a>
+</nav>
+
+<section id="s1" class="s1">
+  <h2>Inicio</h2>
+  <p>Diseño futurista con fondo de carro iluminado estilo neón.</p>
+</section>
+
+<section id="s2" class="s2">
+  <h2>Velocidad</h2>
+  <p>Sección con estilo de velocidad y energía visual.</p>
+</section>
+
+<section id="s3" class="s3">
+  <h2>Diseño</h2>
+  <p>Interfaz moderna con efectos de luz y glassmorphism.</p>
+</section>
+
+<section id="s4" class="s4">
+  <h2>Contacto</h2>
+  <p>Diseño ideal para landing pages de autos o tecnología.</p>
+</section>
+
+<div class="btn">
+  💬 Chat
+</div>
+
+</body>
+</html>

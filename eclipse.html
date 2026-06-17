@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Eclipse Lunar Total</title>
+
+<style>
+body{
+    margin:0;
+    background:#ececec;
+    display:flex;
+    justify-content:center;
+    padding:20px;
+    font-family:Arial, sans-serif;
+}
+
+.container{
+    background:white;
+    width:1100px;
+}
+
+h1{
+    margin:0;
+    padding:15px;
+    font-size:64px;
+    font-family:Georgia, serif;
+}
+
+svg{
+    width:100%;
+    height:auto;
+    display:block;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Eclipse lunar total</h1>
+
+<svg viewBox="0 0 1100 550">
+
+<!-- ================= FONDO ================= -->
+<defs>
+
+<linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0%" stop-color="#2d7d9b"/>
+    <stop offset="100%" stop-color="#347f99"/>
+</linearGradient>
+
+<radialGradient id="ocean" cx="35%" cy="30%" r="80%">
+    <stop offset="0%" stop-color="#8fe9ff"/>
+    <stop offset="35%" stop-color="#49c9ff"/>
+    <stop offset="70%" stop-color="#1687c8"/>
+    <stop offset="100%" stop-color="#08486d"/>
+</radialGradient>
+
+<linearGradient id="nightSide" x1="0%" y1="0%" x2="100%" y2="0%">
+    <stop offset="0%" stop-color="#00000000"/>
+    <stop offset="100%" stop-color="#00000088"/>
+</linearGradient>
+
+</defs>
+
+<rect width="1100" height="550" fill="url(#bg)"/>
+
+<!-- ================= TEXTO PRINCIPAL ================= -->
+<text x="20" y="40" fill="white" font-size="30">
+La Luna pasa completamente a través de la umbra
+</text>
+
+<!-- ================= SOL ================= -->
+<circle cx="-40" cy="260" r="180" fill="#d5d200"/>
+<text x="30" y="280" font-size="34" fill="black">Sol</text>
+
+<!-- ================= RAYOS ================= -->
+<polygon points="120,120 720,210 120,300" fill="rgba(255,255,0,0.35)"/>
+<polygon points="120,210 720,120 720,300" fill="rgba(255,255,0,0.35)"/>
+<polygon points="120,210 720,300 120,390" fill="rgba(110,110,0,0.4)"/>
+<polygon points="120,300 720,210 720,390" fill="rgba(110,110,0,0.4)"/>
+
+<!-- ================= PENUMBRA ================= -->
+<polygon points="720,110 1080,50 1080,180 720,210" fill="rgba(0,0,0,0.22)"/>
+<polygon points="720,340 1080,370 1080,500 720,430" fill="rgba(0,0,0,0.22)"/>
+
+<!-- ================= UMBRA ================= -->
+<polygon points="720,210 1080,180 1080,370 720,340" fill="rgba(0,0,0,0.75)"/>
+
+<!-- ================= TIERRA PROFESIONAL ================= -->
+<g>
+
+<!-- brillo atmósfera -->
+<circle cx="650" cy="275" r="98" fill="none" stroke="#9ae7ff" stroke-width="8" opacity=".25"/>
+
+<!-- planeta -->
+<circle cx="650" cy="275" r="90" fill="url(#ocean)"/>
+
+<!-- continentes -->
+<path d="
+M620 220 L650 210 L690 225 L700 255 L685 285
+L665 320 L635 310 L615 275 L610 240 Z"
+fill="#72b733"/>
+
+<path d="
+M675 230 L715 245 L720 270 L700 295 L670 280 Z"
+fill="#5fa023"/>
+
+<path d="
+M640 195 L670 205 L675 220 L650 225 L630 210 Z"
+fill="#89cf45"/>
+
+<!-- nubes -->
+<ellipse cx="630" cy="235" rx="22" ry="8" fill="white" opacity=".45"/>
+<ellipse cx="685" cy="250" rx="18" ry="6" fill="white" opacity=".35"/>
+<ellipse cx="655" cy="305" rx="28" ry="9" fill="white" opacity=".30"/>
+
+<!-- lado nocturno -->
+<circle cx="650" cy="275" r="90" fill="url(#nightSide)"/>
+
+<!-- borde atmósfera -->
+<circle cx="650" cy="275" r="90" fill="none" stroke="#bdf4ff" stroke-width="3" opacity=".6"/>
+
+</g>
+
+<!-- ================= TEXTO TIERRA ================= -->
+<line x1="650" y1="120" x2="650" y2="180" stroke="white" stroke-width="2"/>
+<text x="610" y="95" fill="white" font-size="42">Tierra</text>
+
+<!-- ================= LUNA ================= -->
+<circle cx="980" cy="275" r="22" fill="#b84a57"/>
+
+<path d="
+M980 253 A22 22 0 0 1 980 297
+L1002 297 A22 22 0 0 0 1002 253 Z"
+fill="rgba(0,0,0,0.35)"/>
+
+<line x1="980" y1="110" x2="980" y2="253" stroke="white" stroke-width="2"/>
+<text x="935" y="90" fill="white" font-size="42">Luna</text>
+
+<!-- ================= ETIQUETAS ================= -->
+<circle cx="840" cy="360" r="6" fill="white"/>
+<line x1="840" y1="360" x2="840" y2="445" stroke="white" stroke-width="2"/>
+<text x="800" y="485" fill="white" font-size="34">Umbra</text>
+
+<circle cx="910" cy="330" r="6" fill="white"/>
+<line x1="910" y1="330" x2="910" y2="510" stroke="white" stroke-width="2"/>
+<text x="760" y="535" fill="white" font-size="34">Penumbra</text>
+
+<!-- ================= NOTA ================= -->
+<text x="20" y="525" fill="white" font-size="22">
+Diagrama ilustrativo (no a escala)
+</text>
+
+</svg>
+
+</div>
+
+</body>
+</html>

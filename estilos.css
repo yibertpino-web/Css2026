@@ -1,0 +1,87 @@
+/* ================= CELDAS ================= */
+
+th, td {
+
+    padding: 12px;
+
+    border: 1px solid #ddd;
+
+    text-align: center;
+
+    vertical-align: middle;
+}
+
+/* ================= BORDER STYLE ================= */
+
+.solid{
+    border-style: solid;
+}
+
+.dashed{
+    border-style: dashed;
+}
+
+.dotted{
+    border-style: dotted;
+}
+
+.double{
+    border-style: double;
+}
+
+.groove{
+    border-style: groove;
+}
+
+.ridge{
+    border-style: ridge;
+}
+
+.inset{
+    border-style: inset;
+}
+
+.outset{
+    border-style: outset;
+}
+
+/* ================= EJEMPLOS COMPLETOS ================= */
+
+.borde-azul{
+    border: 3px solid #1e3a5f;
+}
+
+.borde-punteado{
+    border: 3px dotted #2c5282;
+}
+
+.borde-rayado{
+    border: 3px dashed #2c5282;
+}
+
+.borde-doble{
+    border: 5px double #1e3a5f;
+}
+
+.borde-redondo{
+    border: 3px solid #1e3a5f;
+    border-radius: 12px;
+}
+
+/* ================= EJEMPLOS EXTRA ================= */
+
+.borde-principal{
+    border: 4px solid #1e3a5f;
+}
+
+.borde-secundario{
+    border: 4px dashed #2c5282;
+}
+
+.borde-punteado-azul{
+    border: 4px dotted #2563eb;
+}
+
+.borde-doble-negro{
+    border: 6px double #0f172a;
+}

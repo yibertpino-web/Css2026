@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Columns + Break Before</title>
+
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: system-ui, Arial;
+  }
+
+  body {
+    background: #0f172a;
+    color: white;
+    padding: 20px;
+  }
+
+  h1 {
+    text-align: center;
+    color: #00c8ff;
+    text-shadow: 0 0 10px #00c8ff;
+    margin-bottom: 20px;
+  }
+
+  /* 📰 CONTENEDOR PRINCIPAL EN COLUMNAS */
+  .container {
+    max-width: 1000px;
+    margin: auto;
+
+    column-count: 3;
+    column-gap: 25px;
+    column-rule: 2px solid rgba(0,200,255,0.4);
+
+    background: rgba(255,255,255,0.05);
+    padding: 20px;
+    border-radius: 12px;
+    backdrop-filter: blur(6px);
+  }
+
+  p {
+    margin-bottom: 10px;
+    line-height: 1.6;
+    font-size: 14px;
+  }
+
+  /* 🚨 BREAK-BEFORE */
+  .break {
+    break-before: column;   /* 🔥 empieza en nueva columna */
+    background: rgba(0,200,255,0.15);
+    padding: 12px;
+    border-radius: 10px;
+    font-weight: bold;
+    box-shadow: 0 0 15px rgba(0,200,255,0.3);
+  }
+
+  /* 🎨 SECCIÓN 2 COLUMNAS */
+  .section-2 {
+    max-width: 1000px;
+    margin: 30px auto;
+
+    column-count: 2;
+    column-gap: 25px;
+    column-rule: 2px dashed rgba(255,255,255,0.3);
+
+    background: rgba(34,197,94,0.08);
+    padding: 20px;
+    border-radius: 12px;
+  }
+
+  .section-2 h2 {
+    column-span: all;
+    text-align: center;
+    margin-bottom: 15px;
+    color: #22c55e;
+  }
+
+  /* 🎴 CARDS MULTICOLUMN */
+  .cards {
+    max-width: 1000px;
+    margin: 30px auto;
+
+    column-count: 4;
+    column-gap: 20px;
+  }
+
+  .card {
+    background: linear-gradient(135deg, #3b82f6, #6d28d9);
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 12px;
+
+    break-inside: avoid; /* 🔥 evita que se parta la card */
+
+    box-shadow: 0 0 15px rgba(0,200,255,0.3);
+  }
+
+</style>
+</head>
+
+<body>
+
+<h1>📄 Columns + break-before (TODO EN UNO)</h1>
+
+<!-- 📰 3 COLUMNAS + BREAK -->
+<div class="container">
+
+  <p>Este es un ejemplo de columnas CSS con contenido tipo revista.</p>
+  <p>El texto se distribuye automáticamente en 3 columnas.</p>
+
+  <p class="break">
+    🚨 ESTE BLOQUE USA break-before: column (empieza en nueva columna)
+  </p>
+
+  <p>Después del break-before el contenido continúa normalmente.</p>
+  <p>Esto es muy útil en diseños editoriales.</p>
+  <p>Permite controlar mejor el flujo del contenido.</p>
+  <p>Se usa en revistas digitales y PDFs.</p>
+
+</div>
+
+<!-- 🌿 2 COLUMNAS -->
+<div class="section-2">
+
+  <h2>🌿 Sección en 2 columnas</h2>
+
+  <p>Contenido organizado en dos columnas.</p>
+  <p>Ideal para texto informativo o blogs.</p>
+  <p>Mejora la lectura en pantallas grandes.</p>
+  <p>Se adapta al diseño automáticamente.</p>
+
+</div>
+
+<!-- 🎴 CARDS -->
+<div class="cards">
+
+  <div class="card">🔥 Card 1</div>
+  <div class="card">💡 Card 2</div>
+  <div class="card">🚀 Card 3</div>
+  <div class="card">🎯 Card 4</div>
+  <div class="card">🌈 Card 5</div>
+  <div class="card">⚡ Card 6</div>
+  <div class="card">🎧 Card 7</div>
+  <div class="card">💻 Card 8</div>
+
+</div>
+
+</body>
+</html>

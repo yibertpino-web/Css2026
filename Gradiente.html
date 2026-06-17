@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Gradientes y Div Centrado</title>
+
+<style>
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: Arial, sans-serif;
+    background: #111;
+    color: white;
+
+    min-height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    padding: 40px;
+}
+
+h1{
+    margin-bottom: 40px;
+}
+
+/* CONTENEDOR */
+.contenedor{
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+/* CAJAS */
+.caja{
+    width: 300px;
+    height: 180px;
+
+    border-radius: 20px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 22px;
+    font-weight: bold;
+
+    transition: 0.5s;
+
+    box-shadow: 0 0 15px rgba(255,255,255,0.2);
+}
+
+.caja:hover{
+    transform: scale(1.05);
+}
+
+/* GRADIENTES */
+
+.linear{
+    background: linear-gradient(to right,
+    red 0%,
+    orange 30%,
+    yellow 60%,
+    green 100%);
+}
+
+.radial{
+    background: radial-gradient(circle,
+    cyan 10%,
+    blue 40%,
+    black 100%);
+}
+
+.conic{
+    background: conic-gradient(
+    red 0%,
+    yellow 25%,
+    lime 50%,
+    cyan 75%,
+    red 100%);
+}
+
+.repeat{
+    background: repeating-linear-gradient(
+    45deg,
+    black 0%,
+    black 10%,
+    white 10%,
+    white 20%);
+
+    color: red;
+}
+
+/* DIV CENTRADO */
+.centrado{
+    margin-top: 50px;
+
+    width: 400px;
+    height: 200px;
+
+    background: white;
+    color: black;
+
+    border-radius: 15px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 24px;
+    font-weight: bold;
+}
+
+</style>
+</head>
+
+<body>
+
+<h1>Gradientes con Porcentajes</h1>
+
+<div class="contenedor">
+
+    <div class="caja linear">
+        Linear 0% - 100%
+    </div>
+
+    <div class="caja radial">
+        Radial 10% - 100%
+    </div>
+
+    <div class="caja conic">
+        Conic 0% - 100%
+    </div>
+
+    <div class="caja repeat">
+        Repeating Gradient
+    </div>
+
+</div>
+
+<div class="centrado">
+    Div Centrado
+</div>
+
+</body>
+</html>

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>pagina web</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    height:100vh;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+    gap:30px;
+
+    background:#0f0f0f;
+    font-family:Arial, sans-serif;
+}
+
+/* TITULO */
+h1{
+    color:white;
+    font-size:28px;
+}
+
+/* CONTENEDOR */
+.contenedor{
+    display:flex;
+    gap:20px;
+    flex-wrap:wrap;
+    justify-content:center;
+}
+
+/* BOTON BASE */
+.btn{
+
+    padding:15px 30px;
+
+    border:none;
+    cursor:pointer;
+
+    font-size:18px;
+    font-weight:bold;
+    color:white;
+
+    border-radius:12px;
+
+    position:relative;
+
+    transition:0.3s;
+
+    overflow:hidden;
+}
+
+/* BOTON 1 - CONIC GRADIENT */
+.btn1{
+
+    background: conic-gradient(
+        red,
+        yellow,
+        lime,
+        cyan,
+        blue,
+        magenta,
+        red
+    );
+
+    box-shadow:0 0 15px rgba(0,255,255,0.3);
+}
+
+.btn1:hover{
+    transform:scale(1.1);
+    filter:brightness(1.2);
+}
+
+/* BOTON 2 - EFECTO NEON */
+.btn2{
+
+    background:#111;
+
+    border:2px solid cyan;
+
+    color:cyan;
+
+    box-shadow:0 0 10px cyan;
+}
+
+.btn2:hover{
+    background:cyan;
+    color:black;
+    box-shadow:0 0 25px cyan;
+    transform:translateY(-3px);
+}
+
+/* BOTON 3 - GRADIENTE ANIMADO */
+.btn3{
+
+    background: conic-gradient(
+        from 0deg,
+        purple,
+        pink,
+        orange,
+        purple
+    );
+
+    animation:girar 3s linear infinite;
+}
+
+.btn3:hover{
+    transform:scale(1.1);
+}
+
+/* ANIMACION */
+@keyframes girar{
+    from{
+        transform:rotate(0deg);
+    }
+    to{
+        transform:rotate(360deg);
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<h1>🔥 Botones con Conic Gradient</h1>
+
+<div class="contenedor">
+
+    <button class="btn btn1">Gradient</button>
+
+    <button class="btn btn2">Neon</button>
+
+    <button class="btn btn3">Spin</button>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Juego completo automático</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: black;
+  overflow: hidden;
+}
+
+/* 🌌 fondo gamer */
+.fondo {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(-45deg, #000, #0f0c29, #302b63, #000);
+  background-size: 400% 400%;
+  animation: bg 6s infinite;
+}
+
+@keyframes bg {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* ⏳ loading */
+.loading {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: black;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 30px;
+  z-index: 2;
+}
+
+/* 🎮 juego */
+.juego {
+  display: none;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  color: white;
+  padding-top: 10px;
+}
+
+/* ⏱️ info */
+#timer, #score, #turno {
+  font-size: 20px;
+  margin: 5px;
+}
+
+/* 👥 jugadores */
+.jugadores {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  margin-top: 10px;
+}
+
+.jugador {
+  width: 140px;
+  padding: 10px;
+  background: rgba(255,255,255,0.1);
+  border: 2px solid white;
+  border-radius: 15px;
+}
+
+.cara {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  border: 2px solid white;
+}
+
+/* 🎯 cartas */
+.cartas {
+  margin-top: 20px;
+}
+
+.caja {
+  width: 120px;
+  height: 80px;
+  margin: 10px;
+  display: inline-block;
+  background: rgba(255,255,255,0.2);
+  line-height: 80px;
+  font-weight: bold;
+}
+
+.correcto { background: green; }
+.incorrecto { background: red; }
+
+/* 🎉 mensaje final */
+#final {
+  font-size: 26px;
+  margin-top: 20px;
+  color: cyan;
+}
+</style>
+</head>
+
+<body>
+
+<div class="fondo"></div>
+
+<!-- ⏳ loading -->
+<div class="loading" id="loading">
+  🎮 Cargando juego...
+</div>
+
+<!-- 🎮 juego -->
+<div class="juego" id="juego">
+
+  <h1>🎮 Juego completo automático</h1>
+
+  <div id="timer">⏱ Tiempo: 0s</div>
+  <div id="score">🏆 Puntos J1: 0 | J2: 0</div>
+  <div id="turno">👉 Turno: Jugador 1</div>
+
+  <!-- 👥 jugadores -->
+  <div class="jugadores">
+    <div class="jugador"><img class="cara" src="https://i.pravatar.cc/150?img=12"><p>Jugador 1</p></div>
+    <div class="jugador"><img class="cara" src="https://i.pravatar.cc/150?img=32"><p>Jugador 2</p></div>
+  </div>
+
+  <!-- 🎯 cartas -->
+  <div class="cartas" id="origen">
+
+    <div class="caja" data-tipo="correcto">HTML</div>
+    <div class="caja" data-tipo="correcto">CSS</div>
+    <div class="caja" data-tipo="incorrecto">BANANA</div>
+    <div class="caja" data-tipo="incorrecto">ROCK</div>
+    <div class="caja" data-tipo="correcto">JS</div>
+
+  </div>
+
+  <div id="final"></div>
+
+</div>
+
+<script>
+
+let tiempo = 0;
+let jugador = 1;
+let puntos = {1: 0, 2: 0};
+
+// 🚀 mostrar juego automáticamente
+setTimeout(() => {
+  document.getElementById("loading").style.display = "none";
+  document.getElementById("juego").style.display = "block";
+}, 2500);
+
+// ⏱ cronómetro
+setInterval(() => {
+  tiempo++;
+  document.getElementById("timer").innerText =
+    "⏱ Tiempo: " + tiempo + "s";
+}, 1000);
+
+// 🔁 cambio de turno
+setInterval(() => {
+  jugador = jugador === 1 ? 2 : 1;
+  document.getElementById("turno").innerText =
+    "👉 Turno: Jugador " + jugador;
+}, 2000);
+
+// 🎮 lógica del juego automático
+function jugar() {
+
+  const origen = document.getElementById("origen");
+  const cartas = Array.from(origen.getElementsByClassName("caja"));
+
+  if (cartas.length === 0) {
+    terminarJuego();
+    return;
+  }
+
+  const carta = cartas[0];
+  const tipo = carta.getAttribute("data-tipo");
+
+  carta.style.opacity = "0";
+
+  setTimeout(() => {
+
+    if (tipo === "correcto") {
+      puntos[jugador] += 10;
+      carta.classList.add("correcto");
+    } else {
+      puntos[jugador] -= 5;
+      carta.classList.add("incorrecto");
+    }
+
+    document.getElementById("score").innerText =
+      "🏆 Puntos J1: " + puntos[1] + " | J2: " + puntos[2];
+
+    carta.style.opacity = "1";
+
+  }, 300);
+}
+
+// 🏁 final del juego
+function terminarJuego() {
+
+  clearInterval(gameLoop);
+
+  let ganador =
+    puntos[1] > puntos[2] ? "Jugador 1" :
+    puntos[2] > puntos[1] ? "Jugador 2" : "Empate";
+
+  document.getElementById("final").innerText =
+    "🏆 Juego terminado - Ganador: " + ganador;
+}
+
+// 🔁 loop automático
+const gameLoop = setInterval(jugar, 1800);
+
+</script>
+
+</body>
+</html>
