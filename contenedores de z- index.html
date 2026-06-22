@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Abanico en el Estadio</title>
+<style>
+  body { 
+    margin: 0; min-height: 100vh; 
+    /* Fondo del estadio profesional */
+    background-image: url('Jugadores De Seleccion De Colombia/Estadio.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex; justify-content: center; align-items: center; 
+    overflow: hidden; font-family: 'Segoe UI', sans-serif;
+  }
+
+  /* Capa de oscurecimiento para que las cartas resalten */
+  body::before {
+    content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.4); pointer-events: none;
+  }
+
+  #fan { position: relative; width: 800px; height: 400px; z-index: 1; }
+
+  .card { 
+    position: absolute; left: 320px; width: 160px; height: 230px;
+    background: white; border-radius: 10px; border: 1px solid #ddd;
+    transition: 0.8s cubic-bezier(0.17, 0.67, 0.28, 1.25);
+    transform-origin: bottom center;
+    padding: 10px; box-shadow: 2px 2px 15px rgba(0,0,0,0.5);
+  }
+
+  .fan-open .card { transform: rotate(var(--angle)) translateY(-120px); }
+  
+  .img { height: 75%; overflow: hidden; background: #eee; border-radius: 4px; }
+  .img img { width: 100%; height: 100%; object-fit: cover; }
+  .name { text-align: center; font-size: 13px; font-weight: bold; margin-top: 8px; color: #333; }
+</style>
+</head>
+<body>
+
+<div id="fan"></div>
+
+<script>
+// Lista de jugadores corregida
+const players = [
+  { name: "Luis Díaz", img: "./Jugadores De Seleccion De Colombia/luis diaz.jpg" },
+  { name: "James Rodríguez", img: "./Jugadores De Seleccion De Colombia/james.jpg" },
+  { name: "Cuadrado", img: "./Jugadores De Seleccion De Colombia/cuadrado.jpg" },
+  { name: "Davinson Sánchez", img: "./Jugadores De Seleccion De Colombia/davinson.jpg" },
+  { name: "Jefferson Lerma", img: "./Jugadores De Seleccion De Colombia/lerma.jpg" }
+];
+
+function createFan() {
+  const fan = document.getElementById("fan");
+  
+  players.forEach((p, i) => {
+    const card = document.createElement("div");
+    card.className = "card";
+    const angle = (i - 2) * 28; 
+    card.style.setProperty('--angle', `${angle}deg`);
+    card.style.zIndex = i;
+    
+    card.innerHTML = `
+      <div class="img"><img src="${p.img}" onerror="this.src='https://via.placeholder.com/200x300?text=Jugador'"></div>
+      <div class="name">${p.name}</div>
+    `;
+    fan.appendChild(card);
+  });
+
+  // Animación automática
+  setTimeout(() => {
+    fan.classList.add("fan-open");
+  }, 1000);
+}
+
+createFan();
+</script>
+</body>
+</html>

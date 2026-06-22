@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Transformaciones CSS con Efectos</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI', sans-serif;
+}
+
+body{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(135deg,#0f172a,#1e293b,#334155);
+}
+
+.contenedor{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:40px;
+    width:90%;
+}
+
+.card{
+    width:250px;
+    height:300px;
+    background:rgba(255,255,255,0.08);
+    backdrop-filter:blur(10px);
+    border:1px solid rgba(255,255,255,.2);
+    border-radius:25px;
+    box-shadow:0 15px 30px rgba(0,0,0,.4);
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    color:white;
+    overflow:hidden;
+    transition:.8s;
+}
+
+.card h2{
+    margin-bottom:30px;
+}
+
+.figura{
+    width:120px;
+    height:120px;
+    border-radius:20px;
+    background:linear-gradient(45deg,#00c6ff,#0072ff);
+    box-shadow:
+    0 0 20px #00c6ff,
+    0 0 40px #0072ff;
+    transition:1s;
+}
+
+/* ROTATE */
+
+.rotate:hover .figura{
+    transform:rotate(360deg);
+}
+
+/* SCALE */
+
+.scale .figura{
+    background:linear-gradient(45deg,#00ff87,#60efff);
+}
+
+.scale:hover .figura{
+    transform:scale(1.5);
+}
+
+/* SKEW */
+
+.skew .figura{
+    background:linear-gradient(45deg,#f7971e,#ffd200);
+}
+
+.skew:hover .figura{
+    transform:skew(20deg,10deg);
+}
+
+/* MATRIX */
+
+.matrix .figura{
+    background:linear-gradient(45deg,#ff416c,#ff4b2b);
+}
+
+.matrix:hover .figura{
+    transform:matrix(1.2,0.4,0.4,1.2,20,-20);
+}
+
+/* COMBINADO */
+
+.combo .figura{
+    background:linear-gradient(45deg,#8e2de2,#4a00e0);
+}
+
+.combo:hover .figura{
+    transform:
+    rotate(360deg)
+    scale(1.3)
+    skew(10deg);
+}
+
+/* ANIMACIÓN AUTOMÁTICA */
+
+@keyframes flotar{
+    0%,100%{
+        transform:translateY(0);
+    }
+    50%{
+        transform:translateY(-15px);
+    }
+}
+
+.card{
+    animation:flotar 3s infinite ease-in-out;
+}
+
+.card:nth-child(2){
+    animation-delay:.5s;
+}
+
+.card:nth-child(3){
+    animation-delay:1s;
+}
+
+.card:nth-child(4){
+    animation-delay:1.5s;
+}
+
+.card:nth-child(5){
+    animation-delay:2s;
+}
+
+</style>
+</head>
+<body>
+
+<div class="contenedor">
+
+    <div class="card rotate">
+        <h2>Rotate()</h2>
+        <div class="figura"></div>
+    </div>
+
+    <div class="card scale">
+        <h2>Scale()</h2>
+        <div class="figura"></div>
+    </div>
+
+    <div class="card skew">
+        <h2>Skew()</h2>
+        <div class="figura"></div>
+    </div>
+
+    <div class="card matrix">
+        <h2>Matrix()</h2>
+        <div class="figura"></div>
+    </div>
+
+    <div class="card combo">
+        <h2>Combinado</h2>
+        <div class="figura"></div>
+    </div>
+
+</div>
+
+</body>
+</html>
