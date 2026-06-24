@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ajedrez de Pseudoclases CSS</title>
+
+<style>
+
+/* ==========================
+   ROOT
+========================== */
+
+:root{
+    --claro:#f0d9b5;
+    --oscuro:#b58863;
+    --verde:#39A900;
+    --rojo:#ef4444;
+    --azul:#2563eb;
+    --morado:#9333ea;
+    --amarillo:#facc15;
+    --blanco:#fff;
+}
+
+/* ==========================
+   GENERAL
+========================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+
+body{
+    min-height:100vh;
+
+    background:
+    linear-gradient(rgba(0,0,0,.7),
+    rgba(0,0,0,.7)),
+    url("salon.jpg");
+
+    background-size:cover;
+    background-position:center;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    padding:20px;
+}
+
+.panel{
+    width:1200px;
+    max-width:95%;
+
+    background:rgba(255,255,255,.12);
+    backdrop-filter:blur(15px);
+
+    padding:30px;
+    border-radius:25px;
+}
+
+h1{
+    text-align:center;
+    color:white;
+    margin-bottom:10px;
+}
+
+.subtitulo{
+    text-align:center;
+    color:#ddd;
+    margin-bottom:25px;
+}
+
+/* ==========================
+   TABLERO
+========================== */
+
+.tablero{
+    display:grid;
+    grid-template-columns:repeat(8,80px);
+    justify-content:center;
+    gap:2px;
+}
+
+/* Casillas */
+
+.casilla{
+    width:80px;
+    height:80px;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    font-size:42px;
+
+    text-decoration:none;
+
+    transition:.4s;
+}
+
+/* ==========================
+   ODD / EVEN
+========================== */
+
+.casilla:nth-child(odd){
+    background:var(--claro);
+}
+
+.casilla:nth-child(even){
+    background:var(--oscuro);
+}
+
+/* ==========================
+   FIRST CHILD
+========================== */
+
+.casilla:first-child{
+    box-shadow:0 0 20px gold;
+}
+
+/* ==========================
+   LAST CHILD
+========================== */
+
+.casilla:last-child{
+    box-shadow:0 0 20px red;
+}
+
+/* ==========================
+   HOVER
+========================== */
+
+.casilla:hover{
+    transform:scale(1.15);
+    z-index:10;
+}
+
+/* ==========================
+   ACTIVE
+========================== */
+
+.casilla:active{
+    background:lime;
+}
+
+/* ==========================
+   FOCUS
+========================== */
+
+.casilla:focus{
+    outline:4px solid blue;
+}
+
+/* ==========================
+   TARGET
+========================== */
+
+.casilla:target{
+    background:gold;
+}
+
+/* ==========================
+   EMPTY
+========================== */
+
+.vacia:empty::after{
+    content:"·";
+    opacity:.4;
+    font-size:40px;
+}
+
+/* ==========================
+   FIRST OF TYPE
+========================== */
+
+.peon:first-of-type{
+    color:var(--verde);
+    text-shadow:0 0 10px lime;
+}
+
+/* ==========================
+   LAST OF TYPE
+========================== */
+
+.peon:last-of-type{
+    color:var(--rojo);
+    text-shadow:0 0 10px red;
+}
+
+/* ==========================
+   ONLY CHILD
+========================== */
+
+.rey:only-child{
+    animation:pulso 1s infinite;
+}
+
+@keyframes pulso{
+    50%{
+        transform:scale(1.2);
+    }
+}
+
+/* ==========================
+   NOT
+========================== */
+
+.casilla:not(.vacia):hover{
+    filter:brightness(1.2);
+}
+
+/* ==========================
+   INFO
+========================== */
+
+.info{
+    margin-top:25px;
+
+    background:white;
+    padding:20px;
+    border-radius:15px;
+}
+
+.info h2{
+    color:var(--verde);
+    margin-bottom:10px;
+}
+
+.info li{
+    margin:8px 0;
+}
+
+</style>
+</head>
+<body>
+
+<div class="panel">
+
+<h1>♟️ Ajedrez de Pseudoclases CSS</h1>
+
+<p class="subtitulo">
+Haz clic sobre las piezas y mueve el cursor para descubrir las pseudoclases.
+</p>
+
+<div class="tablero">
+
+<!-- FILA 1 -->
+
+<a id="c1" href="#c1" class="casilla">♜</a>
+<a id="c2" href="#c2" class="casilla">♞</a>
+<a id="c3" href="#c3" class="casilla">♝</a>
+<a id="c4" href="#c4" class="casilla">♛</a>
+
+<a id="rey1" href="#rey1" class="casilla">
+<span class="rey">♚</span>
+</a>
+
+<a id="c6" href="#c6" class="casilla">♝</a>
+<a id="c7" href="#c7" class="casilla">♞</a>
+<a id="c8" href="#c8" class="casilla">♜</a>
+
+<!-- FILA 2 -->
+
+<a id="p1" href="#p1" class="casilla peon">♟</a>
+<a id="p2" href="#p2" class="casilla peon">♟</a>
+<a id="p3" href="#p3" class="casilla peon">♟</a>
+<a id="p4" href="#p4" class="casilla peon">♟</a>
+<a id="p5" href="#p5" class="casilla peon">♟</a>
+<a id="p6" href="#p6" class="casilla peon">♟</a>
+<a id="p7" href="#p7" class="casilla peon">♟</a>
+<a id="p8" href="#p8" class="casilla peon">♟</a>
+
+<!-- FILAS VACÍAS -->
+
+<div class="casilla vacia"></div>
+<div class="casilla vacia"></div>
+<div class="casilla vacia"></div>
+<div class="casilla vacia"></div>
+<div class="casilla vacia"></div>
+<div class="casilla vacia"></div>
+<div class="casilla vacia"></div>
+<div class="casilla vacia"></div>
+
+<div class="casilla vacia"></div>
+<div class="casilla vacia"></div>
+<div class="casilla vacia"></div>
+<div class="casilla vacia"></div>
+<div class="casilla vacia"></div>
+<div class="casilla vacia"></div>
+<div class="casilla vacia"></div>
+<div class="casilla vacia"></div>
+
+<div class="casilla vacia"></div>
+<div class="casilla vacia"></div>
+<div class="casilla vacia"></div>
+<div class="casilla vacia"></div>
+<div class="casilla vacia"></div>
+<div class="casilla vacia"></div>
+<div class="casilla vacia"></div>
+<div class="casilla vacia"></div>
+
+<div class="casilla vacia"></div>
+<div class="casilla vacia"></div>
+<div class="casilla vacia"></div>
+<div class="casilla vacia"></div>
+<div class="casilla vacia"></div>
+<div class="casilla vacia"></div>
+<div class="casilla vacia"></div>
+<div class="casilla vacia"></div>
+
+<!-- FILA 7 -->
+
+<a href="#b1" id="b1" class="casilla">♙</a>
+<a href="#b2" id="b2" class="casilla">♙</a>
+<a href="#b3" id="b3" class="casilla">♙</a>
+<a href="#b4" id="b4" class="casilla">♙</a>
+<a href="#b5" id="b5" class="casilla">♙</a>
+<a href="#b6" id="b6" class="casilla">♙</a>
+<a href="#b7" id="b7" class="casilla">♙</a>
+<a href="#b8" id="b8" class="casilla">♙</a>
+
+<!-- FILA 8 -->
+
+<a href="#r1" id="r1" class="casilla">♖</a>
+<a href="#r2" id="r2" class="casilla">♘</a>
+<a href="#r3" id="r3" class="casilla">♗</a>
+<a href="#r4" id="r4" class="casilla">♕</a>
+<a href="#r5" id="r5" class="casilla">♔</a>
+<a href="#r6" id="r6" class="casilla">♗</a>
+<a href="#r7" id="r7" class="casilla">♘</a>
+<a href="#r8" id="r8" class="casilla">♖</a>
+
+</div>
+
+<div class="info">
+
+<h2>🎓 Pseudoclases utilizadas</h2>
+
+<ul>
+<li>:root → Variables globales</li>
+<li>:first-child → Primera casilla</li>
+<li>:last-child → Última casilla</li>
+<li>:nth-child(even) → Casillas pares</li>
+<li>:nth-child(odd) → Casillas impares</li>
+<li>:first-of-type → Primer peón</li>
+<li>:last-of-type → Último peón</li>
+<li>:only-child → Rey animado</li>
+<li>:empty → Casillas vacías</li>
+<li>:hover → Efecto al pasar el mouse</li>
+<li>:active → Al hacer clic</li>
+<li>:focus → Al seleccionar</li>
+<li>:target → Casilla seleccionada</li>
+<li>:not() → Piezas ocupadas</li>
+</ul>
+
+</div>
+
+</div>
+
+</body>
+</html>

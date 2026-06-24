@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Panel de Software</title>
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        background:
+            linear-gradient(rgba(5,10,25,0.88), rgba(5,10,25,0.92)),
+            url("https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=1600&q=80");
+
+        background-size: cover;
+        background-position: center;
+    }
+
+    .panel {
+        width: 420px;
+        padding: 35px;
+        border-radius: 18px;
+
+        background: rgba(15, 23, 42, 0.85);
+        backdrop-filter: blur(14px);
+
+        border: 1px solid rgba(56, 189, 248, 0.25);
+        box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+
+        text-align: center;
+        transition: transform 0.3s ease;
+    }
+
+    .panel:hover {
+        transform: scale(1.02);
+    }
+
+    .panel h1 {
+        color: #e2e8f0;
+        font-size: 26px;
+        margin-bottom: 8px;
+    }
+
+    .panel p {
+        color: #94a3b8;
+        font-size: 14px;
+        margin-bottom: 25px;
+    }
+
+    .btn {
+        width: 100%;
+        padding: 14px;
+        margin: 10px 0;
+
+        border: none;
+        border-radius: 12px;
+
+        font-size: 15px;
+        font-weight: 600;
+
+        cursor: pointer;
+        transition: 0.3s ease;
+    }
+
+    /* Botón activo */
+    .btn.active {
+        background: linear-gradient(135deg, #38bdf8, #0ea5e9);
+        color: white;
+    }
+
+    .btn.active:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 25px rgba(14,165,233,0.4);
+    }
+
+    /* Disabled real */
+    .btn:disabled {
+        background: #334155;
+        color: #94a3b8;
+        cursor: not-allowed;
+        opacity: 0.7;
+    }
+
+    /* Read-only simulado */
+    .btn.readonly {
+        background: transparent;
+        border: 2px solid #38bdf8;
+        color: #38bdf8;
+        cursor: default;
+        pointer-events: none;
+    }
+
+    .footer {
+        margin-top: 18px;
+        font-size: 12px;
+        color: #64748b;
+    }
+</style>
+</head>
+
+<body>
+
+<div class="panel">
+    <h1>Panel de Control</h1>
+    <p>Estado de botones en sistema de software</p>
+
+    <button class="btn active">Botón Activo</button>
+
+    <button class="btn" disabled>Botón Desactivado</button>
+
+    <button class="btn readonly">Botón Solo Lectura</button>
+
+    <div class="footer">
+        Sistema UI · Modo Profesional
+    </div>
+</div>
+
+<script>
+document.querySelectorAll(".btn").forEach(btn => {
+    if (!btn.disabled && !btn.classList.contains("readonly")) {
+        btn.addEventListener("click", () => {
+            alert("Has pulsado: " + btn.textContent);
+        });
+    }
+});
+</script>
+
+</body>
+</html>

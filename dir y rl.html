@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ejemplo DIR RTL</title>
+
+<style>
+
+body{
+    font-family:Arial, sans-serif;
+    background:linear-gradient(135deg,#0f2027,#203a43,#2c5364);
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.contenedor{
+    background:white;
+    padding:30px;
+    border-radius:15px;
+    text-align:center;
+    width:400px;
+    box-shadow:0 0 20px rgba(0,0,0,.3);
+}
+
+h2{
+    margin-bottom:20px;
+    color:#2c5364;
+}
+
+input{
+    width:100%;
+    padding:12px;
+    font-size:18px;
+    direction:rtl; /* derecha a izquierda */
+    text-align:right;
+    border:2px solid #2c5364;
+    border-radius:8px;
+    margin-bottom:20px;
+}
+
+button{
+    padding:12px 25px;
+    font-size:18px;
+    border:none;
+    border-radius:8px;
+    background:#2c5364;
+    color:white;
+    cursor:pointer;
+    transition:.3s;
+}
+
+button:hover{
+    transform:scale(1.05);
+    background:#1b3648;
+}
+
+</style>
+</head>
+<body>
+
+<div class="contenedor">
+
+    <h2>Dirección RTL</h2>
+
+    <input type="text"
+           dir="rtl"
+           placeholder="Escribe aquí...">
+
+    <button dir="rtl">
+        Enviar
+    </button>
+
+</div>
+
+</body>
+</html>

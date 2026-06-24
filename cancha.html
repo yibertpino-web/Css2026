@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Formación de Fútbol</title>
+
+<style>
+    body{
+        margin:0;
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        min-height:100vh;
+        background:#222;
+        font-family:Arial, sans-serif;
+    }
+
+    .cancha{
+        width:700px;
+        height:450px;
+        position:relative;
+        border:5px solid white;
+        border-radius:10px;
+        overflow:hidden;
+
+        /* Imagen de la cancha */
+        background-image: url("cancha de futbol/50101ea1-0b09-4628-a236-2b3bf1fc4883.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+    }
+
+    .jugador{
+        position:absolute;
+        width:40px;
+        height:40px;
+        border-radius:50%;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        font-size:12px;
+        font-weight:bold;
+        color:white;
+        box-shadow:0 0 8px rgba(0,0,0,.6);
+        background:#1976d2;
+    }
+
+    /* Portero */
+    .jugador:first-child{
+        background:#ffc107;
+        color:black;
+        border:3px solid white;
+        left:20px;
+        top:205px;
+        transform:scale(1.15);
+    }
+
+    /* Defensas */
+    .jugador:nth-child(2),
+    .jugador:nth-child(3),
+    .jugador:nth-child(4),
+    .jugador:nth-child(5){
+        background:#1565c0;
+        left:150px;
+    }
+
+    .jugador:nth-child(2){ top:60px; }
+    .jugador:nth-child(3){ top:150px; }
+    .jugador:nth-child(4){ top:260px; }
+    .jugador:nth-child(5){ top:350px; }
+
+    /* Mediocampistas */
+    .jugador:nth-child(6),
+    .jugador:nth-child(7),
+    .jugador:nth-child(8){
+        background:#00897b;
+        left:330px;
+    }
+
+    .jugador:nth-child(6){ top:100px; }
+    .jugador:nth-child(7){ top:205px; }
+    .jugador:nth-child(8){ top:310px; }
+
+    /* Delanteros */
+    .jugador:nth-child(9),
+    .jugador:nth-child(10),
+    .jugador:nth-child(11){
+        background:#d32f2f;
+        left:540px;
+    }
+
+    .jugador:nth-child(9){ top:90px; }
+    .jugador:nth-child(10){ top:205px; }
+    .jugador:nth-child(11){ top:320px; }
+</style>
+</head>
+
+<body>
+
+<div class="cancha">
+    <div class="jugador">1</div>
+    <div class="jugador">2</div>
+    <div class="jugador">3</div>
+    <div class="jugador">4</div>
+    <div class="jugador">5</div>
+    <div class="jugador">6</div>
+    <div class="jugador">7</div>
+    <div class="jugador">8</div>
+    <div class="jugador">9</div>
+    <div class="jugador">10</div>
+    <div class="jugador">11</div>
+</div>
+
+</body>
+</html>

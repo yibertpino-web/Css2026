@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Software Operations Center</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;   /* Centro horizontal */
+    align-items:flex-start;   /* Arriba */
+    padding-top:30px;
+
+    font-family:'Segoe UI',sans-serif;
+    color:#e2e8f0;
+
+    background:
+        linear-gradient(
+            rgba(2,6,23,.75),
+            rgba(2,6,23,.90)
+        ),
+        url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1600&q=80');
+
+    background-size:cover;
+    background-position:center;
+    background-attachment:fixed;
+}
+
+/* Tarjeta */
+.cyber-card{
+    width:450px;
+    padding:30px;
+    border-radius:20px;
+
+    background:rgba(15,23,42,.80);
+    backdrop-filter:blur(15px);
+
+    border:1px solid rgba(56,189,248,.25);
+
+    box-shadow:
+        0 0 30px rgba(56,189,248,.15),
+        0 0 80px rgba(56,189,248,.05);
+
+    transition:.3s;
+}
+
+.cyber-card:hover{
+    transform:translateY(-3px);
+
+    box-shadow:
+        0 0 40px rgba(56,189,248,.25),
+        0 0 100px rgba(56,189,248,.10);
+}
+
+h2{
+    color:#38bdf8;
+    text-align:center;
+    margin-bottom:10px;
+    letter-spacing:1px;
+}
+
+.subtitle{
+    text-align:center;
+    color:#94a3b8;
+    margin-bottom:25px;
+    font-size:14px;
+}
+
+/* Select */
+select{
+    width:100%;
+    padding:12px;
+    margin-top:8px;
+    margin-bottom:20px;
+
+    background:#1e293b;
+    color:#38bdf8;
+
+    border:1px solid #38bdf8;
+    border-radius:10px;
+
+    transition:.3s;
+}
+
+select:focus{
+    outline:none;
+    border-color:#fbbf24;
+    box-shadow:0 0 15px rgba(251,191,36,.4);
+}
+
+/* Checkbox personalizado */
+input[type="checkbox"]{
+    appearance:none;
+
+    width:22px;
+    height:22px;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    border:2px solid #38bdf8;
+    border-radius:6px;
+
+    cursor:pointer;
+    transition:all .35s ease;
+}
+
+input[type="checkbox"]:checked{
+    background:#38bdf8;
+    transform:rotate(360deg);
+}
+
+input[type="checkbox"]:checked::before{
+    content:"✓";
+    color:#0f172a;
+    font-weight:bold;
+}
+
+input[type="checkbox"]:indeterminate{
+    background:#fbbf24;
+    border-color:#fbbf24;
+    animation:pulse 1.5s infinite;
+}
+
+@keyframes pulse{
+    0%{
+        box-shadow:0 0 0 0 rgba(251,191,36,.5);
+    }
+    70%{
+        box-shadow:0 0 0 10px rgba(251,191,36,0);
+    }
+    100%{
+        box-shadow:0 0 0 0 rgba(251,191,36,0);
+    }
+}
+
+.item{
+    display:flex;
+    align-items:center;
+    gap:12px;
+
+    padding:12px;
+    margin:5px 0;
+
+    border-radius:10px;
+    transition:.3s;
+}
+
+.item:hover{
+    background:rgba(56,189,248,.08);
+}
+
+.nodes{
+    margin-left:20px;
+}
+
+.status{
+    margin:15px 0;
+    text-align:center;
+    color:#94a3b8;
+    font-size:14px;
+}
+
+.footer{
+    margin-top:20px;
+    text-align:center;
+    color:#64748b;
+    font-size:12px;
+}
+
+/* Indicador de conexión */
+.online{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    margin-bottom:20px;
+    color:#22c55e;
+    font-size:13px;
+}
+
+.online::before{
+    content:"";
+    width:10px;
+    height:10px;
+    border-radius:50%;
+    background:#22c55e;
+    animation:blink 1.5s infinite;
+}
+
+@keyframes blink{
+    0%{opacity:1;}
+    50%{opacity:.3;}
+    100%{opacity:1;}
+}
+</style>
+</head>
+
+<body>
+
+<div class="cyber-card">
+
+    <h2>SOFTWARE OPERATIONS CENTER</h2>
+
+    <div class="subtitle">
+        Administración de Servicios y Nodos
+    </div>
+
+    <div class="online">
+        Sistema conectado
+    </div>
+
+    <label>Prioridad de Servicio</label>
+
+    <select>
+        <option>Estándar</option>
+        <option>Alta</option>
+        <option>Crítica</option>
+    </select>
+
+    <div class="status" id="status">
+        0/3 nodos activos
+    </div>
+
+    <label class="item">
+        <input type="checkbox" id="master">
+        <strong>Seleccionar todos</strong>
+    </label>
+
+    <div class="nodes">
+
+        <label class="item">
+            <input type="checkbox" class="child">
+            API_SERVER_01
+        </label>
+
+        <label class="item">
+            <input type="checkbox" class="child">
+            DATABASE_02
+        </label>
+
+        <label class="item">
+            <input type="checkbox" class="child">
+            CACHE_NODE_03
+        </label>
+
+    </div>
+
+    <div class="footer">
+        Monitoreo en tiempo real
+    </div>
+
+</div>
+
+<script>
+const master = document.getElementById('master');
+const children = document.querySelectorAll('.child');
+const status = document.getElementById('status');
+
+function updateMaster() {
+
+    const selected =
+        [...children].filter(c => c.checked).length;
+
+    status.textContent =
+        `${selected}/${children.length} nodos activos`;
+
+    const all =
+        [...children].every(c => c.checked);
+
+    const some =
+        [...children].some(c => c.checked);
+
+    master.checked = all;
+    master.indeterminate = some && !all;
+}
+
+master.addEventListener('change', e => {
+
+    children.forEach(c => {
+        c.checked = e.target.checked;
+    });
+
+    updateMaster();
+});
+
+children.forEach(c => {
+    c.addEventListener('change', updateMaster);
+});
+
+updateMaster();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Laboratorio de Pseudoclases CSS</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
+}
+
+body{
+    min-height:100vh;
+    background:linear-gradient(135deg,#020617,#0f172a,#1e293b);
+    color:white;
+    padding:40px;
+}
+
+h1{
+    text-align:center;
+    margin-bottom:40px;
+    text-shadow:0 0 20px cyan;
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+    gap:25px;
+}
+
+.card{
+    background:rgba(255,255,255,.08);
+    backdrop-filter:blur(10px);
+    border-radius:20px;
+    padding:25px;
+    transition:.4s;
+}
+
+.card:hover{
+    transform:translateY(-10px);
+    box-shadow:0 0 25px cyan;
+}
+
+h2{
+    margin-bottom:15px;
+    color:cyan;
+}
+
+/* ACTIVE */
+
+.btn{
+    background:#ef4444;
+    color:white;
+    border:none;
+    padding:12px 20px;
+    border-radius:10px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.btn:active{
+    transform:scale(.85) rotate(-5deg);
+    background:black;
+}
+
+/* FOCUS */
+
+.focus{
+    width:100%;
+    padding:12px;
+    border:none;
+    border-radius:10px;
+}
+
+.focus:focus{
+    outline:none;
+    box-shadow:0 0 20px gold;
+    transform:scale(1.03);
+}
+
+/* FOCUS WITHIN */
+
+.form{
+    padding:20px;
+    border:2px solid white;
+    border-radius:15px;
+    transition:.4s;
+}
+
+.form:focus-within{
+    border-color:lime;
+    box-shadow:0 0 25px lime;
+    transform:scale(1.03);
+}
+
+.form input{
+    width:100%;
+    padding:10px;
+    margin-top:10px;
+    border:none;
+    border-radius:8px;
+}
+
+/* TARGET */
+
+.menu{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+    margin-bottom:15px;
+}
+
+.menu a{
+    text-decoration:none;
+    color:white;
+    background:#06b6d4;
+    padding:10px 15px;
+    border-radius:10px;
+}
+
+.info{
+    display:none;
+    margin-top:15px;
+    padding:15px;
+    border-radius:10px;
+    background:rgba(255,255,255,.1);
+}
+
+.info:target{
+    display:block;
+    animation:aparecer .5s;
+}
+
+@keyframes aparecer{
+    from{
+        opacity:0;
+        transform:translateY(20px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+</style>
+</head>
+<body>
+
+<h1>🚀 Laboratorio de Pseudoclases CSS</h1>
+
+<div class="grid">
+
+    <!-- ACTIVE -->
+    <div class="card">
+        <h2>:active</h2>
+        <p>Presiona el botón.</p>
+        <br>
+        <button class="btn">
+            Haz clic
+        </button>
+    </div>
+
+    <!-- FOCUS -->
+    <div class="card">
+        <h2>:focus</h2>
+        <p>Haz clic dentro del campo.</p>
+        <br>
+        <input class="focus" type="text" placeholder="Escribe aquí">
+    </div>
+
+    <!-- FOCUS WITHIN -->
+    <div class="card">
+        <h2>:focus-within</h2>
+
+        <div class="form">
+            <input type="text" placeholder="Nombre">
+            <input type="email" placeholder="Correo">
+        </div>
+    </div>
+
+    <!-- TARGET -->
+    <div class="card">
+
+        <h2>:target</h2>
+
+        <div class="menu">
+            <a href="#html">HTML</a>
+            <a href="#css">CSS</a>
+            <a href="#js">JS</a>
+        </div>
+
+        <div id="html" class="info">
+            🌐 HTML estructura las páginas web.
+        </div>
+
+        <div id="css" class="info">
+            🎨 CSS agrega diseño y estilos.
+        </div>
+
+        <div id="js" class="info">
+            ⚡ JavaScript añade interactividad.
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>

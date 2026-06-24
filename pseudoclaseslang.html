@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pseudoclases de Estructura - Aula de Clases</title>
+
+<style>
+
+/* ==========================
+   :ROOT
+========================== */
+:root{
+    --verde:#39A900;
+    --azul:#2563eb;
+    --morado:#9333ea;
+    --rojo:#ef4444;
+    --amarillo:#facc15;
+    --cian:#06b6d4;
+    --blanco:#ffffff;
+}
+
+/* ==========================
+   RESET
+========================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+/* ==========================
+   FONDO AULA DE CLASES
+========================== */
+
+body{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    overflow:hidden;
+
+    /* Reemplaza por tu imagen */
+    background:url("salon.jpg");
+    background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat;
+    background-attachment:fixed;
+}
+
+/* Oscurece el fondo */
+
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.55);
+}
+
+/* ==========================
+   PARTICULAS FLOTANTES
+========================== */
+
+.particula{
+    position:absolute;
+    border-radius:50%;
+    background:rgba(255,255,255,.15);
+    animation:subir linear infinite;
+}
+
+.p1{
+    width:60px;
+    height:60px;
+    left:5%;
+    animation-duration:8s;
+}
+
+.p2{
+    width:90px;
+    height:90px;
+    left:25%;
+    animation-duration:12s;
+}
+
+.p3{
+    width:70px;
+    height:70px;
+    left:50%;
+    animation-duration:10s;
+}
+
+.p4{
+    width:120px;
+    height:120px;
+    left:80%;
+    animation-duration:15s;
+}
+
+@keyframes subir{
+    from{
+        transform:translateY(120vh) rotate(0deg);
+    }
+
+    to{
+        transform:translateY(-120vh) rotate(720deg);
+    }
+}
+
+/* ==========================
+   CONTENEDOR PRINCIPAL
+========================== */
+
+.contenedor{
+    position:relative;
+    z-index:2;
+
+    width:950px;
+    max-width:95%;
+
+    padding:30px;
+
+    background:rgba(255,255,255,.12);
+    backdrop-filter:blur(12px);
+
+    border-radius:25px;
+    box-shadow:0 0 30px rgba(0,0,0,.5);
+}
+
+/* ==========================
+   TITULO
+========================== */
+
+.logo{
+    text-align:center;
+    font-size:70px;
+    margin-bottom:10px;
+    animation:girar 4s linear infinite;
+}
+
+@keyframes girar{
+    from{
+        transform:rotateY(0deg);
+    }
+
+    to{
+        transform:rotateY(360deg);
+    }
+}
+
+h1{
+    text-align:center;
+    color:white;
+    margin-bottom:15px;
+    text-shadow:0 0 15px var(--verde);
+
+    animation:flotar 2s infinite alternate;
+}
+
+@keyframes flotar{
+    from{
+        transform:translateY(0);
+    }
+
+    to{
+        transform:translateY(-10px);
+    }
+}
+
+.subtitulo{
+    text-align:center;
+    color:#f1f1f1;
+    margin-bottom:25px;
+}
+
+/* ==========================
+   LISTA
+========================== */
+
+ul{
+    list-style:none;
+}
+
+li{
+    padding:18px;
+    margin:15px 0;
+    color:white;
+    font-size:20px;
+    border-radius:15px;
+    cursor:pointer;
+    transition:.5s;
+    position:relative;
+    overflow:hidden;
+}
+
+/* Efecto hover */
+
+li:hover{
+    transform:translateX(25px) scale(1.05);
+}
+
+li::after{
+    content:"🚀";
+    position:absolute;
+    right:20px;
+    top:50%;
+    transform:translateY(-50%);
+    opacity:0;
+    transition:.5s;
+}
+
+li:hover::after{
+    opacity:1;
+}
+
+/* ==========================
+   PSEUDOCLASES
+========================== */
+
+/* :first-child */
+li:first-child{
+    background:var(--verde);
+}
+
+/* :nth-child(2) */
+li:nth-child(2){
+    background:var(--amarillo);
+    color:black;
+}
+
+/* :nth-child(3) */
+li:nth-child(3){
+    background:var(--azul);
+}
+
+/* :nth-child(4) */
+li:nth-child(4){
+    background:var(--morado);
+}
+
+/* :nth-last-child(2) */
+li:nth-last-child(2){
+    background:var(--cian);
+}
+
+/* :last-child */
+li:last-child{
+    background:var(--rojo);
+}
+
+/* ==========================
+   ONLY CHILD
+========================== */
+
+.unico{
+    margin-top:25px;
+}
+
+.unico p:only-child{
+    background:white;
+    color:black;
+    padding:18px;
+    text-align:center;
+    border-radius:15px;
+    font-size:20px;
+    font-weight:bold;
+
+    animation:rebote 1s infinite alternate;
+}
+
+@keyframes rebote{
+    from{
+        transform:translateY(0);
+    }
+
+    to{
+        transform:translateY(-10px);
+    }
+}
+
+/* ==========================
+   PIE DE PAGINA
+========================== */
+
+.info{
+    margin-top:25px;
+    text-align:center;
+    color:white;
+    font-size:18px;
+}
+
+</style>
+</head>
+<body>
+
+<!-- Partículas -->
+<div class="particula p1"></div>
+<div class="particula p2"></div>
+<div class="particula p3"></div>
+<div class="particula p4"></div>
+
+<div class="contenedor">
+
+    <div class="logo">🎓</div>
+
+    <h1>PSEUDOCLASES DE ESTRUCTURA CSS</h1>
+
+    <p class="subtitulo">
+        Ambiente de Aula de Clases - Desarrollo Web
+    </p>
+
+    <ul>
+
+        <li>
+            🌟 :first-child → Selecciona el primer hijo
+        </li>
+
+        <li>
+            🎯 :nth-child(2) → Selecciona el segundo hijo
+        </li>
+
+        <li>
+            🔵 :nth-child(3) → Selecciona el tercer hijo
+        </li>
+
+        <li>
+            🟣 :nth-child(4) → Selecciona el cuarto hijo
+        </li>
+
+        <li>
+            💎 :nth-last-child(2) → Segundo desde el final
+        </li>
+
+        <li>
+            🔥 :last-child → Selecciona el último hijo
+        </li>
+
+    </ul>
+
+    <div class="unico">
+        <p>
+            🏆 :only-child → Soy hijo único
+        </p>
+    </div>
+
+    <div class="info">
+        Pasa el cursor sobre cada tarjeta para ver los efectos interactivos.
+    </div>
+
+</div>
+
+</body>
+</html>
