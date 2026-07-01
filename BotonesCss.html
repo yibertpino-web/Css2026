@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CSS Buttons</title>
+
+<style>
+body{
+    margin:0;
+    font-family:Arial, Helvetica, sans-serif;
+    background:#f2f2f2;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+}
+
+.container{
+    display:grid;
+    grid-template-columns:repeat(2,200px);
+    gap:30px;
+}
+
+/* Botón 1 */
+.btn1{
+    position:relative;
+    background:#29a9e1;
+    color:#fff;
+    padding:15px 30px;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+    font-size:16px;
+    box-shadow:0 5px #1d7cab;
+}
+
+.btn1::before{
+    content:"❤️";
+    position:absolute;
+    top:-20px;
+    left:50%;
+    transform:translateX(-50%);
+    color:red;
+    font-size:20px;
+}
+
+/* Botón 2 */
+.btn2{
+    position:relative;
+    padding:15px 35px;
+    border:none;
+    border-radius:8px;
+    color:white;
+    background:linear-gradient(#58c8ff,#2398d7);
+    cursor:pointer;
+}
+
+.btn2:hover::after{
+    content:" ✓";
+}
+
+/* Botón 3 */
+.btn3{
+    position:relative;
+    padding:15px 40px;
+    border:none;
+    border-radius:8px;
+    color:white;
+    background:#2ea9e6;
+}
+
+.btn3::after{
+    content:"➜";
+    margin-left:10px;
+    background:white;
+    color:#2ea9e6;
+    border-radius:50%;
+    padding:2px 6px;
+}
+
+/* Botón 4 */
+.btn4{
+    position:relative;
+    padding:15px 35px 15px 70px;
+    border:none;
+    border-radius:8px;
+    color:white;
+    background:#2ea9e6;
+}
+
+.btn4::before{
+    content:"1";
+    position:absolute;
+    left:0;
+    top:0;
+    width:50px;
+    height:100%;
+    background:#1d7cab;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    border-radius:8px 0 0 8px;
+}
+</style>
+
+</head>
+<body>
+
+<div class="container">
+
+<button class="btn1">Love this tutorial!</button>
+
+<button class="btn2">Click me!</button>
+
+<button class="btn3">Click me!</button>
+
+<button class="btn4">Click me!</button>
+
+</div>
+
+</body>
+</html>

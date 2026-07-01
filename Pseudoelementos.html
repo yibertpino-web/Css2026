@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Pseudoclase :target y Pseudoelementos</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:100vh;
+    background:
+    linear-gradient(rgba(5,10,30,.82),rgba(5,10,30,.90)),
+    url("https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1600&q=80")
+    center/cover no-repeat;
+}
+
+/*=========================
+ TARJETA
+=========================*/
+
+.perfil{
+    width:360px;
+    background:rgba(255,255,255,.15);
+    backdrop-filter:blur(12px);
+    color:white;
+    text-align:center;
+    border-radius:20px;
+    padding:25px;
+    position:relative;
+}
+
+.perfil::before{
+    content:attr(data-cargo);
+    display:block;
+    background:#2563eb;
+    padding:10px;
+    border-radius:10px;
+    margin-bottom:20px;
+    font-weight:bold;
+}
+
+.perfil::after{
+    content:attr(data-estado);
+    position:absolute;
+    top:18px;
+    right:-40px;
+    background:#39A900;
+    padding:8px 45px;
+    transform:rotate(35deg);
+    font-size:12px;
+}
+
+img{
+    width:120px;
+    height:120px;
+    border-radius:50%;
+    border:4px solid white;
+}
+
+h2{
+    margin:15px 0;
+}
+
+h2::after{
+    content:" | ID: " attr(data-id);
+    color:#00ffcc;
+    font-size:14px;
+}
+
+p{
+    margin:10px 0;
+    line-height:1.5;
+}
+
+/*=========================
+ BOTONES
+=========================*/
+
+.btn{
+    display:inline-block;
+    margin-top:20px;
+    padding:12px 25px;
+    text-decoration:none;
+    color:white;
+    border-radius:10px;
+    transition:.3s;
+}
+
+.ver{
+    background:#39A900;
+}
+
+.error-btn{
+    background:#ef4444;
+    margin-left:10px;
+}
+
+.btn:hover{
+    transform:scale(1.05);
+}
+
+/*=========================
+ MODALES
+=========================*/
+
+.modal,
+.error{
+
+    position:fixed;
+    inset:0;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    background:rgba(0,0,0,.65);
+    backdrop-filter:blur(6px);
+
+    opacity:0;
+    visibility:hidden;
+    transition:.4s;
+
+}
+
+/*=========================
+ TARGET
+=========================*/
+
+.modal:target,
+.error:target{
+
+    opacity:1;
+    visibility:visible;
+
+}
+
+/*=========================
+ CONTENIDO
+=========================*/
+
+.contenido{
+
+    width:420px;
+    background:white;
+    border-radius:18px;
+    padding:30px;
+    text-align:center;
+    transform:scale(.7);
+    transition:.4s;
+
+}
+
+.modal:target .contenido,
+.error:target .contenido{
+
+    transform:scale(1);
+
+}
+
+.modal .contenido::before{
+
+    content:"👨‍💻 PERFIL DEL ESTUDIANTE";
+    display:block;
+    background:#2563eb;
+    color:white;
+    padding:10px;
+    border-radius:8px;
+    margin-bottom:20px;
+
+}
+
+.modal .contenido::after{
+
+    content:"✔ Perfil actualizado";
+    display:block;
+    margin-top:20px;
+    color:#39A900;
+    font-weight:bold;
+
+}
+
+/*=========================
+ ERROR
+=========================*/
+
+.error .contenido::before{
+
+    content:"❌ ERROR";
+    display:block;
+    background:#ef4444;
+    color:white;
+    padding:10px;
+    border-radius:8px;
+    margin-bottom:20px;
+
+}
+
+.error .contenido::after{
+
+    content:"Revise los datos e inténtelo nuevamente.";
+    display:block;
+    margin-top:20px;
+    color:#555;
+
+}
+
+.cerrar{
+
+    display:inline-block;
+    margin-top:25px;
+    background:#2563eb;
+    color:white;
+    text-decoration:none;
+    padding:10px 20px;
+    border-radius:8px;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="perfil"
+
+data-cargo="💻 Ingeniería de Software"
+
+data-estado="⭐ ACTIVO">
+
+<img src="https://i.pravatar.cc/200?img=12">
+
+<h2 data-id="2026001">
+
+Yibert Pino
+
+</h2>
+
+<p>
+
+Estudiante apasionado por HTML, CSS, JavaScript y MySQL.
+
+</p>
+
+<a href="#perfil" class="btn ver">
+
+Ver Perfil
+
+</a>
+
+<a href="#error" class="btn error-btn">
+
+Mostrar Error
+
+</a>
+
+</div>
+
+<!-- PERFIL -->
+
+<div id="perfil" class="modal">
+
+<div class="contenido">
+
+<h2>
+
+Yibert Pino
+
+</h2>
+
+<p>📚 Ingeniería de Software</p>
+
+<p>💻 HTML</p>
+
+<p>🎨 CSS</p>
+
+<p>⚙ JavaScript</p>
+
+<p>🗄 MySQL</p>
+
+<p>
+
+Actualmente desarrolla proyectos web modernos utilizando HTML, CSS y JavaScript.
+
+</p>
+
+<a href="#" class="cerrar">
+
+Cerrar
+
+</a>
+
+</div>
+
+</div>
+
+<!-- ERROR -->
+
+<div id="error" class="error">
+
+<div class="contenido">
+
+<h2>Error del Sistema</h2>
+
+<p>
+
+No fue posible cargar la información del estudiante.
+
+</p>
+
+<p>
+
+Verifique la conexión o vuelva a intentarlo.
+
+</p>
+
+<a href="#" class="cerrar">
+
+Cerrar
+
+</a>
+
+</div>
+
+</div>
+
+</body>
+</html>

@@ -24,11 +24,10 @@
         border-radius:10px;
         overflow:hidden;
 
-        /* Imagen de la cancha */
-        background-image: url("cancha de futbol/50101ea1-0b09-4628-a236-2b3bf1fc4883.jpg");
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-position: center;
+        background-image:url("cancha de futbol/50101ea1-0b09-4628-a236-2b3bf1fc4883.jpg");
+        background-repeat:no-repeat;
+        background-size:cover;
+        background-position:center;
     }
 
     .jugador{
@@ -44,6 +43,9 @@
         color:white;
         box-shadow:0 0 8px rgba(0,0,0,.6);
         background:#1976d2;
+
+        /* Movimiento suave */
+        transition: left 1.5s ease, top 1.5s ease;
     }
 
     /* Portero */
@@ -93,6 +95,7 @@
     .jugador:nth-child(9){ top:90px; }
     .jugador:nth-child(10){ top:205px; }
     .jugador:nth-child(11){ top:320px; }
+
 </style>
 </head>
 
@@ -111,6 +114,29 @@
     <div class="jugador">10</div>
     <div class="jugador">11</div>
 </div>
+
+<script>
+const jugadores = document.querySelectorAll(".jugador");
+
+jugadores.forEach((jugador) => {
+
+    // Guardar posición original
+    const x = parseInt(getComputedStyle(jugador).left);
+    const y = parseInt(getComputedStyle(jugador).top);
+
+    setInterval(() => {
+
+        // Movimiento aleatorio de ±20 píxeles
+        const dx = Math.random() * 40 - 20;
+        const dy = Math.random() * 40 - 20;
+
+        jugador.style.left = (x + dx) + "px";
+        jugador.style.top = (y + dy) + "px";
+
+    }, 1800 + Math.random()*1000);
+
+});
+</script>
 
 </body>
 </html>

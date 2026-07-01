@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Selectores: Elemento + Atributo + Valor</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:100vh;
+    background:linear-gradient(rgba(5,10,30,.85),rgba(5,10,30,.90)),
+    url("https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1600&q=80")
+    center/cover no-repeat;
+}
+
+/*=========================
+ TARJETA
+=========================*/
+
+div[data-cargo="💻 Ingeniería de Software"]{
+    width:380px;
+    background:rgba(255,255,255,.15);
+    backdrop-filter:blur(10px);
+    border-radius:20px;
+    padding:25px;
+    text-align:center;
+    color:white;
+    position:relative;
+    border:3px solid #2563eb;
+}
+
+div[data-estado="⭐ ACTIVO"]{
+    box-shadow:0 0 20px #39A900;
+}
+
+div[data-cargo]::before{
+    content:attr(data-cargo);
+    display:block;
+    background:#2563eb;
+    padding:10px;
+    border-radius:10px;
+    margin-bottom:20px;
+    font-weight:bold;
+}
+
+div[data-estado]::after{
+    content:attr(data-estado);
+    position:absolute;
+    top:18px;
+    right:-40px;
+    background:#39A900;
+    padding:8px 45px;
+    transform:rotate(35deg);
+    font-size:12px;
+    color:white;
+}
+
+/*=========================
+ IMAGEN
+=========================*/
+
+img[src="https://i.pravatar.cc/200?img=12"]{
+    width:120px;
+    height:120px;
+    border-radius:50%;
+    border:5px solid white;
+}
+
+/*=========================
+ TÍTULO
+=========================*/
+
+h2[data-id="2026001"]{
+    color:#00ffcc;
+    margin:15px 0;
+}
+
+h2[data-id="2026001"]::after{
+    content:" ✔";
+}
+
+/*=========================
+ PÁRRAFO
+=========================*/
+
+p[class="descripcion"]{
+    margin:15px 0;
+    line-height:1.6;
+}
+
+/*=========================
+ INPUT
+=========================*/
+
+input[type="text"]{
+    width:100%;
+    padding:12px;
+    margin-top:15px;
+    border:none;
+    border-radius:8px;
+}
+
+/*=========================
+ BOTÓN
+=========================*/
+
+button[type="submit"]{
+    margin-top:15px;
+    padding:12px 25px;
+    border:none;
+    border-radius:8px;
+    background:#39A900;
+    color:white;
+    cursor:pointer;
+    transition:.3s;
+}
+
+button[type="submit"]:hover{
+    background:#2e7d32;
+    transform:scale(1.05);
+}
+
+/*=========================
+ ENLACE
+=========================*/
+
+a[target="_blank"]{
+    display:inline-block;
+    margin-top:20px;
+    color:#00ffcc;
+    text-decoration:none;
+    font-weight:bold;
+}
+
+a[target="_blank"]:hover{
+    color:white;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="perfil"
+     data-cargo="💻 Ingeniería de Software"
+     data-estado="⭐ ACTIVO">
+
+    <img src="https://i.pravatar.cc/200?img=12"
+         alt="Foto de perfil">
+
+    <h2 data-id="2026001">
+        Yibert Pino
+    </h2>
+
+    <p class="descripcion">
+        Estudiante apasionado por HTML, CSS,
+        JavaScript, MySQL y el desarrollo de
+        aplicaciones web modernas.
+    </p>
+
+    <input type="text"
+           placeholder="Ingrese su nombre">
+
+    <button type="submit">
+        Guardar
+    </button>
+
+    <br>
+
+    <a href="https://developer.mozilla.org/"
+       target="_blank">
+        Documentación CSS
+    </a>
+
+</div>
+
+</body>
+</html>

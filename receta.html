@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Receta con :target</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+    /* 👇 Fondo de cocina */
+    background: url("https://images.unsplash.com/photo-1556911220-e15b29be8c8f") center/cover no-repeat;
+    color:white;
+    padding:40px;
+    min-height:100vh;
+}
+
+/* Capa oscura para que el texto se lea mejor */
+body::before{
+    content:"";
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,.6);
+    z-index:-1;
+}
+
+h1{
+    text-align:center;
+    margin-bottom:30px;
+}
+
+.menu{
+    text-align:center;
+    margin-bottom:40px;
+}
+
+.menu a{
+    display:inline-block;
+    text-decoration:none;
+    color:white;
+    background:#2e7d32;
+    padding:12px 22px;
+    margin:5px;
+    border-radius:8px;
+    transition:.3s;
+}
+
+.menu a:hover{
+    background:#1b5e20;
+    transform:translateY(-3px);
+}
+
+/* Targets */
+#todos,
+#verduras,
+#proteinas,
+#condimentos{
+    position:absolute;
+}
+
+/* Tarjetas */
+.ingredientes{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:20px;
+}
+
+.ingrediente{
+    display:none;
+    background:white;
+    color:#333;
+    padding:20px;
+    border-radius:15px;
+    box-shadow:0 10px 20px rgba(0,0,0,.3);
+}
+
+.ingrediente h2{
+    color:#d35400;
+    margin-bottom:10px;
+}
+
+/* Mostrar todos al iniciar */
+body:not(:has(:target)) .ingrediente{
+    display:block;
+}
+
+/* Todos */
+#todos:target ~ .ingredientes .ingrediente{
+    display:block;
+}
+
+/* Verduras */
+#verduras:target ~ .ingredientes .verduras{
+    display:block;
+}
+
+/* Proteínas */
+#proteinas:target ~ .ingredientes .proteinas{
+    display:block;
+}
+
+/* Condimentos */
+#condimentos:target ~ .ingredientes .condimentos{
+    display:block;
+}
+
+</style>
+</head>
+
+<body>
+
+<h1>🍲 Receta: Sopa de Cocina Casera</h1>
+
+<div class="menu">
+<a href="#todos">🥗 Todos</a>
+<a href="#verduras">🥕 Verduras</a>
+<a href="#proteinas">🥩 Proteínas</a>
+<a href="#condimentos">🧂 Condimentos</a>
+</div>
+
+<!-- Targets -->
+<div id="todos"></div>
+<div id="verduras"></div>
+<div id="proteinas"></div>
+<div id="condimentos"></div>
+
+<!-- Ingredientes -->
+<div class="ingredientes">
+
+<div class="ingrediente verduras">
+<h2>🥕 Zanahoria</h2>
+<p>2 zanahorias en rodajas.</p>
+</div>
+
+<div class="ingrediente verduras">
+<h2>🥔 Papa</h2>
+<p>3 papas en cubos.</p>
+</div>
+
+<div class="ingrediente verduras">
+<h2>🧅 Cebolla</h2>
+<p>1 cebolla picada.</p>
+</div>
+
+<div class="ingrediente proteinas">
+<h2>🍗 Pollo</h2>
+<p>500 g de pechuga desmenuzada.</p>
+</div>
+
+<div class="ingrediente condimentos">
+<h2>🧂 Sal</h2>
+<p>Al gusto.</p>
+</div>
+
+<div class="ingrediente condimentos">
+<h2>🌿 Especias</h2>
+<p>Pimienta y orégano.</p>
+</div>
+
+</div>
+
+</body>
+</html>
