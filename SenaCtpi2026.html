@@ -1,176 +1,232 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SENA Render Pro</title>
-
-<style>
-body {
-    margin: 0;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: radial-gradient(circle at top, #ffffff, #b9c7d6);
-    overflow: hidden;
-}
-
-.scene {
-    width: 800px;
-    height: 800px;
-    position: relative;
-    perspective: 1000px;
-}
-
-/* BASE */
-.base {
-    position: absolute;
-    width: 500px;
-    height: 500px;
-    left: 50%;
-    top: 55%;
-    transform: translate(-50%, -50%) rotateX(65deg);
-    border-radius: 50%;
-    background: radial-gradient(circle at 30% 30%, #4fb3ff, #1c5f9f);
-    box-shadow:
-        inset 0 20px 40px rgba(255,255,255,.3),
-        0 40px 80px rgba(0,0,0,.3);
-    z-index: 1;
-}
-
-/* RING */
-.ring {
-    position: absolute;
-    width: 520px;
-    height: 520px;
-    left: 50%;
-    top: 55%;
-    transform: translate(-50%, -50%) rotateX(65deg);
-    border-radius: 50%;
-    border: 10px solid rgba(212,175,55,.8);
-    box-shadow: 0 0 25px rgba(212,175,55,.4);
-    z-index: 2;
-}
-
-/* GLOW */
-.glow {
-    position: absolute;
-    width: 300px;
-    height: 300px;
-    left: 50%;
-    top: 35%;
-    transform: translate(-50%, -50%);
-    background: radial-gradient(circle, rgba(255,255,255,0.8), transparent 70%);
-    filter: blur(15px);
-    pointer-events: none;
-    z-index: 3;
-}
-
-/* PIN (Contenedor principal del pin) */
-.pin {
-    position: absolute;
-    left: 50%;
-    top: 40%; /* Subido ligeramente para mejor balance óptico */
-    transform: translate(-50%, -50%);
-    width: 200px;
-    height: 260px;
-    filter: drop-shadow(0 20px 30px rgba(0,0,0,0.4));
-    z-index: 4;
-}
-
-/* CUERPO PIN */
-.pin-body {
-    width: 100%;
-    height: 100%;
-    clip-path: polygon(50% 100%, 0 0, 100% 0);
-    /* Corrección de degradado: cortes limpios (Hard-stop color stops) */
-    background: linear-gradient(90deg,
-        #ffdd00 0%, #ffdd00 33.33%,
-        #0033a0 33.33%, #0033a0 66.66%,
-        #d71920 66.66%, #d71920 100%);
-    position: relative;
-}
-
-/* Brillo del Pin */
-.pin-body::after {
-    content: "";
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(135deg, rgba(255,255,255,.4), transparent 60%);
-    top: 0;
-    left: 0;
-}
-
-/* LOGO (Corregido: Ahora se posiciona de forma relativa al contenedor .scene) */
-.logo {
-    position: absolute;
-    width: 95px;
-    height: 95px;
-    left: 50%;
-    top: 32%; /* Ajustado para quedar centrado en la parte ancha del pin */
-    transform: translate(-50%, -50%);
-    background: white;
-    border-radius: 18px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 0 10px 25px rgba(0,0,0,.25);
-    z-index: 5; /* Por encima de todo */
-}
-
-/* SVG logo */
-.logo svg {
-    width: 80%;
-    height: 80%;
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gobernación del Cauca - Isotipo 3D Profesional</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            background-color: #ffffff;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        #canvas-container {
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+        }
+        /* Opcional: Interfaz de carga limpia */
+        #loader {
+            position: absolute;
+            color: #666;
+            font-size: 14px;
+            pointer-events: none;
+            bottom: 20px;
+            left: 20px;
+        }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
 </head>
-
 <body>
 
-<div class="scene">
-    <div class="base"></div>
-    <div class="ring"></div>
-    <div class="glow"></div>
+    <div id="canvas-container">
+        <div id="loader">Click izquierdo y arrastra para rotar | Scroll para zoom</div>
+    </div>
 
-    <div class="pin">
-        <div class="pin-body"></div>
-    </div> 
+    <script>
+        // --- 1. CONFIGURACIÓN DE LA ESCENA, CÁMARA Y RENDERER ---
+        const container = document.getElementById('canvas-container');
+        const scene = new THREE.Scene();
+        scene.background = new THREE.Color(0xffffff); // Fondo blanco limpio corporativo
 
-    <div class="logo">
-        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: 100%; display: block;">
-            <defs>
-                <linearGradient id="senaVerdePro" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stop-color="#39A900" />
-                    <stop offset="100%" stop-color="#2B7E00" />
-                </linearGradient>
+        const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
+        // Posición de cámara isométrica idéntica a la fotografía
+        camera.position.set(0, 12, 18); 
 
-                <filter id="sombraSuave" x="-10%" y="-10%" width="120%" height="120%">
-                    <feDropShadow dx="0" dy="1.5" stdDeviation="1" flood-color="#000000" flood-opacity="0.15"/>
-                </filter>
-            </defs>
+        const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setPixelRatio(window.devicePixelRatio);
+        renderer.shadowMap.enabled = true; // Habilitar sombras mapeadas
+        renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+        container.appendChild(renderer.domElement);
 
-            <g filter="url(#sombraSuave)">
-                <circle cx="50" cy="50" r="44" fill="none" stroke="url(#senaVerdePro)" stroke-width="5" stroke-dasharray="21.6 12.96" stroke-linecap="butt"/>
-                <circle cx="50" cy="50" r="40" fill="none" stroke="url(#senaVerdePro)" stroke-width="4"/>
-                
-                <circle cx="50" cy="21" r="5.5" fill="url(#senaVerdePro)"/>
-                <path d="M50 29 L50 62" stroke="url(#senaVerdePro)" stroke-width="5" stroke-linecap="round"/>
-                
-                <path d="M50 41 L26 55" stroke="url(#senaVerdePro)" stroke-width="5" stroke-linecap="round"/>
-                <path d="M50 41 L74 55" stroke="url(#senaVerdePro)" stroke-width="5" stroke-linecap="round"/>
-                
-                <path d="M50 62 L32 82" stroke="url(#senaVerdePro)" stroke-width="5" stroke-linecap="round"/>
-                <path d="M50 62 L68 82" stroke="url(#senaVerdePro)" stroke-width="5" stroke-linecap="round"/>
-                
-                <circle cx="50" cy="50" r="4.5" fill="#ffffff" />
-                <circle cx="50" cy="50" r="2.5" fill="url(#senaVerdePro)"/>
-            </g>
-        </svg>
-    </div> 
-</div>
+        // Controles de órbita suaves
+        const controls = new THREE.OrbitControls(camera, renderer.domElement);
+        controls.enableDamping = true;
+        controls.dampingFactor = 0.05;
+        controls.target.set(0, 1.5, 0);
 
+        // --- 2. ILUMINACIÓN ESTUDIO (PRO) ---
+        const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
+        scene.add(ambientLight);
+
+        // Luz principal que genera las sombras suaves del render original
+        const dirLight = new THREE.DirectionalLight(0xffffff, 0.8);
+        dirLight.position.set(10, 20, 10);
+        dirLight.castShadow = true;
+        dirLight.shadow.mapSize.width = 2048;
+        dirLight.shadow.mapSize.height = 2048;
+        dirLight.shadow.camera.near = 0.5;
+        dirLight.shadow.camera.far = 40;
+        const d = 10;
+        dirLight.shadow.camera.left = -d;
+        dirLight.shadow.camera.right = d;
+        dirLight.shadow.camera.top = d;
+        dirLight.shadow.camera.bottom = -d;
+        dirLight.shadow.bias = -0.0005;
+        scene.add(dirLight);
+
+        // Luz de relleno sutil desde el lado opuesto
+        const fillLight = new THREE.DirectionalLight(0xadd8e6, 0.3);
+        fillLight.position.set(-10, 10, -10);
+        scene.add(fillLight);
+
+        // --- 3. MATERIALES PROFESIONALES (PBR) ---
+        // Acabado mate satinado reflectivo, idéntico a un render industrial
+        const matOptions = { roughness: 0.4, metalness: 0.1 };
+
+        const matYellow = new THREE.MeshStandardMaterial({ color: 0xfccb00, ...matOptions });
+        const matBlue   = new THREE.MeshStandardMaterial({ color: 0x0038a8, ...matOptions });
+        const matRed    = new THREE.MeshStandardMaterial({ color: 0xce1126, ...matOptions });
+        const matDark   = new THREE.MeshStandardMaterial({ color: 0x1c2430, roughness: 0.6, metalness: 0.2 });
+        const matBaseTop = new THREE.MeshStandardMaterial({ color: 0x5a9ad4, roughness: 0.5 });
+        const matBaseSide = new THREE.MeshStandardMaterial({ color: 0x335c85, roughness: 0.4 });
+
+        // --- 4. GEOMETRÍA: EL DISCO BASE ---
+        const baseGroup = new THREE.Group();
+
+        // Tapa superior del disco
+        const topGeom = new THREE.CylinderGeometry(6, 6, 0.1, 64);
+        const baseTopMesh = new THREE.Mesh(topGeom, matBaseTop);
+        baseTopMesh.position.y = 0.4;
+        baseTopMesh.receiveShadow = true;
+        baseGroup.add(baseTopMesh);
+
+        // Cuerpo / Extrusión del disco
+        const bodyGeom = new THREE.CylinderGeometry(6, 6, 0.8, 64);
+        // Asignamos material oscuro a los lados mediante caras si se requiere, 
+        // aquí usamos el material azul oscuro lateral para todo el cuerpo por simplicidad visual
+        const baseBodyMesh = new THREE.Mesh(bodyGeom, matBaseSide);
+        baseBodyMesh.position.y = 0;
+        baseBodyMesh.castShadow = true;
+        baseBodyMesh.receiveShadow = true;
+        baseGroup.add(baseBodyMesh);
+
+        // Silueta del mapa del Cauca en el centro (Simulada mediante una forma extruida estilizada)
+        const mapShape = new THREE.Shape();
+        mapShape.moveTo(0, 0.8);
+        mapShape.lineTo(0.6, 0.5);
+        mapShape.lineTo(1.2, -0.2);
+        mapShape.lineTo(0.5, -1);
+        mapShape.lineTo(-0.6, -0.8);
+        mapShape.lineTo(-1, -0.2);
+        mapShape.lineTo(-0.5, 0.6);
+
+        const extrudeSettings = { depth: 0.02, bevelEnabled: true, bevelSegments: 2, steps: 1, bevelSize: 0.02, bevelThickness: 0.02 };
+        const mapGeom = new THREE.ExtrudeGeometry(mapShape, extrudeSettings);
+        const mapMesh = new THREE.Mesh(mapGeom, matDark);
+        mapMesh.rotation.x = Math.PI / 2; // Acostarlo sobre el disco
+        mapMesh.position.set(0, 0.46, 0);
+        baseGroup.add(mapMesh);
+
+        scene.add(baseGroup);
+
+        // --- 5. GEOMETRÍA: EL PIN / MARCADOR (Pirámide de 4 lados asimétrica) ---
+        const pinGroup = new THREE.Group();
+
+        // Creamos el pin usando geometrías personalizadas indexadas para control absoluto de las caras de color
+        const pinHeight = 5.5;
+        const topWidth = 2.4;
+        const thickness = 0.4; // El grosor del perfil del marcador
+
+        // Cara Derecha - Amarilla
+        const geomYellow = new THREE.BufferGeometry();
+        const verticesYellow = new Float32Array([
+            0, 0, 0,                          // Vértice inferior (Punta)
+            topWidth, pinHeight, 0,           // Extremo derecho superior
+            0, pinHeight, thickness          // Eje central superior frontal
+        ]);
+        geomYellow.setAttribute('position', new THREE.BufferAttribute(verticesYellow, 3));
+        geomYellow.computeVertexNormals();
+        const meshYellow = new THREE.Mesh(geomYellow, matYellow);
+        meshYellow.castShadow = true;
+        pinGroup.add(meshYellow);
+
+        // Cara Izquierda Trasera (Simula la transición al azul)
+        const geomBlue = new THREE.BufferGeometry();
+        const verticesBlue = new Float32Array([
+            0, 0, 0,
+            0, pinHeight, thickness,
+            -topWidth * 0.4, pinHeight, thickness * 0.2 // Quiebre sutil del logo
+        ]);
+        geomBlue.setAttribute('position', new THREE.BufferAttribute(verticesBlue, 3));
+        geomBlue.computeVertexNormals();
+        const meshBlue = new THREE.Mesh(geomBlue, matBlue);
+        meshBlue.castShadow = true;
+        pinGroup.add(meshBlue);
+
+        // Detalle de borde - Rojo
+        const geomRed = new THREE.BufferGeometry();
+        const verticesRed = new Float32Array([
+            0, 0, 0,
+            -topWidth * 0.4, pinHeight, thickness * 0.2,
+            -topWidth * 0.6, pinHeight, -thickness * 0.4
+        ]);
+        geomRed.setAttribute('position', new THREE.BufferAttribute(verticesRed, 3));
+        geomRed.computeVertexNormals();
+        const meshRed = new THREE.Mesh(geomRed, matRed);
+        meshRed.castShadow = true;
+        pinGroup.add(meshRed);
+
+        // Respaldo oscuro estructural del marcador
+        const geomDark = new THREE.BufferGeometry();
+        const verticesDark = new Float32Array([
+            0, 0, 0,
+            -topWidth * 0.6, pinHeight, -thickness * 0.4,
+            topWidth, pinHeight, 0
+        ]);
+        geomDark.setAttribute('position', new THREE.BufferAttribute(verticesDark, 3));
+        geomDark.computeVertexNormals();
+        const meshDark = new THREE.Mesh(geomDark, matDark);
+        meshDark.castShadow = true;
+        pinGroup.add(meshDark);
+
+        // Posicionar el pin justo encima del mapa central
+        pinGroup.position.set(0, 0.45, 0);
+        scene.add(pinGroup);
+
+
+        // --- 6. ANIMACIÓN Y RESPONSIVIDAD ---
+        window.addEventListener('resize', onWindowResize, false);
+
+        function onWindowResize() {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        }
+
+        function animate() {
+            requestAnimationFrame(animate);
+            
+            // Animación sutil de levitación / rotación para dinamismo profesional
+            const time = Date.now() * 0.001;
+            pinGroup.position.y = 0.45 + Math.sin(time * 1.5) * 0.1;
+            
+            controls.update();
+            renderer.render(scene, camera);
+        }
+
+        animate();
+    </script>
 </body>
 </html>

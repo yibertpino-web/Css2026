@@ -1,141 +1,332 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Formación de Fútbol</title>
-
-<style>
-    body{
-        margin:0;
-        display:flex;
-        justify-content:center;
-        align-items:center;
-        min-height:100vh;
-        background:#222;
-        font-family:Arial, sans-serif;
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fútbol 5 - Pizarra Táctica con Balón Dinámico</title>
+  <style>
+    :root {
+      --color-bg: #121212;
+      --color-panel: #1e1e1e;
+      --color-field: #1e5e2f;
+      --color-lines: rgba(255, 255, 255, 0.7);
+      --color-btn: #333;
+      --color-btn-active: #00e676;
+      
+      /* Colores Equipos */
+      --color-gk-home: #ffb300;
+      --color-player-home: #1565c0;
+      --color-gk-away: #e0e0e0;
+      --color-player-away: #d32f2f;
     }
 
-    .cancha{
-        width:700px;
-        height:450px;
-        position:relative;
-        border:5px solid white;
-        border-radius:10px;
-        overflow:hidden;
-
-        background-image:url("cancha de futbol/50101ea1-0b09-4628-a236-2b3bf1fc4883.jpg");
-        background-repeat:no-repeat;
-        background-size:cover;
-        background-position:center;
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
 
-    .jugador{
-        position:absolute;
-        width:40px;
-        height:40px;
-        border-radius:50%;
-        display:flex;
-        align-items:center;
-        justify-content:center;
-        font-size:12px;
-        font-weight:bold;
-        color:white;
-        box-shadow:0 0 8px rgba(0,0,0,.6);
-        background:#1976d2;
-
-        /* Movimiento suave */
-        transition: left 1.5s ease, top 1.5s ease;
+    body {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      background-color: var(--color-bg);
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      padding: 20px;
     }
 
-    /* Portero */
-    .jugador:first-child{
-        background:#ffc107;
-        color:black;
-        border:3px solid white;
-        left:20px;
-        top:205px;
-        transform:scale(1.15);
+    /* Panel de Control */
+    .controls {
+      display: flex;
+      gap: 15px;
+      margin-bottom: 20px;
+      background: var(--color-panel);
+      padding: 12px 24px;
+      border-radius: 8px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+      align-items: center;
     }
 
-    /* Defensas */
-    .jugador:nth-child(2),
-    .jugador:nth-child(3),
-    .jugador:nth-child(4),
-    .jugador:nth-child(5){
-        background:#1565c0;
-        left:150px;
+    label {
+      color: #aaa;
+      font-size: 14px;
+      font-weight: 600;
     }
 
-    .jugador:nth-child(2){ top:60px; }
-    .jugador:nth-child(3){ top:150px; }
-    .jugador:nth-child(4){ top:260px; }
-    .jugador:nth-child(5){ top:350px; }
-
-    /* Mediocampistas */
-    .jugador:nth-child(6),
-    .jugador:nth-child(7),
-    .jugador:nth-child(8){
-        background:#00897b;
-        left:330px;
+    select, button {
+      background: var(--color-btn);
+      color: white;
+      border: 1px solid #444;
+      padding: 8px 14px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.3s ease;
     }
 
-    .jugador:nth-child(6){ top:100px; }
-    .jugador:nth-child(7){ top:205px; }
-    .jugador:nth-child(8){ top:310px; }
-
-    /* Delanteros */
-    .jugador:nth-child(9),
-    .jugador:nth-child(10),
-    .jugador:nth-child(11){
-        background:#d32f2f;
-        left:540px;
+    select:hover, button:hover {
+      background: #444;
     }
 
-    .jugador:nth-child(9){ top:90px; }
-    .jugador:nth-child(10){ top:205px; }
-    .jugador:nth-child(11){ top:320px; }
+    button.active {
+      background: var(--color-btn-active);
+      color: #000;
+      border-color: var(--color-btn-active);
+    }
 
-</style>
+    /* Cancha de Fútbol 5 */
+    .field {
+      position: relative;
+      width: 750px;
+      height: 480px;
+      background-color: var(--color-field);
+      border: 5px solid var(--color-lines);
+      border-radius: 4px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+      overflow: hidden;
+      background-image: linear-gradient(90deg, rgba(255,255,255,0.02) 50%, transparent 50%);
+      background-size: 60px 100%;
+    }
+
+    /* Líneas de la cancha */
+    .field::before {
+      content: '';
+      position: absolute;
+      top: 0; bottom: 0; left: 50%;
+      width: 4px;
+      background: var(--color-lines);
+      transform: translateX(-50%);
+    }
+
+    .field::after {
+      content: '';
+      position: absolute;
+      top: 50%; left: 50%;
+      width: 100px;
+      height: 100px;
+      border: 4px solid var(--color-lines);
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .area-left, .area-right {
+      position: absolute;
+      top: 50%;
+      width: 90px;
+      height: 180px;
+      border: 4px solid var(--color-lines);
+      transform: translateY(-50%);
+    }
+    .area-left { left: -4px; border-radius: 0 90px 90px 0; border-left: none; }
+    .area-right { right: -4px; border-radius: 90px 0 0 90px; border-right: none; }
+
+    /* Ficha del Jugador */
+    .player {
+      position: absolute;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: bold;
+      color: #ffffff;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5);
+      border: 2px solid #ffffff;
+      z-index: 2;
+      
+      left: calc(var(--x) * 1%);
+      top: calc(var(--y) * 1%);
+      transform: translate(-50%, -50%);
+      
+      transition: left 1.2s cubic-bezier(0.25, 1, 0.5, 1), top 1.2s cubic-bezier(0.25, 1, 0.5, 1);
+      will-change: left, top;
+    }
+
+    .player.home { background-color: var(--color-player-home); }
+    .player.home.gk { background-color: var(--color-gk-home); color: #000; }
+    .player.away { background-color: var(--color-player-away); }
+    .player.away.gk { background-color: var(--color-gk-away); color: #000; }
+
+    /* ESTILO PROFESIONAL DEL BALÓN (Usa un gradiente radial para simular esfericidad de parches) */
+    .ball {
+      position: absolute;
+      width: 16px;
+      height: 16px;
+      background: radial-gradient(circle at 30% 30%, #ffffff 0%, #e0e0e0 40%, #222 85%, #000 100%);
+      border-radius: 50%;
+      box-shadow: 0 6px 8px rgba(0, 0, 0, 0.7);
+      z-index: 3;
+      
+      left: calc(var(--x) * 1%);
+      top: calc(var(--y) * 1%);
+      transform: translate(-50%, -50%);
+      
+      /* Transición de pase rápido */
+      transition: left 0.7s cubic-bezier(0.35, 0, 0.25, 1), top 0.7s cubic-bezier(0.35, 0, 0.25, 1);
+      will-change: left, top;
+    }
+  </style>
 </head>
-
 <body>
 
-<div class="cancha">
-    <div class="jugador">1</div>
-    <div class="jugador">2</div>
-    <div class="jugador">3</div>
-    <div class="jugador">4</div>
-    <div class="jugador">5</div>
-    <div class="jugador">6</div>
-    <div class="jugador">7</div>
-    <div class="jugador">8</div>
-    <div class="jugador">9</div>
-    <div class="jugador">10</div>
-    <div class="jugador">11</div>
-</div>
+  <div class="controls">
+    <label for="formation-select">Estrategia:</label>
+    <select id="formation-select">
+      <option value="rombo">Rombo Balanceado (1-2-1)</option>
+      <option value="defensiva">Defensiva / Contra (2-1-1)</option>
+      <option value="ataque">Presión Alta (1-1-2)</option>
+    </select>
+
+    <button id="sim-button">Iniciar Partido</button>
+  </div>
+
+  <div class="field">
+    <div class="area-left"></div>
+    <div class="area-right"></div>
+
+    <div class="ball" id="match-ball"></div>
+
+    <div class="player home gk" id="h1">1</div>
+    <div class="player home" id="h2">3</div>
+    <div class="player home" id="h3">7</div>
+    <div class="player home" id="h4">8</div>
+    <div class="player home" id="h5">9</div>
+
+    <div class="player away gk" id="a1">1</div>
+    <div class="player away" id="a2">4</div>
+    <div class="player away" id="a3">11</div>
+    <div class="player away" id="a4">10</div>
+    <div class="player away" id="a5">14</div>
+  </div>
 
 <script>
-const jugadores = document.querySelectorAll(".jugador");
+  const formations = {
+    rombo: {
+      h1: {x: 6, y: 50},  h2: {x: 22, y: 50}, h3: {x: 35, y: 25}, h4: {x: 35, y: 75}, h5: {x: 46, y: 50},
+      a1: {x: 94, y: 50}, a2: {x: 78, y: 50}, a3: {x: 65, y: 25}, a4: {x: 65, y: 75}, a5: {x: 54, y: 50}
+    },
+    defensiva: {
+      h1: {x: 6, y: 50},  h2: {x: 18, y: 30}, h3: {x: 18, y: 70}, h4: {x: 32, y: 50}, h5: {x: 44, y: 50},
+      a1: {x: 94, y: 50}, a2: {x: 82, y: 30}, a3: {x: 82, y: 70}, a4: {x: 68, y: 50}, a5: {x: 56, y: 50}
+    },
+    ataque: {
+      h1: {x: 6, y: 50},  h2: {x: 28, y: 50}, h3: {x: 42, y: 50}, h4: {x: 48, y: 25}, h5: {x: 48, y: 75},
+      a1: {x: 94, y: 50}, a2: {x: 72, y: 50}, a3: {x: 58, y: 50}, a4: {x: 52, y: 25}, a5: {x: 52, y: 75}
+    }
+  };
 
-jugadores.forEach((jugador) => {
+  let currentFormation = 'rombo';
+  let isSimulating = false;
+  let simulationIntervals = [];
+  let ballInterval = null;
 
-    // Guardar posición original
-    const x = parseInt(getComputedStyle(jugador).left);
-    const y = parseInt(getComputedStyle(jugador).top);
+  const players = document.querySelectorAll('.player');
+  const ball = document.getElementById('match-ball');
+  const formationSelect = document.getElementById('formation-select');
+  const simButton = document.getElementById('sim-button');
 
-    setInterval(() => {
+  // Inicializa o resetea la posición de los jugadores y del balón (al centro)
+  function applyFormation(type) {
+    currentFormation = type;
+    const coords = formations[type];
+    
+    players.forEach(player => {
+      const id = player.id;
+      if (coords[id]) {
+        player.style.setProperty('--x', coords[id].x);
+        player.style.setProperty('--y', coords[id].y);
+      }
+    });
 
-        // Movimiento aleatorio de ±20 píxeles
-        const dx = Math.random() * 40 - 20;
-        const dy = Math.random() * 40 - 20;
+    if (!isSimulating) {
+      ball.style.setProperty('--x', 50);
+      ball.style.setProperty('--y', 50);
+    }
+  }
 
-        jugador.style.left = (x + dx) + "px";
-        jugador.style.top = (y + dy) + "px";
+  // Lógica del partido en movimiento
+  function startSimulation() {
+    isSimulating = true;
+    simButton.textContent = "Pausar Partido";
+    simButton.classList.add('active');
 
-    }, 1800 + Math.random()*1000);
+    // 1. Movimiento de los jugadores
+    players.forEach(player => {
+      const id = player.id;
+      const isGK = player.classList.contains('gk');
+      const maxDrift = isGK ? 2 : 5;
 
-});
+      const playerLoop = () => {
+        if (!isSimulating) return;
+
+        const baseCoords = formations[currentFormation][id];
+        const driftX = (Math.random() * (maxDrift * 2)) - maxDrift;
+        const driftY = (Math.random() * (maxDrift * 2)) - maxDrift;
+
+        player.style.setProperty('--x', baseCoords.x + driftX);
+        player.style.setProperty('--y', baseCoords.y + driftY);
+
+        const nextTick = setTimeout(playerLoop, 1000 + Math.random() * 800);
+        simulationIntervals.push(nextTick);
+      };
+      setTimeout(playerLoop, Math.random() * 500);
+    });
+
+    // 2. Inteligencia Colectiva del Balón (Sistema de pases encadenados)
+    const ballLoop = () => {
+      if (!isSimulating) return;
+
+      // Elige un jugador al azar de toda la cancha para hacerle el pase
+      const randomPlayer = players[Math.floor(Math.random() * players.length)];
+      
+      // Obtenemos su posición actual leída desde el estilo renderizado en el documento
+      setTimeout(() => {
+        if (!isSimulating) return;
+        const playerX = parseFloat(randomPlayer.style.getPropertyValue('--x'));
+        const playerY = parseFloat(randomPlayer.style.getPropertyValue('--y'));
+
+        // El balón viaja a la posición exacta del jugador elegido
+        ball.style.setProperty('--x', playerX);
+        ball.style.setProperty('--y', playerY);
+      }, 100); 
+
+      // Tiempo de espera simulando la recepción del balón antes del siguiente pase
+      ballInterval = setTimeout(ballLoop, 1100 + Math.random() * 600);
+    };
+    
+    ballLoop();
+  }
+
+  function stopSimulation() {
+    isSimulating = false;
+    simButton.textContent = "Iniciar Partido";
+    simButton.classList.remove('active');
+    
+    simulationIntervals.forEach(clearTimeout);
+    simulationIntervals = [];
+    clearTimeout(ballInterval);
+    
+    applyFormation(currentFormation);
+  }
+
+  // Event Listeners
+  formationSelect.addEventListener('change', (e) => {
+    applyFormation(e.target.value);
+  });
+
+  simButton.addEventListener('click', () => {
+    if (isSimulating) {
+      stopSimulation();
+    } else {
+      startSimulation();
+    }
+  });
+
+  applyFormation('rombo');
 </script>
 
 </body>
