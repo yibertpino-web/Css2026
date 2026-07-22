@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Ejemplo column-gap CSS</title>
+
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+
+body{
+
+    background:#0f172a;
+
+    color:white;
+
+    padding:40px;
+
+}
+
+
+
+h1{
+
+    text-align:center;
+
+    margin-bottom:40px;
+
+}
+
+
+
+/* CONTENEDOR GRID */
+
+.galeria{
+
+
+    width:900px;
+
+    margin:auto;
+
+
+    display:grid;
+
+
+    grid-template-columns:
+    repeat(4,150px);
+
+
+
+    /*
+       ESPACIO ENTRE COLUMNAS
+    */
+
+    column-gap:40px;
+
+
+
+    /*
+       ESPACIO ENTRE FILAS
+    */
+
+    row-gap:30px;
+
+
+
+    background:#1e293b;
+
+
+    padding:30px;
+
+
+    border-radius:20px;
+
+
+}
+
+
+
+/* TARJETAS */
+
+
+.card{
+
+
+    height:120px;
+
+
+    background:
+    linear-gradient(
+        135deg,
+        #06b6d4,
+        #2563eb
+    );
+
+
+    display:grid;
+
+
+    place-items:center;
+
+
+    border-radius:15px;
+
+
+    font-size:25px;
+
+
+    font-weight:bold;
+
+
+    transition:.3s;
+
+
+}
+
+
+
+.card:hover{
+
+
+    transform:translateY(-8px);
+
+
+    background:
+    linear-gradient(
+        135deg,
+        #f97316,
+        #ef4444
+    );
+
+
+}
+
+
+</style>
+
+
+</head>
+
+
+
+<body>
+
+
+
+<h1>
+Ejemplo de column-gap
+</h1>
+
+
+
+<div class="galeria">
+
+
+<div class="card">1</div>
+
+<div class="card">2</div>
+
+<div class="card">3</div>
+
+<div class="card">4</div>
+
+<div class="card">5</div>
+
+<div class="card">6</div>
+
+<div class="card">7</div>
+
+<div class="card">8</div>
+
+
+</div>
+
+
+
+</body>
+
+</html>

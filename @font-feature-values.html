@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Ejemplo @font-feature-values</title>
+
+<style>
+
+/* Importar una fuente que soporte alternativos */
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;700&display=swap');
+
+/* Definir nombres personalizados */
+@font-feature-values "EB Garamond" {
+
+  @styleset {
+    elegante: 1;
+    moderno: 2;
+  }
+
+  @character-variant {
+    especial: 1;
+  }
+
+}
+
+body{
+    font-family: "EB Garamond", serif;
+    background:#f4f4f4;
+    padding:40px;
+}
+
+h1{
+    text-align:center;
+    color:#2c3e50;
+}
+
+p{
+    font-size:28px;
+    margin:20px 0;
+}
+
+.normal{
+    color:#333;
+}
+
+.elegante{
+    font-variant-alternates: styleset(elegante);
+    color:#0066cc;
+}
+
+.moderno{
+    font-variant-alternates: styleset(moderno);
+    color:#27ae60;
+}
+
+.especial{
+    font-variant-alternates: character-variant(especial);
+    color:#c0392b;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h1>Ejemplo de @font-feature-values</h1>
+
+<p class="normal">
+Texto normal con la fuente.
+</p>
+
+<p class="elegante">
+Texto utilizando el styleset "elegante".
+</p>
+
+<p class="moderno">
+Texto utilizando el styleset "moderno".
+</p>
+
+<p class="especial">
+Texto utilizando una variante especial de caracteres.
+</p>
+
+</body>
+</html>

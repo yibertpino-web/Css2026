@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Ejemplo align-self Flexbox</title>
+
+
+<style>
+
+*{
+
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+
+}
+
+
+body{
+
+    background:#0f172a;
+
+    color:white;
+
+    padding:40px;
+
+}
+
+
+h1{
+
+    text-align:center;
+
+    margin-bottom:40px;
+
+}
+
+
+/* CONTENEDOR FLEX */
+
+
+.contenedor{
+
+
+    width:700px;
+
+    height:400px;
+
+
+    margin:auto;
+
+
+    background:#1e293b;
+
+
+    display:flex;
+
+
+    align-items:flex-start;
+
+
+    gap:20px;
+
+
+    padding:30px;
+
+
+    border-radius:20px;
+
+
+}
+
+
+
+
+/* TARJETAS */
+
+
+.card{
+
+
+    width:120px;
+
+
+    height:120px;
+
+
+    background:
+    linear-gradient(
+        135deg,
+        #06b6d4,
+        #2563eb
+    );
+
+
+    display:flex;
+
+
+    justify-content:center;
+
+
+    align-items:center;
+
+
+    border-radius:15px;
+
+
+    font-size:22px;
+
+
+    font-weight:bold;
+
+
+}
+
+
+
+/* ALIGN-SELF INDIVIDUAL */
+
+
+.inicio{
+
+    align-self:flex-start;
+
+}
+
+
+
+.final{
+
+    align-self:flex-end;
+
+}
+
+
+
+.centro{
+
+    align-self:center;
+
+}
+
+
+
+.base{
+
+    align-self:baseline;
+
+}
+
+
+
+.estirar{
+
+    align-self:stretch;
+
+    height:auto;
+
+}
+
+
+
+</style>
+
+
+</head>
+
+
+<body>
+
+
+
+<h1>
+Ejemplo de align-self
+</h1>
+
+
+
+<div class="contenedor">
+
+
+<div class="card inicio">
+START
+</div>
+
+
+<div class="card final">
+END
+</div>
+
+
+<div class="card centro">
+CENTER
+</div>
+
+
+<div class="card base">
+BASELINE
+</div>
+
+
+<div class="card estirar">
+STRETCH
+</div>
+
+
+</div>
+
+
+
+</body>
+
+</html>

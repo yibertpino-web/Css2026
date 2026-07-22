@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Flex Grow y Flex Shrink Profesional</title>
+
+
+<style>
+
+*{
+
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI', Arial, sans-serif;
+
+}
+
+
+body{
+
+    min-height:100vh;
+
+    background:
+    linear-gradient(
+        135deg,
+        #020617,
+        #1e40af
+    );
+
+    padding:40px;
+
+    color:white;
+
+}
+
+
+/* TITULO */
+
+h1{
+
+    text-align:center;
+
+    margin-bottom:40px;
+
+}
+
+
+
+/* DASHBOARD */
+
+
+.dashboard{
+
+
+    max-width:1200px;
+
+    height:600px;
+
+    margin:auto;
+
+
+    display:flex;
+
+
+    gap:25px;
+
+
+    background:#111827;
+
+
+    padding:25px;
+
+
+    border-radius:25px;
+
+
+    box-shadow:
+    0 20px 40px rgba(0,0,0,.5);
+
+
+}
+
+
+
+
+/* MENU LATERAL */
+
+
+.sidebar{
+
+
+    background:#1e293b;
+
+
+    border-radius:20px;
+
+
+    padding:25px;
+
+
+    display:flex;
+
+
+    flex-direction:column;
+
+
+    gap:20px;
+
+
+
+    /*
+    Tamaño inicial
+    */
+
+
+    flex-basis:250px;
+
+
+
+    /*
+    Puede reducirse poco
+    */
+
+
+    flex-shrink:1;
+
+
+
+}
+
+
+
+
+.menu{
+
+
+    background:#334155;
+
+
+    padding:15px;
+
+
+    border-radius:12px;
+
+
+    transition:.3s;
+
+}
+
+
+.menu:hover{
+
+    background:#2563eb;
+
+    transform:translateX(10px);
+
+}
+
+
+
+
+/* CONTENIDO PRINCIPAL */
+
+
+.contenido{
+
+
+    background:#0f172a;
+
+
+    border-radius:20px;
+
+
+    padding:25px;
+
+
+    display:flex;
+
+
+    flex-direction:column;
+
+
+    gap:20px;
+
+
+
+    /*
+    Crece ocupando espacio libre
+    */
+
+
+    flex-grow:1;
+
+
+
+    /*
+    Puede reducirse cuando falta espacio
+    */
+
+
+    flex-shrink:2;
+
+
+
+}
+
+
+
+
+/* TARJETAS */
+
+
+.tarjetas{
+
+
+    display:flex;
+
+
+    gap:20px;
+
+
+}
+
+
+
+.card{
+
+
+    background:
+    linear-gradient(
+        135deg,
+        #06b6d4,
+        #2563eb
+    );
+
+
+    padding:30px;
+
+
+    border-radius:20px;
+
+
+    text-align:center;
+
+
+    font-size:22px;
+
+
+    font-weight:bold;
+
+
+
+    /*
+    Todas parten del mismo tamaño
+    */
+
+
+    flex-basis:200px;
+
+
+
+    /*
+    Crecen proporcionalmente
+    */
+
+
+    flex-grow:1;
+
+
+
+    /*
+    Se reducen cuando falta espacio
+    */
+
+
+    flex-shrink:1;
+
+
+
+    transition:.4s;
+
+
+}
+
+
+
+.card:hover{
+
+
+    transform:
+    translateY(-10px)
+    scale(1.05);
+
+
+}
+
+
+
+/* TARJETA DESTACADA */
+
+
+.destacada{
+
+
+    background:
+    linear-gradient(
+        135deg,
+        #f97316,
+        #ef4444
+    );
+
+
+    /*
+    Esta tarjeta crece más
+    */
+
+
+    flex-grow:2;
+
+
+
+}
+
+
+
+
+/* PANEL INFERIOR */
+
+
+.panel{
+
+
+    flex-grow:1;
+
+
+    background:#1e293b;
+
+
+    border-radius:20px;
+
+
+    display:flex;
+
+
+    justify-content:center;
+
+
+    align-items:center;
+
+
+    font-size:30px;
+
+
+}
+
+
+
+
+/* RESPONSIVE */
+
+
+@media(max-width:800px){
+
+
+.dashboard{
+
+
+    flex-direction:column;
+
+    height:auto;
+
+
+}
+
+
+
+.sidebar{
+
+
+    flex-basis:auto;
+
+}
+
+
+
+.tarjetas{
+
+
+    flex-direction:column;
+
+}
+
+
+}
+
+
+
+</style>
+
+
+</head>
+
+
+<body>
+
+
+
+<h1>
+Dashboard Profesional con Flex Grow y Shrink
+</h1>
+
+
+
+<section class="dashboard">
+
+
+<!-- MENU -->
+
+<aside class="sidebar">
+
+
+<div class="menu">
+🏠 Inicio
+</div>
+
+
+<div class="menu">
+📊 Estadísticas
+</div>
+
+
+<div class="menu">
+👥 Usuarios
+</div>
+
+
+<div class="menu">
+⚙ Configuración
+</div>
+
+
+</aside>
+
+
+
+<!-- CONTENIDO -->
+
+
+<main class="contenido">
+
+
+<div class="tarjetas">
+
+
+<div class="card">
+Ventas
+<br>
+flex-grow:1
+</div>
+
+
+<div class="card destacada">
+Ingresos
+<br>
+flex-grow:2
+</div>
+
+
+<div class="card">
+Usuarios
+<br>
+flex-grow:1
+</div>
+
+
+</div>
+
+
+
+<div class="panel">
+
+Área Principal
+
+</div>
+
+
+
+</main>
+
+
+
+</section>
+
+
+
+</body>
+
+</html>

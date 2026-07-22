@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portafolio Responsive</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:Arial, Helvetica, sans-serif;
+    background:#f4f4f4;
+    color:#333;
+}
+
+/*==================*/
+/* MENÚ */
+/*==================*/
+
+header{
+    background:#0d6efd;
+    position:fixed;
+    width:100%;
+    top:0;
+    z-index:1000;
+}
+
+nav{
+    max-width:1200px;
+    margin:auto;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:15px 20px;
+}
+
+.logo{
+    color:white;
+    font-size:28px;
+    font-weight:bold;
+}
+
+.menu{
+    display:flex;
+    list-style:none;
+}
+
+.menu li{
+    margin-left:20px;
+}
+
+.menu a{
+    color:white;
+    text-decoration:none;
+    font-weight:bold;
+    transition:.3s;
+}
+
+.menu a:hover{
+    color:yellow;
+}
+
+/*==================*/
+/* HERO */
+/*==================*/
+
+.hero{
+    height:100vh;
+    background:linear-gradient(135deg,#0d6efd,#00b894);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    color:white;
+    padding:20px;
+}
+
+.hero h1{
+    font-size:60px;
+}
+
+.hero p{
+    margin:20px 0;
+    font-size:22px;
+}
+
+.boton{
+    display:inline-block;
+    padding:15px 35px;
+    background:white;
+    color:#0d6efd;
+    border-radius:30px;
+    text-decoration:none;
+    font-weight:bold;
+}
+
+/*==================*/
+/* SECCIONES */
+/*==================*/
+
+section{
+    max-width:1200px;
+    margin:auto;
+    padding:90px 20px;
+}
+
+h2{
+    text-align:center;
+    margin-bottom:40px;
+    color:#0d6efd;
+}
+
+/*==================*/
+/* SOBRE MI */
+/*==================*/
+
+.sobre{
+    display:flex;
+    gap:40px;
+    align-items:center;
+}
+
+.foto{
+    flex:1;
+}
+
+.foto img{
+    width:100%;
+    border-radius:10px;
+}
+
+.info{
+    flex:2;
+}
+
+/*==================*/
+/* HABILIDADES */
+/*==================*/
+
+.skills{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:20px;
+}
+
+.skill{
+    background:white;
+    padding:30px;
+    border-radius:10px;
+    text-align:center;
+    box-shadow:0 0 10px rgba(0,0,0,.15);
+}
+
+/*==================*/
+/* PROYECTOS */
+/*==================*/
+
+.proyectos{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+}
+
+.card{
+    background:white;
+    border-radius:10px;
+    overflow:hidden;
+    box-shadow:0 5px 10px rgba(0,0,0,.2);
+}
+
+.card img{
+    width:100%;
+}
+
+.card h3{
+    padding:15px;
+}
+
+.card p{
+    padding:0 15px 20px;
+}
+
+/*==================*/
+/* CONTACTO */
+/*==================*/
+
+form{
+    display:flex;
+    flex-direction:column;
+    gap:15px;
+}
+
+input,textarea{
+    padding:15px;
+    border:1px solid #ccc;
+    border-radius:8px;
+}
+
+button{
+    padding:15px;
+    background:#0d6efd;
+    color:white;
+    border:none;
+    cursor:pointer;
+    border-radius:8px;
+}
+
+/*==================*/
+/* FOOTER */
+/*==================*/
+
+footer{
+    background:#222;
+    color:white;
+    text-align:center;
+    padding:20px;
+}
+
+/*========================================*/
+/* MEDIA QUERY TABLET */
+/*========================================*/
+
+@media(max-width:992px){
+
+.hero h1{
+    font-size:45px;
+}
+
+.sobre{
+    flex-direction:column;
+}
+
+.skills{
+    grid-template-columns:repeat(2,1fr);
+}
+
+.proyectos{
+    grid-template-columns:repeat(2,1fr);
+}
+
+}
+
+/*========================================*/
+/* MEDIA QUERY CELULAR */
+/*========================================*/
+
+@media(max-width:768px){
+
+nav{
+    flex-direction:column;
+}
+
+.menu{
+    flex-direction:column;
+    width:100%;
+    text-align:center;
+}
+
+.menu li{
+    margin:10px 0;
+}
+
+.hero h1{
+    font-size:35px;
+}
+
+.hero p{
+    font-size:18px;
+}
+
+.skills{
+    grid-template-columns:1fr;
+}
+
+.proyectos{
+    grid-template-columns:1fr;
+}
+
+}
+
+/*========================================*/
+/* MEDIA QUERY CELULAR PEQUEÑO */
+/*========================================*/
+
+@media(max-width:480px){
+
+.logo{
+    font-size:22px;
+}
+
+.hero{
+    padding-top:120px;
+}
+
+.hero h1{
+    font-size:28px;
+}
+
+.hero p{
+    font-size:16px;
+}
+
+}
+/*========================================*/
+/* ORIENTACIÓN VERTICAL (PORTRAIT) */
+/*========================================*/
+
+@media (orientation: portrait){
+
+    .hero{
+        height:100vh;
+        text-align:center;
+        padding:40px 20px;
+    }
+
+    .hero h1{
+        font-size:40px;
+    }
+
+    .sobre{
+        flex-direction:column;
+        text-align:center;
+    }
+
+    .skills{
+        grid-template-columns:1fr;
+    }
+
+    .proyectos{
+        grid-template-columns:1fr;
+    }
+
+    .menu{
+        justify-content:center;
+    }
+
+}
+
+/*========================================*/
+/* ORIENTACIÓN HORIZONTAL (LANDSCAPE) */
+/*========================================*/
+
+@media (orientation: landscape){
+
+    .hero{
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        text-align:left;
+    }
+
+    .hero h1{
+        font-size:55px;
+    }
+
+    .sobre{
+        flex-direction:row;
+    }
+
+    .skills{
+        grid-template-columns:repeat(4,1fr);
+    }
+
+    .proyectos{
+        grid-template-columns:repeat(3,1fr);
+    }
+
+    .menu{
+        justify-content:flex-end;
+    }
+
+}
+/*========================================*/
+/* VISUALIZACIÓN - ORIENTACIÓN VERTICAL */
+/*========================================*/
+
+@media (orientation: portrait){
+
+    body{
+        background:#E3F2FD;
+    }
+
+    header{
+        background:#1565C0;
+    }
+
+    .hero{
+        background:linear-gradient(135deg,#1565C0,#42A5F5);
+        text-align:center;
+    }
+
+    .hero h1{
+        font-size:40px;
+    }
+
+    .hero p{
+        font-size:20px;
+    }
+
+    .menu{
+        justify-content:center;
+    }
+
+    .sobre{
+        flex-direction:column;
+        text-align:center;
+    }
+
+    .skills{
+        grid-template-columns:1fr;
+    }
+
+    .proyectos{
+        grid-template-columns:1fr;
+    }
+
+}
+
+/*========================================*/
+/* VISUALIZACIÓN - ORIENTACIÓN HORIZONTAL */
+/*========================================*/
+
+@media (orientation: landscape){
+
+    body{
+        background:#FFF8E1;
+    }
+
+    header{
+        background:#2E7D32;
+    }
+
+    .hero{
+        background:linear-gradient(135deg,#2E7D32,#66BB6A);
+        text-align:left;
+    }
+
+    .hero h1{
+        font-size:55px;
+    }
+
+    .hero p{
+        font-size:22px;
+    }
+
+    .sobre{
+        flex-direction:row;
+    }
+
+    .skills{
+        grid-template-columns:repeat(4,1fr);
+    }
+
+    .proyectos{
+        grid-template-columns:repeat(3,1fr);
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<nav>
+
+<div class="logo">Mi Portafolio</div>
+
+<ul class="menu">
+<li><a href="#inicio">Inicio</a></li>
+<li><a href="#sobre">Sobre mí</a></li>
+<li><a href="#habilidades">Habilidades</a></li>
+<li><a href="#proyectos">Proyectos</a></li>
+<li><a href="#contacto">Contacto</a></li>
+</ul>
+
+</nav>
+
+</header>
+
+<section class="hero" id="inicio">
+
+<div>
+
+<h1>Hola, soy Yibert Pino</h1>
+
+<p>Desarrollador Web | HTML | CSS | JavaScript</p>
+
+<a href="#proyectos" class="boton">Ver Proyectos</a>
+
+</div>
+
+</section>
+
+<section id="sobre">
+
+<h2>Sobre mí</h2>
+
+<div class="sobre">
+
+<div class="foto">
+
+<img src="https://picsum.photos/400/400" alt="Foto">
+
+</div>
+
+<div class="info">
+
+<p>
+
+Soy estudiante del SENA apasionado por el desarrollo web, diseño responsivo y creación de aplicaciones modernas utilizando HTML, CSS y JavaScript.
+
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+<section id="habilidades">
+
+<h2>Habilidades</h2>
+
+<div class="skills">
+
+<div class="skill">HTML5</div>
+
+<div class="skill">CSS3</div>
+
+<div class="skill">JavaScript</div>
+
+<div class="skill">Responsive Design</div>
+
+</div>
+
+</section>
+
+<section id="proyectos">
+
+<h2>Mis Proyectos</h2>
+
+<div class="proyectos">
+
+<div class="card">
+
+<img src="https://picsum.photos/400/250?1">
+
+<h3>Proyecto 1</h3>
+
+<p>Sitio Web Responsivo.</p>
+
+</div>
+
+<div class="card">
+
+<img src="https://picsum.photos/400/250?2">
+
+<h3>Proyecto 2</h3>
+
+<p>Dashboard Administrativo.</p>
+
+</div>
+
+<div class="card">
+
+<img src="https://picsum.photos/400/250?3">
+
+<h3>Proyecto 3</h3>
+
+<p>Tienda Virtual.</p>
+
+</div>
+
+</div>
+
+</section>
+
+<section id="contacto">
+
+<h2>Contacto</h2>
+
+<form>
+
+<input type="text" placeholder="Nombre">
+
+<input type="email" placeholder="Correo">
+
+<textarea rows="5" placeholder="Mensaje"></textarea>
+
+<button>Enviar</button>
+
+</form>
+
+</section>
+
+<footer>
+
+<h3>© 2026 - Portafolio Responsive | Yibert Pino</h3>
+
+</footer>
+
+</body>
+</html>

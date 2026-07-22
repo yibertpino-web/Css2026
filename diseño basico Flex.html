@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Flex Direction Profesional</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+
+body{
+    background:linear-gradient(135deg,#0f172a,#1e3a8a,#2563eb);
+    padding:40px;
+    color:white;
+}
+
+h1{
+    text-align:center;
+    font-size:45px;
+    margin-bottom:50px;
+}
+
+.seccion{
+    margin-bottom:70px;
+}
+
+.seccion h2{
+    text-align:center;
+    margin-bottom:25px;
+    color:#FFD54F;
+}
+
+/*=============================
+CONTENEDOR FLEX
+==============================*/
+
+.flex{
+
+    display:flex;
+    gap:25px;
+    justify-content:center;
+    align-items:center;
+    background:rgba(255,255,255,.08);
+    backdrop-filter:blur(10px);
+    padding:25px;
+    border-radius:20px;
+
+}
+
+/* Direcciones */
+
+.row{
+    flex-direction:row;
+}
+
+.row-reverse{
+    flex-direction:row-reverse;
+}
+
+.column{
+    flex-direction:column;
+}
+
+.column-reverse{
+    flex-direction:column-reverse;
+}
+
+/*=============================
+TARJETAS
+==============================*/
+
+.card{
+
+    width:250px;
+    background:white;
+    color:#333;
+    border-radius:18px;
+    overflow:hidden;
+    box-shadow:0 15px 25px rgba(0,0,0,.35);
+    transition:.4s;
+
+}
+
+.card:hover{
+
+    transform:translateY(-10px) scale(1.03);
+
+}
+
+.card img{
+
+    width:100%;
+    height:170px;
+    object-fit:cover;
+
+}
+
+.card h3{
+
+    text-align:center;
+    margin:15px;
+
+}
+
+.card p{
+
+    padding:0 15px 20px;
+    text-align:center;
+    line-height:1.6;
+
+}
+
+@media(max-width:900px){
+
+.row,
+.row-reverse{
+
+    flex-direction:column;
+
+}
+
+}
+
+</style>
+
+</head>
+<body>
+
+<h1>CSS Flex Direction</h1>
+
+<!-- ROW -->
+
+<section class="seccion">
+
+<h2>flex-direction: row</h2>
+
+<div class="flex row">
+
+<div class="card">
+<img src="https://picsum.photos/id/1015/400/300">
+<h3>Montañas</h3>
+<p>Elemento 1</p>
+</div>
+
+<div class="card">
+<img src="https://picsum.photos/id/1016/400/300">
+<h3>Bosque</h3>
+<p>Elemento 2</p>
+</div>
+
+<div class="card">
+<img src="https://picsum.photos/id/1025/400/300">
+<h3>Lago</h3>
+<p>Elemento 3</p>
+</div>
+
+</div>
+
+</section>
+
+<!-- ROW REVERSE -->
+
+<section class="seccion">
+
+<h2>flex-direction: row-reverse</h2>
+
+<div class="flex row-reverse">
+
+<div class="card">
+<img src="https://picsum.photos/id/1015/400/300">
+<h3>Montañas</h3>
+<p>Elemento 1</p>
+</div>
+
+<div class="card">
+<img src="https://picsum.photos/id/1016/400/300">
+<h3>Bosque</h3>
+<p>Elemento 2</p>
+</div>
+
+<div class="card">
+<img src="https://picsum.photos/id/1025/400/300">
+<h3>Lago</h3>
+<p>Elemento 3</p>
+</div>
+
+</div>
+
+</section>
+
+<!-- COLUMN -->
+
+<section class="seccion">
+
+<h2>flex-direction: column</h2>
+
+<div class="flex column">
+
+<div class="card">
+<img src="https://picsum.photos/id/1015/400/300">
+<h3>Montañas</h3>
+<p>Elemento 1</p>
+</div>
+
+<div class="card">
+<img src="https://picsum.photos/id/1016/400/300">
+<h3>Bosque</h3>
+<p>Elemento 2</p>
+</div>
+
+<div class="card">
+<img src="https://picsum.photos/id/1025/400/300">
+<h3>Lago</h3>
+<p>Elemento 3</p>
+</div>
+
+</div>
+
+</section>
+
+<!-- COLUMN REVERSE -->
+
+<section class="seccion">
+
+<h2>flex-direction: column-reverse</h2>
+
+<div class="flex column-reverse">
+
+<div class="card">
+<img src="https://picsum.photos/id/1015/400/300">
+<h3>Montañas</h3>
+<p>Elemento 1</p>
+</div>
+
+<div class="card">
+<img src="https://picsum.photos/id/1016/400/300">
+<h3>Bosque</h3>
+<p>Elemento 2</p>
+</div>
+
+<div class="card">
+<img src="https://picsum.photos/id/1025/400/300">
+<h3>Lago</h3>
+<p>Elemento 3</p>
+</div>
+
+</div>
+
+</section>
+
+</body>
+</html>
+

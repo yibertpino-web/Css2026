@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ejemplo CSS Transitions</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(135deg,#0f172a,#1e3a8a,#2563eb);
+}
+
+.tarjeta{
+    width:350px;
+    padding:40px;
+    border-radius:20px;
+    text-align:center;
+    color:white;
+    background:rgba(255,255,255,.08);
+    backdrop-filter:blur(15px);
+    border:1px solid rgba(255,255,255,.2);
+
+    /* TRANSITION */
+    transition:all .6s ease;
+}
+
+.tarjeta h1{
+    margin-bottom:15px;
+}
+
+.tarjeta p{
+    margin-bottom:25px;
+    line-height:1.6;
+}
+
+button{
+    padding:12px 30px;
+    border:none;
+    border-radius:30px;
+    background:#00d4ff;
+    color:#001233;
+    font-size:17px;
+    cursor:pointer;
+
+    transition:background .4s ease,
+               transform .4s ease,
+               color .4s ease;
+}
+
+/* Efecto sobre la tarjeta */
+.tarjeta:hover{
+    transform:scale(1.08) rotate(3deg);
+    background:#2563eb;
+    box-shadow:0 25px 50px rgba(0,0,0,.45);
+}
+
+/* Efecto del botón */
+button:hover{
+    background:#fff;
+    color:#2563eb;
+    transform:scale(1.1);
+}
+
+</style>
+
+</head>
+<body>
+
+<div class="tarjeta">
+    <h1>CSS Transitions</h1>
+
+    <p>
+        Este ejemplo muestra cómo crear transiciones suaves
+        utilizando la propiedad <strong>transition</strong>.
+    </p>
+
+    <button>Explorar</button>
+</div>
+
+</body>
+</html>

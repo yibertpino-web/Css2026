@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Flexbox Direction y Wrap</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+
+body{
+
+    background:
+    linear-gradient(135deg,#020617,#1e40af,#0ea5e9);
+
+    color:white;
+    padding:40px;
+
+}
+
+
+h1{
+
+    text-align:center;
+    font-size:45px;
+    margin-bottom:50px;
+
+}
+
+
+section{
+
+    margin-bottom:60px;
+
+}
+
+
+h2{
+
+    text-align:center;
+    margin-bottom:25px;
+    color:#fde047;
+
+}
+
+
+/* ==========================
+   CONTENEDOR FLEX
+========================== */
+
+
+.contenedor{
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    gap:20px;
+
+    padding:30px;
+
+    background:rgba(255,255,255,.12);
+
+    border-radius:20px;
+
+    backdrop-filter:blur(10px);
+
+}
+
+
+/* DIRECCIONES */
+
+
+.row{
+
+    flex-direction:row;
+
+}
+
+
+.row-reverse{
+
+    flex-direction:row-reverse;
+
+}
+
+
+.column{
+
+    flex-direction:column;
+
+}
+
+
+.column-reverse{
+
+    flex-direction:column-reverse;
+
+}
+
+
+
+/* WRAP */
+
+
+.wrap{
+
+    flex-wrap:wrap;
+
+}
+
+
+.nowrap{
+
+    flex-wrap:nowrap;
+
+}
+
+
+.wrap-reverse{
+
+    flex-wrap:wrap-reverse;
+
+}
+
+
+
+/* ==========================
+ TARJETAS
+========================== */
+
+
+.card{
+
+    width:250px;
+
+    background:white;
+
+    color:#333;
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+    box-shadow:
+    0 15px 35px rgba(0,0,0,.35);
+
+    transition:.4s;
+
+}
+
+
+.card:hover{
+
+    transform:
+    translateY(-10px)
+    scale(1.05);
+
+}
+
+
+
+.card img{
+
+    width:100%;
+
+    height:170px;
+
+    object-fit:cover;
+
+}
+
+
+.card h3{
+
+    text-align:center;
+
+    padding:15px;
+
+    color:#1e3a8a;
+
+}
+
+
+
+.card p{
+
+    text-align:center;
+
+    padding:0 20px 20px;
+
+}
+
+
+
+/* RESPONSIVE */
+
+
+@media(max-width:900px){
+
+    .row,
+    .row-reverse{
+
+        flex-direction:column;
+
+    }
+
+
+}
+
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<h1>
+Flexbox Direction + Flex Wrap
+</h1>
+
+
+
+<!-- ROW + WRAP -->
+
+<section>
+
+<h2>
+row + wrap
+</h2>
+
+
+<div class="contenedor row wrap">
+
+
+<div class="card">
+
+<img src="https://picsum.photos/id/1015/400">
+
+<h3>Montañas</h3>
+
+<p>Elemento Flex 1</p>
+
+</div>
+
+
+
+<div class="card">
+
+<img src="https://picsum.photos/id/1016/400">
+
+<h3>Bosque</h3>
+
+<p>Elemento Flex 2</p>
+
+</div>
+
+
+
+<div class="card">
+
+<img src="https://picsum.photos/id/1025/400">
+
+<h3>Naturaleza</h3>
+
+<p>Elemento Flex 3</p>
+
+</div>
+
+
+
+<div class="card">
+
+<img src="https://picsum.photos/id/1035/400">
+
+<h3>Ciudad</h3>
+
+<p>Elemento Flex 4</p>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+
+
+<!-- ROW REVERSE -->
+
+
+<section>
+
+<h2>
+row-reverse + wrap
+</h2>
+
+
+<div class="contenedor row-reverse wrap">
+
+
+<div class="card">
+
+<img src="https://picsum.photos/id/1040/400">
+
+<h3>Arquitectura</h3>
+
+<p>Elemento invertido</p>
+
+</div>
+
+
+<div class="card">
+
+<img src="https://picsum.photos/id/1043/400">
+
+<h3>Mar</h3>
+
+<p>Elemento invertido</p>
+
+</div>
+
+
+
+<div class="card">
+
+<img src="https://picsum.photos/id/1050/400">
+
+<h3>Paisaje</h3>
+
+<p>Elemento invertido</p>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+
+
+
+<!-- COLUMN -->
+
+
+<section>
+
+
+<h2>
+column + wrap
+</h2>
+
+
+
+<div class="contenedor column wrap"
+style="height:650px;">
+
+
+<div class="card">
+
+<img src="https://picsum.photos/id/106/400">
+
+<h3>Imagen A</h3>
+
+<p>Columna</p>
+
+</div>
+
+
+
+<div class="card">
+
+<img src="https://picsum.photos/id/107/400">
+
+<h3>Imagen B</h3>
+
+<p>Columna</p>
+
+</div>
+
+
+
+
+<div class="card">
+
+<img src="https://picsum.photos/id/108/400">
+
+<h3>Imagen C</h3>
+
+<p>Columna</p>
+
+</div>
+
+
+</div>
+
+
+</section>
+
+
+
+
+
+
+<!-- WRAP REVERSE -->
+
+
+<section>
+
+
+<h2>
+row + wrap-reverse
+</h2>
+
+
+
+<div class="contenedor row wrap-reverse">
+
+
+<div class="card">
+
+<img src="https://picsum.photos/id/201/400">
+
+<h3>Foto 1</h3>
+
+<p>Wrap Reverse</p>
+
+</div>
+
+
+
+<div class="card">
+
+<img src="https://picsum.photos/id/202/400">
+
+<h3>Foto 2</h3>
+
+<p>Wrap Reverse</p>
+
+</div>
+
+
+
+<div class="card">
+
+<img src="https://picsum.photos/id/203/400">
+
+<h3>Foto 3</h3>
+
+<p>Wrap Reverse</p>
+
+</div>
+
+
+
+<div class="card">
+
+<img src="https://picsum.photos/id/204/400">
+
+<h3>Foto 4</h3>
+
+<p>Wrap Reverse</p>
+
+</div>
+
+
+
+</div>
+
+
+</section>
+
+
+
+</body>
+</html>

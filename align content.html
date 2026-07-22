@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Ejemplo align-content sin Flex</title>
+
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+
+body{
+
+    background:#0f172a;
+    color:white;
+    padding:40px;
+
+}
+
+
+h1{
+    text-align:center;
+    margin-bottom:30px;
+}
+
+
+h2{
+    margin:25px 0 10px;
+}
+
+
+
+/* CONTENEDOR GRID */
+
+.contenedor{
+
+    width:600px;
+    height:350px;
+
+    background:#1e293b;
+
+    display:grid;
+
+    grid-template-columns:repeat(3,120px);
+
+    grid-template-rows:repeat(2,80px);
+
+    gap:20px;
+
+    padding:20px;
+
+    border-radius:20px;
+
+}
+
+
+
+/* TARJETAS */
+
+.card{
+
+    background:linear-gradient(
+        135deg,
+        #00c6ff,
+        #0072ff
+    );
+
+    display:grid;
+
+    place-items:center;
+
+    border-radius:15px;
+
+    font-size:25px;
+
+    font-weight:bold;
+
+}
+
+
+
+/* ALIGN CONTENT */
+
+
+.start{
+
+    align-content:start;
+
+}
+
+
+
+.center{
+
+    align-content:center;
+
+}
+
+
+
+.end{
+
+    align-content:end;
+
+}
+
+
+
+.space-between{
+
+    align-content:space-between;
+
+}
+
+
+
+.space-around{
+
+    align-content:space-around;
+
+}
+
+
+
+.space-evenly{
+
+    align-content:space-evenly;
+
+}
+
+
+</style>
+
+
+</head>
+
+
+<body>
+
+
+<h1>align-content con CSS Grid</h1>
+
+
+
+<h2>align-content: start</h2>
+
+<div class="contenedor start">
+
+<div class="card">1</div>
+<div class="card">2</div>
+<div class="card">3</div>
+<div class="card">4</div>
+<div class="card">5</div>
+<div class="card">6</div>
+
+</div>
+
+
+
+
+<h2>align-content: center</h2>
+
+<div class="contenedor center">
+
+<div class="card">1</div>
+<div class="card">2</div>
+<div class="card">3</div>
+<div class="card">4</div>
+<div class="card">5</div>
+<div class="card">6</div>
+
+</div>
+
+
+
+
+<h2>align-content: space-between</h2>
+
+<div class="contenedor space-between">
+
+<div class="card">1</div>
+<div class="card">2</div>
+<div class="card">3</div>
+<div class="card">4</div>
+<div class="card">5</div>
+<div class="card">6</div>
+
+</div>
+
+
+
+
+<h2>align-content: space-evenly</h2>
+
+<div class="contenedor space-evenly">
+
+<div class="card">1</div>
+<div class="card">2</div>
+<div class="card">3</div>
+<div class="card">4</div>
+<div class="card">5</div>
+<div class="card">6</div>
+
+</div>
+
+
+
+</body>
+</html>
