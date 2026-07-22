@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ejemplo Flexbox Profesional</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+    background:#eef2f7;
+    padding:40px;
+}
+
+h1{
+    text-align:center;
+    margin-bottom:30px;
+    color:#0d47a1;
+}
+
+section{
+    background:white;
+    margin:30px auto;
+    max-width:1200px;
+    padding:20px;
+    border-radius:10px;
+    box-shadow:0 5px 15px rgba(0,0,0,.15);
+}
+
+h2{
+    margin-bottom:20px;
+    color:#1565c0;
+}
+
+.contenedor{
+    display:flex;
+    border:3px solid #1565c0;
+    min-height:180px;
+    gap:15px;
+    padding:15px;
+}
+
+.caja{
+    color:white;
+    text-align:center;
+    padding:30px;
+    font-size:20px;
+    font-weight:bold;
+    border-radius:8px;
+}
+
+.caja1{background:#2196F3;}
+.caja2{background:#4CAF50;}
+.caja3{background:#FF9800;}
+.caja4{background:#E91E63;}
+.caja5{background:#9C27B0;}
+
+</style>
+
+</head>
+<body>
+
+<h1>Propiedades de Flexbox</h1>
+
+<!-- FLEX GROW -->
+
+<section>
+
+<h2>Flex Grow</h2>
+
+<div class="contenedor">
+
+<div class="caja caja1" style="flex-grow:1;">
+Grow 1
+</div>
+
+<div class="caja caja2" style="flex-grow:2;">
+Grow 2
+</div>
+
+<div class="caja caja3" style="flex-grow:3;">
+Grow 3
+</div>
+
+</div>
+
+</section>
+
+<!-- FLEX SHRINK -->
+
+<section>
+
+<h2>Flex Shrink</h2>
+
+<div class="contenedor" style="width:700px;">
+
+<div class="caja caja1" style="width:300px; flex-shrink:0;">
+No se reduce
+</div>
+
+<div class="caja caja2" style="width:300px; flex-shrink:1;">
+Reduce
+</div>
+
+<div class="caja caja3" style="width:300px; flex-shrink:3;">
+Reduce mucho
+</div>
+
+</div>
+
+</section>
+
+<!-- FLEX BASIS -->
+
+<section>
+
+<h2>Flex Basis</h2>
+
+<div class="contenedor">
+
+<div class="caja caja1" style="flex-basis:150px;">
+150px
+</div>
+
+<div class="caja caja2" style="flex-basis:250px;">
+250px
+</div>
+
+<div class="caja caja3" style="flex-basis:350px;">
+350px
+</div>
+
+</div>
+
+</section>
+
+<!-- FLEX WRAP -->
+
+<section>
+
+<h2>Flex Wrap</h2>
+
+<div class="contenedor" style="flex-wrap:wrap;">
+
+<div class="caja caja1">1</div>
+<div class="caja caja2">2</div>
+<div class="caja caja3">3</div>
+<div class="caja caja4">4</div>
+<div class="caja caja5">5</div>
+<div class="caja caja1">6</div>
+<div class="caja caja2">7</div>
+<div class="caja caja3">8</div>
+
+</div>
+
+</section>
+
+<!-- FLEX FLOW -->
+
+<section>
+
+<h2>Flex Flow (row wrap)</h2>
+
+<div class="contenedor" style="flex-flow:row wrap;">
+
+<div class="caja caja1">A</div>
+<div class="caja caja2">B</div>
+<div class="caja caja3">C</div>
+<div class="caja caja4">D</div>
+<div class="caja caja5">E</div>
+<div class="caja caja1">F</div>
+<div class="caja caja2">G</div>
+
+</div>
+
+</section>
+
+<!-- WRAP REVERSE -->
+
+<section>
+
+<h2>Wrap Reverse</h2>
+
+<div class="contenedor" style="flex-wrap:wrap-reverse;">
+
+<div class="caja caja1">1</div>
+<div class="caja caja2">2</div>
+<div class="caja caja3">3</div>
+<div class="caja caja4">4</div>
+<div class="caja caja5">5</div>
+<div class="caja caja1">6</div>
+<div class="caja caja2">7</div>
+<div class="caja caja3">8</div>
+
+</div>
+
+</section>
+
+</body>
+</html>
