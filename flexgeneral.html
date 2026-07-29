@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Escuela de Acordeón Mario Torres</title>
     
+    <!-- Carga de la librería jsPDF para generar el PDF en vivo sin depender de archivos locales -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
     <style>
         :root {
             --bg-body: #f4f4f4;
@@ -144,7 +147,7 @@
             border: none;
         }
 
-        /* REPRODUCTORES DE AUDIO */
+        /* REPRODUCTORES DE AUDIO Y EMISORA */
         .audio-container, .radio-container {
             background-color: var(--bg-dark);
             border: 1px solid #333;
@@ -242,7 +245,7 @@
             margin-bottom: 10px;
         }
 
-        /* SECCIÓN DE JUEGOS */
+        /* SECCIÓN DE JUEGOS Y CANVAS */
         .games-section {
             background-color: var(--bg-dark);
             border: 1px solid var(--color-gold);
@@ -282,7 +285,6 @@
             color: #bbb;
         }
 
-        /* MINIJUEGO CÓDIGO INTERNO (CANVAS) */
         .canvas-game-box {
             background-color: #111;
             border: 1px solid #444;
@@ -325,7 +327,7 @@
             font-size: 0.9rem;
         }
 
-        /* VISOR DE PDF */
+        /* SECCIÓN DEL VISOR DE PDF */
         .pdf-viewer-section {
             background-color: var(--bg-dark);
             border: 1px solid var(--color-gold);
@@ -338,7 +340,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
         }
 
         .pdf-viewer-header h3 {
@@ -348,9 +350,10 @@
 
         .pdf-frame {
             width: 100%;
-            height: 480px;
+            height: 520px;
             border: 1px solid #444;
-            background-color: #fff;
+            background-color: #ffffff;
+            border-radius: 4px;
         }
 
         /* CONTACTO Y MAPA */
@@ -449,7 +452,7 @@
             }
 
             .pdf-frame {
-                height: 320px;
+                height: 380px;
             }
 
             .map-header, .game-card-external {
@@ -498,26 +501,31 @@
     <!-- REPRODUCTOR DE VIDEO -->
     <div id="slider">
         <iframe
-            src="https://www.youtube.com/embed/MD40FERNOv0"
-            title="Pedazo de Acordeón - Alejo Durán"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            width="100%"
+            height="400"
+            src="https://www.youtube.com/embed/mxGkkwcXHK4?rel=0&autoplay=0"
+            title="Los Caminos de la Vida - Omar Geles"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
             allowfullscreen>
         </iframe>
     </div>
 
-    <!-- SECCIÓN DE EMISORA EN VIVO -->
+    <!-- EMISORA OLÍMPICA STEREO -->
     <div id="emisora" class="radio-container">
         <div class="radio-header">
-            <div class="radio-title">
-                📻 Emisora Vallenata 24/7 (En Vivo)
-            </div>
-            <span class="live-badge">EN VIVO</span>
+            <div class="radio-title">📻 Olímpica Stereo Medellín 104.9 FM</div>
+            <span class="live-badge">🔴 EN VIVO</span>
         </div>
-        <audio id="vallenatoRadio" controls preload="none">
-            <source src="https://stream.zeno.fm/f3wvbbqmdg8uv" type="audio/mpeg">
-            <source src="https://stream.zeno.fm/u89658z92zhvv" type="audio/mpeg">
-            Tu navegador no soporta el reproductor de audio.
-        </audio>
+
+        <iframe
+            src="https://olimpicastereo.com.co/ciudades/medellin"
+            width="100%"
+            height="220"
+            style="border:none;border-radius:8px;"
+            loading="lazy">
+        </iframe>
     </div>
 
     <!-- REPRODUCTOR DE AUDIO LOCAL -->
@@ -538,28 +546,46 @@
             <article>
                 <h2>CLASES DE ACORDEÓN</h2>
                 <p><strong>Escuela de acordeón Mario Torres</strong></p>
-                <p>Fundada en 1981 por Manuel Torres, delegado de la Asociación Española de Acordeón en Madrid. Desde 1976 hasta 1993 organizador del CERTAMEN NACIONAL DE ACORDEÓN y desde 1976 hasta 1993 del CERTAMEN REINA SOFÍA DE ACORDEÓN, tras décadas de dedicación dando clases de acordeón en Madrid y contribuyendo a la divulgación del acordeón.</p>
+                <p>Fundada en 1981 por Manuel Torres, delegado de la Asociación Española de Acordeón en Madrid. Desde 1976 hasta 1993 organizador del CERTAMEN NACIONAL DE ACORDEÓN y del CERTAMEN REINA SOFÍA DE ACORDEÓN, tras décadas de dedicación dando clases de acordeón en Madrid y contribuyendo a la divulgación del acordeón.</p>
             </article>
         </div>
     </section>
 
-    <!-- ZONA DE VIDEOJUEGOS (ENLACE Y CÓDIGO) -->
+   <!-- ZONA DE JUEGOS Y ENTRETENIMIENTO -->
     <section id="juegos" class="games-section">
         <h2>🎮 ZONA DE JUEGOS Y ENTRETENIMIENTO</h2>
 
-        <!-- VIDEOJUEGO 1: CON ENLACE EXTERNO -->
-        <div class="game-card-external">
-            <div>
-                <h3>1. Simulación Virtual de Acordeón Online</h3>
-                <p>Toca y experimenta con un acordeón en vivo desde tu teclado o pantalla.</p>
+        <!-- 1. SIMULADOR VIRTUAL DE ACORDEÓN INTERACTIVO -->
+        <div class="game-card-external" style="display: block;">
+            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 12px;">
+                <div>
+                    <h3>1. Simulador de Acordeón Interactivo 🪗</h3>
+                    <p>¡Toca el acordeón en vivo! Usa el ratón, la pantalla táctil o las teclas de tu teclado <strong>(A, S, D, F, G, H, J, K)</strong>.</p>
+                </div>
+                <a href="https://m.virtualaccordion.com/" target="_blank" rel="noopener noreferrer" class="btn-game">
+                    🚀 Abrir Simulador Externo
+                </a>
             </div>
-            <a href="https://m.virtualaccordion.com/" target="_blank" rel="noopener" class="btn-game">
-                🚀 Jugar en Enlace Externo
-            </a>
+
+            <!-- TECLADO DEL ACORDEÓN INTERACTIVO -->
+            <div id="accordion-simulator" style="background: #151515; border: 2px solid var(--color-gold); border-radius: 8px; padding: 20px; text-align: center;">
+                <p style="color: var(--color-gold); font-weight: bold; margin-bottom: 15px;">🎹 Teclado del Acordeón</p>
+                
+                <div class="accordion-keys" style="display: flex; justify-content: center; gap: 8px; flex-wrap: wrap;">
+                    <button class="key-btn" data-note="261.63" data-key="A">DO<br><span>(A)</span></button>
+                    <button class="key-btn" data-note="293.66" data-key="S">RE<br><span>(S)</span></button>
+                    <button class="key-btn" data-note="329.63" data-key="D">MI<br><span>(D)</span></button>
+                    <button class="key-btn" data-note="349.23" data-key="F">FA<br><span>(F)</span></button>
+                    <button class="key-btn" data-note="392.00" data-key="G">SOL<br><span>(G)</span></button>
+                    <button class="key-btn" data-note="440.00" data-key="H">LA<br><span>(H)</span></button>
+                    <button class="key-btn" data-note="493.88" data-key="J">SI<br><span>(J)</span></button>
+                    <button class="key-btn" data-note="523.25" data-key="K">DO High<br><span>(K)</span></button>
+                </div>
+            </div>
         </div>
 
-        <!-- VIDEOJUEGO 2: PROGRAMADO DIRECTAMENTE EN CÓDIGO -->
-        <div class="canvas-game-box">
+        <!-- 2. MINIJUEGO CANVAS INTEGRADO -->
+        <div class="canvas-game-box" style="margin-top: 20px;">
             <h3>2. Minijuego: Atrapa las Notas Musicales 🎵</h3>
             <p>Mueve el acordeón (⬅️ ➡️ o ratón) para recolectar las notas musicales que caen.</p>
             
@@ -570,21 +596,55 @@
                 <span class="game-score">Puntuación: <span id="scoreVal">0</span></span>
             </div>
         </div>
-    </section>
 
-    <!-- VISOR DE DOCUMENTO PDF -->
+        <!-- 3. PAINT CANVAS (LIENZO DE DIBUJO) -->
+        <div class="canvas-game-box" style="margin-top: 20px;">
+            <h3>3. Paint Canvas 🎨 (Lienzo de Dibujo)</h3>
+            <p>Dibuja libremente con el ratón o pantalla táctil. ¡Elige el color y el grosor del pincel!</p>
+            
+            <div style="margin-bottom: 10px; display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; align-items: center;">
+                <label style="font-size: 0.85rem; color: #ddd;">Color: 
+                    <input type="color" id="paintColor" value="#d4af37" style="cursor: pointer; border: none; height: 30px; width: 40px; background: none;">
+                </label>
+                
+                <label style="font-size: 0.85rem; color: #ddd;">Grosor: 
+                    <input type="range" id="paintSize" min="1" max="20" value="5" style="cursor: pointer;">
+                </label>
+
+                <button id="clearPaintBtn" class="btn-game">🗑️ Limpiar Lienzo</button>
+            </div>
+
+            <canvas id="paintCanvas" width="480" height="250" style="background: #ffffff; border: 2px solid var(--color-gold); cursor: crosshair; display: block; margin: 0 auto; max-width: 100%;"></canvas>
+        </div>
+
+        <!-- 4. CANVAS 3D INTERACTIVO -->
+        <div class="canvas-game-box" style="margin-top: 20px;">
+            <h3>4. Figura 3D Interactiva 🧊 (Cubo en Movimiento)</h3>
+            <p>Mueve el ratón sobre el recuadro para rotar la figura tridimensional en tiempo real.</p>
+            
+            <canvas id="canvas3D" width="480" height="250" style="background: #000000; border: 2px solid var(--color-gold); display: block; margin: 0 auto; max-width: 100%; cursor: grab;"></canvas>
+        </div>
+    </section>
+    
+    <!-- VISOR DE PDF EN LA PÁGINA -->
     <section id="dossier-pdf" class="pdf-viewer-section">
         <div class="pdf-viewer-header">
             <h3>📄 DOSSIER INFORMATIVO Y PROGRAMA ACADÉMICO</h3>
-            <button onclick="generarYDescargarPDF()" class="btn-pdf">
-                📥 Descargar Copia PDF
+            <button class="btn-pdf" onclick="descargarPDF()">
+                📥 Descargar PDF
             </button>
         </div>
 
-        <iframe id="visorPdfFrame" class="pdf-frame" title="Visor de PDF del Dossier Académico"></iframe>
+        <iframe 
+            id="visorPdfFrame"
+            src="about:blank" 
+            class="pdf-frame"
+            title="Dossier Informativo PDF">
+            <p>Tu navegador no soporta la visualización directa de PDF.</p>
+        </iframe>
     </section>
 
-    <!-- SECCIÓN DE CONTACTO Y GEOLOCALIZACIÓN -->
+    <!-- CONTACTO Y UBICACIÓN -->
     <section id="contacto" class="contact-info">
         <article>
             <div class="contact-header">
@@ -610,7 +670,6 @@
                     src="https://maps.google.com/maps?q=Calle%20Ventura%20de%20la%20Vega%2011,%2028014%20Madrid,%20Espana&t=&z=16&ie=UTF8&iwloc=&output=embed" 
                     allowfullscreen="" 
                     loading="lazy" 
-                    referrerpolicy="no-referrer-when-downgrade"
                     title="Ubicación de la Escuela de Acordeón Mario Torres">
                 </iframe>
             </div>
@@ -627,82 +686,78 @@
         </aside>
     </footer>
 
-    <!-- SCRIPTS DE LA PÁGINA -->
+    <!-- SCRIPTS -->
     <script>
-        // 1. Respaldo de la emisora de audio
-        const radio = document.getElementById('vallenatoRadio');
-        radio.addEventListener('error', function() {
-            const sources = radio.getElementsByTagName('source');
-            if (sources.length > 1 && radio.currentSrc === sources[0].src) {
-                radio.src = sources[1].src;
-                radio.load();
-                radio.play();
+        // ==========================================
+        // 1. GENERACIÓN Y VISUALIZACIÓN DINÁMICA DEL PDF
+        // ==========================================
+        let urlPdfGlobal = null;
+
+        function generarVisorPDF() {
+            if (!window.jspdf) {
+                console.error("jsPDF no se ha cargado correctamente.");
+                return;
             }
-        }, true);
 
-        // 2. Generación del PDF
-        const contenidoPDF = `%PDF-1.4
-1 0 obj <</Type /Catalog /Pages 2 0 R>> endobj
-2 0 obj <</Type /Pages /Kids [3 0 R] /Count 1>> endobj
-3 0 obj <</Type /Page /Parent 2 0 R /Resources <</Font <</F1 4 0 R>>>> /MediaBox [0 0 612 792] /Contents 5 0 R>> endobj
-4 0 obj <</Type /Font /Subtype /Type1 /BaseFont /Helvetica>> endobj
-5 0 obj <</Length 520>> stream
-BT
-/F1 18 Tf
-50 720 Td
-(ESCUELA DE ACORDEON MARIO TORRES) Tj
-0 -30 Td
-/F1 12 Tf
-(Dossier Informativo & Programacion Academica - Madrid) Tj
-0 -40 Td
-(1. HISTORIA Y TRAYECTORIA) Tj
-0 -18 Td
-(Fundada en 1981 por Manuel Torres, organizador del Certamen Nacional) Tj
-0 -15 Td
-(y Certamen Reina Sofia de Acordeon.) Tj
-0 -30 Td
-(2. PROGRAMA Y NIVELES) Tj
-0 -18 Td
-(- Iniciacion: Postura, digitacion basica, fuelleo y lectura basica.) Tj
-0 -15 Td
-(- Intermedio: Agilidad, articulacion de bajos, ritmos populares.) Tj
-0 -15 Td
-(- Avanzado: Virtuosismo, polifonia y repertorio de concierto.) Tj
-0 -30 Td
-(3. CONTACTO) Tj
-0 -18 Td
-(Direccion: C/ Ventura de la Vega, 11 - 1 I, 28014 Madrid) Tj
-0 -15 Td
-(Telefonos: 609 27 55 23 / 91 429 75 43) Tj
-ET
-endstream endobj
-xref
-0 6
-0000000000 65535 f 
-0000000009 00000 n 
-0000000058 00000 n 
-0000000115 00000 n 
-0000000229 00000 n 
-0000000300 00000 n 
-trailer <</Size 6 /Root 1 0 R>>
-startxref
-871
-%%EOF`;
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
 
-        const blobPdf = new Blob([contenidoPDF], { type: 'application/pdf' });
-        const urlPdf = URL.createObjectURL(blobPdf);
-        document.getElementById('visorPdfFrame').src = urlPdf;
+            // Encabezado
+            doc.setFont("Helvetica", "bold");
+            doc.setFontSize(18);
+            doc.text("ESCUELA DE ACORDEÓN MARIO TORRES", 20, 20);
 
-        function generarYDescargarPDF() {
-            const enlace = document.createElement('a');
-            enlace.href = urlPdf;
-            enlace.download = 'Dossier_Escuela_Acordeon.pdf';
-            document.body.appendChild(enlace);
-            enlace.click();
-            document.body.removeChild(enlace);
+            doc.setFontSize(12);
+            doc.setFont("Helvetica", "normal");
+            doc.text("Dossier Informativo & Programación Académica - Madrid", 20, 30);
+
+            // Sección 1
+            doc.setFont("Helvetica", "bold");
+            doc.text("1. HISTORIA Y TRAYECTORIA", 20, 45);
+            doc.setFont("Helvetica", "normal");
+            doc.text("Fundada en 1981 por Manuel Torres, organizador del Certamen Nacional", 20, 53);
+            doc.text("y Certamen Reina Sofía de Acordeón.", 20, 60);
+
+            // Sección 2
+            doc.setFont("Helvetica", "bold");
+            doc.text("2. PROGRAMA Y NIVELES", 20, 75);
+            doc.setFont("Helvetica", "normal");
+            doc.text("- Iniciación: Postura, digitación básica, fuelleo y lectura básica.", 20, 83);
+            doc.text("- Intermedio: Agilidad, articulación de bajos, ritmos populares.", 20, 90);
+            doc.text("- Avanzado: Virtuosismo, polifonía y repertorio de concierto.", 20, 97);
+
+            // Sección 3
+            doc.setFont("Helvetica", "bold");
+            doc.text("3. CONTACTO", 20, 112);
+            doc.setFont("Helvetica", "normal");
+            doc.text("Dirección: C/ Ventura de la Vega, 11 - 1º I, 28014 Madrid", 20, 120);
+            doc.text("Teléfonos: 609 27 55 23 / 91 429 75 43", 20, 127);
+
+            // Generar Blob dinámico
+            const blob = doc.output('blob');
+            urlPdfGlobal = URL.createObjectURL(blob);
+
+            // Asignar al iframe en pantalla
+            document.getElementById('visorPdfFrame').src = urlPdfGlobal;
         }
 
-        // 3. LÓGICA DEL MINIJUEGO NATIVO EN CÓDIGO (CANVAS)
+        function descargarPDF() {
+            if (urlPdfGlobal) {
+                const enlace = document.createElement('a');
+                enlace.href = urlPdfGlobal;
+                enlace.download = 'Dossier_Escuela_Acordeon.pdf';
+                document.body.appendChild(enlace);
+                enlace.click();
+                document.body.removeChild(enlace);
+            }
+        }
+
+        // Cargar el PDF tan pronto termine de cargar el DOM
+        window.addEventListener('DOMContentLoaded', generarVisorPDF);
+
+        // ==========================================
+        // 2. LÓGICA DEL MINIJUEGO (CANVAS)
+        // ==========================================
         const canvas = document.getElementById('gameCanvas');
         const ctx = canvas.getContext('2d');
         const startBtn = document.getElementById('startBtn');
@@ -714,7 +769,6 @@ startxref
         let gameRunning = false;
         let keys = {};
 
-        // Controles de teclado y ratón
         window.addEventListener('keydown', e => keys[e.key] = true);
         window.addEventListener('keyup', e => keys[e.key] = false);
         canvas.addEventListener('mousemove', e => {
@@ -735,23 +789,18 @@ startxref
         function updateGame() {
             if (!gameRunning) return;
 
-            // Movimiento jugador
             if (keys['ArrowLeft'] && player.x > 0) player.x -= player.speed;
             if (keys['ArrowRight'] && player.x < canvas.width - player.width) player.x += player.speed;
 
-            // Limitar dentro del lienzo
             if (player.x < 0) player.x = 0;
             if (player.x > canvas.width - player.width) player.x = canvas.width - player.width;
 
-            // Generar notas periódicamente
             if (Math.random() < 0.04) spawnNote();
 
-            // Mover y detectar colisión de notas
             for (let i = notes.length - 1; i >= 0; i--) {
                 let n = notes[i];
                 n.y += n.speed;
 
-                // Colisión con el acordeón (jugador)
                 if (n.y + 15 >= player.y && n.x >= player.x - 10 && n.x <= player.x + player.width) {
                     score += 10;
                     scoreVal.textContent = score;
@@ -759,7 +808,6 @@ startxref
                     continue;
                 }
 
-                // Eliminar notas fuera de pantalla
                 if (n.y > canvas.height) {
                     notes.splice(i, 1);
                 }
@@ -772,7 +820,6 @@ startxref
         function drawGame() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-            // Dibujar Jugador (Acordeón estilizado)
             ctx.fillStyle = '#d4af37';
             ctx.fillRect(player.x, player.y, player.width, player.height);
             ctx.fillStyle = '#111';
@@ -781,7 +828,6 @@ startxref
             ctx.font = '10px Arial';
             ctx.fillText('🪗 ACORDEÓN', player.x + 2, player.y - 4);
 
-            // Dibujar Notas
             ctx.font = '18px Arial';
             notes.forEach(n => {
                 ctx.fillText(n.symbol, n.x, n.y);
@@ -797,10 +843,152 @@ startxref
             updateGame();
         });
 
-        // Dibujar estado inicial
         drawGame();
-    </script>
 
+        // ==========================================
+        // 3. LÓGICA DEL PAINT CANVAS
+        // ==========================================
+        const pCanvas = document.getElementById('paintCanvas');
+        const pCtx = pCanvas.getContext('2d');
+        const paintColor = document.getElementById('paintColor');
+        const paintSize = document.getElementById('paintSize');
+        const clearPaintBtn = document.getElementById('clearPaintBtn');
+
+        let isDrawing = false;
+        let lastX = 0;
+        let lastY = 0;
+
+        function getPos(e) {
+            const rect = pCanvas.getBoundingClientRect();
+            const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+            const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+            return {
+                x: clientX - rect.left,
+                y: clientY - rect.top
+            };
+        }
+
+        function startDrawing(e) {
+            isDrawing = true;
+            const pos = getPos(e);
+            lastX = pos.x;
+            lastY = pos.y;
+        }
+
+        function draw(e) {
+            if (!isDrawing) return;
+            e.preventDefault();
+            const pos = getPos(e);
+
+            pCtx.beginPath();
+            pCtx.moveTo(lastX, lastY);
+            pCtx.lineTo(pos.x, pos.y);
+            pCtx.strokeStyle = paintColor.value;
+            pCtx.lineWidth = paintSize.value;
+            pCtx.lineCap = 'round';
+            pCtx.lineJoin = 'round';
+            pCtx.stroke();
+
+            lastX = pos.x;
+            lastY = pos.y;
+        }
+
+        function stopDrawing() {
+            isDrawing = false;
+        }
+
+        pCanvas.addEventListener('mousedown', startDrawing);
+        pCanvas.addEventListener('mousemove', draw);
+        pCanvas.addEventListener('mouseup', stopDrawing);
+        pCanvas.addEventListener('mouseout', stopDrawing);
+
+        pCanvas.addEventListener('touchstart', startDrawing);
+        pCanvas.addEventListener('touchmove', draw);
+        pCanvas.addEventListener('touchend', stopDrawing);
+
+        clearPaintBtn.addEventListener('click', () => {
+            pCtx.clearRect(0, 0, pCanvas.width, pCanvas.height);
+        });
+
+        // ==========================================
+        // 4. LÓGICA DE LA FIGURA 3D EN CANVAS
+        // ==========================================
+        const c3d = document.getElementById('canvas3D');
+        const ctx3d = c3d.getContext('2d');
+
+        let vertices3D = [
+            [-1, -1, -1], [1, -1, -1], [1, 1, -1], [-1, 1, -1],
+            [-1, -1,  1], [1, -1,  1], [1, 1,  1], [-1, 1,  1]
+        ];
+
+        const edges3D = [
+            [0,1], [1,2], [2,3], [3,0],
+            [4,5], [5,6], [6,7], [7,4],
+            [0,4], [1,5], [2,6], [3,7]
+        ];
+
+        let rotX = 0;
+        let rotY = 0;
+        let mouseX = 0;
+        let mouseY = 0;
+
+        c3d.addEventListener('mousemove', (e) => {
+            const rect = c3d.getBoundingClientRect();
+            mouseX = (e.clientX - rect.left - c3d.width / 2) * 0.0005;
+            mouseY = (e.clientY - rect.top - c3d.height / 2) * 0.0005;
+        });
+
+        function render3D() {
+            ctx3d.clearRect(0, 0, c3d.width, c3d.height);
+
+            rotX += mouseY || 0.01;
+            rotY += mouseX || 0.01;
+
+            const projected = [];
+
+            for (let i = 0; i < vertices3D.length; i++) {
+                let [x, y, z] = vertices3D[i];
+
+                let x1 = x * Math.cos(rotY) + z * Math.sin(rotY);
+                let z1 = -x * Math.sin(rotY) + z * Math.cos(rotY);
+
+                let y2 = y * Math.cos(rotX) - z1 * Math.sin(rotX);
+                let z2 = y * Math.sin(rotX) + z1 * Math.cos(rotX);
+
+                let distance = 3;
+                let fov = 150;
+                let scale = fov / (distance + z2);
+
+                let px = x1 * scale + c3d.width / 2;
+                let py = y2 * scale + c3d.height / 2;
+
+                projected.push([px, py]);
+            }
+
+            ctx3d.strokeStyle = '#d4af37';
+            ctx3d.lineWidth = 2;
+
+            for (let edge of edges3D) {
+                const p1 = projected[edge[0]];
+                const p2 = projected[edge[1]];
+
+                ctx3d.beginPath();
+                ctx3d.moveTo(p1[0], p1[1]);
+                ctx3d.lineTo(p2[0], p2[1]);
+                ctx3d.stroke();
+            }
+
+            for (let p of projected) {
+                ctx3d.fillStyle = '#ffffff';
+                ctx3d.beginPath();
+                ctx3d.arc(p[0], p[1], 4, 0, Math.PI * 2);
+                ctx3d.fill();
+            }
+
+            requestAnimationFrame(render3D);
+        }
+
+        render3D();
+    </script>
 </body>
 </html>
-

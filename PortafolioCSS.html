@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>WaySmart | Plataforma Inteligente de Optimización de Rutas</title>
+
+<link rel="stylesheet" href="css/style.css">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+</head>
+
+<body>
+
+<!--==================================================
+        BARRA SUPERIOR
+===================================================-->
+
+<header class="topbar">
+
+<div class="logo">
+
+<i class="fa-solid fa-route"></i>
+
+<h1>WaySmart</h1>
+
+</div>
+
+<div class="search">
+
+<input
+type="text"
+placeholder="Buscar dirección o destino...">
+
+<button>
+
+<i class="fa-solid fa-search"></i>
+
+</button>
+
+</div>
+
+<div class="top-icons">
+
+<button>
+
+<i class="fa-solid fa-bell"></i>
+
+</button>
+
+<button>
+
+<i class="fa-solid fa-gear"></i>
+
+</button>
+
+<div class="profile">
+
+<img src="https://i.pravatar.cc/100?img=12">
+
+<div>
+
+<h4>Administrador</h4>
+
+<p>En línea</p>
+
+</div>
+
+</div>
+
+</div>
+
+</header>
+
+<!--==================================================
+        MENÚ LATERAL
+===================================================-->
+
+<aside class="sidebar">
+
+<h2>Dashboard</h2>
+
+<nav>
+
+<ul>
+
+<li class="active">
+
+<i class="fa-solid fa-house"></i>
+
+Inicio
+
+</li>
+
+<li>
+
+<i class="fa-solid fa-map-location-dot"></i>
+
+Mapa Inteligente
+
+</li>
+
+<li>
+
+<i class="fa-solid fa-truck-fast"></i>
+
+Vehículos
+
+</li>
+
+<li>
+
+<i class="fa-solid fa-box"></i>
+
+Pedidos
+
+</li>
+
+<li>
+
+<i class="fa-solid fa-chart-column"></i>
+
+Estadísticas
+
+</li>
+
+<li>
+
+<i class="fa-solid fa-users"></i>
+
+Conductores
+
+</li>
+
+<li>
+
+<i class="fa-solid fa-gear"></i>
+
+Configuración
+
+</li>
+
+</ul>
+
+</nav>
+
+</aside>
+
+<!--==================================================
+        CONTENIDO PRINCIPAL
+===================================================-->
+
+<main class="content">
+
+<!--=========================
+    TARJETAS KPI
+===========================-->
+
+<section class="cards">
+
+<div class="card blue">
+
+<i class="fa-solid fa-truck"></i>
+
+<div>
+
+<h3>Vehículos</h3>
+
+<h1>148</h1>
+
+<p>En Ruta</p>
+
+</div>
+
+</div>
+
+<div class="card green">
+
+<i class="fa-solid fa-box"></i>
+
+<div>
+
+<h3>Pedidos</h3>
+
+<h1>352</h1>
+
+<p>Activos</p>
+
+</div>
+
+</div>
+
+<div class="card orange">
+
+<i class="fa-solid fa-road"></i>
+
+<div>
+
+<h3>Distancia</h3>
+
+<h1>1.820 km</h1>
+
+<p>Hoy</p>
+
+</div>
+
+</div>
+
+<div class="card purple">
+
+<i class="fa-solid fa-clock"></i>
+
+<div>
+
+<h3>Tiempo</h3>
+
+<h1>24 min</h1>
+
+<p>Promedio</p>
+
+</div>
+
+</div>
+
+</section>
+
+<!--=========================
+    DASHBOARD
+===========================-->
+
+<section class="dashboard">
+
+<!--================ MAPA =================-->
+
+<div class="map-panel">
+
+<div class="panel-header">
+
+<h2>
+
+<i class="fa-solid fa-map"></i>
+
+Mapa Inteligente
+
+</h2>
+
+<div class="map-buttons">
+
+<button>+</button>
+
+<button>-</button>
+
+<button>
+
+<i class="fa-solid fa-location-crosshairs"></i>
+
+</button>
+
+</div>
+
+</div>
+
+<div class="map-container">
+
+<iframe
+src="https://maps.google.com/maps?q=4.7110,-74.0721&z=12&output=embed">
+</iframe>
+
+<div class="route blue-route">
+
+Ruta A · 20 min
+
+</div>
+
+<div class="route green-route">
+
+Ruta B · 30 min
+
+</div>
+
+<div class="route orange-route">
+
+Ruta C · 45 min
+
+</div>
+
+</div>
+
+</div>
+
+<!--================ PANEL DERECHO =================-->
+
+<div class="right-panel">
+
+<!--================ GEOLOCALIZACIÓN =================-->
+
+<div class="widget">
+
+<h3>
+
+<i class="fa-solid fa-location-dot"></i>
+
+Geolocalización
+
+</h3>
+
+<button
+class="location-btn"
+onclick="obtenerUbicacion()">
+
+Obtener ubicación
+
+</button>
+
+<p id="geo-status">
+
+Esperando ubicación...
+
+</p>
+
+</div>
+
+<!--================ PEDIDOS =================-->
+
+<div class="widget">
+
+<h3>
+
+<i class="fa-solid fa-box"></i>
+
+Pedidos Activos
+
+</h3>
+
+<div class="order">
+
+<h4>#WS-1001</h4>
+
+<p>Ruta Norte</p>
+
+<span>ETA 10:45</span>
+
+</div>
+
+<div class="order">
+
+<h4>#WS-1002</h4>
+
+<p>Ruta Centro</p>
+
+<span>ETA 11:15</span>
+
+</div>
+
+<div class="order">
+
+<h4>#WS-1003</h4>
+
+<p>Ruta Sur</p>
+
+<span>ETA 11:40</span>
+
+</div>
+
+</div>
+
+<!--================ NOTIFICACIONES =================-->
+
+<div class="widget">
+
+<h3>
+
+<i class="fa-solid fa-bell"></i>
+
+Notificaciones
+
+</h3>
+
+<div class="notice success">
+
+Ruta optimizada correctamente
+
+</div>
+
+<div class="notice warning">
+
+Congestión detectada
+
+</div>
+
+<div class="notice info">
+
+Nuevo pedido asignado
+
+</div>
+
+</div>
+
+<!--================ CONDUCTORES =================-->
+
+<div class="widget">
+
+<h3>
+
+<i class="fa-solid fa-user-group"></i>
+
+Conductores
+
+</h3>
+
+<div class="driver">
+
+<img src="https://i.pravatar.cc/80?img=11">
+
+<div>
+
+<h4>Carlos Gómez</h4>
+
+<p>Ruta Norte</p>
+
+</div>
+
+<span class="online"></span>
+
+</div>
+
+<div class="driver">
+
+<img src="https://i.pravatar.cc/80?img=15">
+
+<div>
+
+<h4>María López</h4>
+
+<p>Ruta Centro</p>
+
+</div>
+
+<span class="online"></span>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!--================ TABLA =================-->
+
+<section class="table-panel">
+
+<h2>
+
+Actividad Reciente
+
+</h2>
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>Vehículo</th>
+
+<th>Conductor</th>
+
+<th>Ruta</th>
+
+<th>Estado</th>
+
+<th>Hora</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td>TRK-201</td>
+
+<td>Carlos Gómez</td>
+
+<td>Norte</td>
+
+<td><span class="status ok">Activo</span></td>
+
+<td>10:42</td>
+
+</tr>
+
+<tr>
+
+<td>TRK-104</td>
+
+<td>María López</td>
+
+<td>Centro</td>
+
+<td><span class="status delay">Retraso</span></td>
+
+<td>10:48</td>
+
+</tr>
+
+<tr>
+
+<td>TRK-315</td>
+
+<td>Andrés Ruiz</td>
+
+<td>Sur</td>
+
+<td><span class="status ok">Activo</span></td>
+
+<td>10:56</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</section>
+
+</main>
+
+<footer>
+
+© 2026 WaySmart Research · Plataforma Inteligente de Movilidad
+
+</footer>
+
+<script src="js/script.js"></script>
+
+</body>
+
+</html>

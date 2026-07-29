@@ -1,0 +1,511 @@
+/*==========================================================
+        WAYSMART PROFESSIONAL DASHBOARD
+        style.css - Parte 2A
+==========================================================*/
+
+/*=========================
+        GOOGLE FONT
+==========================*/
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+/*=========================
+        VARIABLES
+==========================*/
+
+:root{
+
+--primary:#0d6efd;
+--primary-dark:#0048c7;
+
+--secondary:#17c964;
+
+--orange:#ff8b00;
+
+--purple:#7c3aed;
+
+--danger:#ef4444;
+
+--success:#22c55e;
+
+--warning:#f59e0b;
+
+--info:#38bdf8;
+
+--white:#ffffff;
+
+--background:#eef4fb;
+
+--sidebar:#0f172a;
+
+--card:#ffffff;
+
+--text:#1e293b;
+
+--text-light:#64748b;
+
+--border:#dbe4ee;
+
+--shadow:0 15px 35px rgba(0,0,0,.10);
+
+--radius:18px;
+
+}
+
+/*=========================
+        RESET
+==========================*/
+
+*{
+
+margin:0;
+
+padding:0;
+
+box-sizing:border-box;
+
+}
+
+html{
+
+scroll-behavior:smooth;
+
+}
+
+body{
+
+font-family:'Poppins',sans-serif;
+
+background:var(--background);
+
+color:var(--text);
+
+display:grid;
+
+grid-template-columns:270px 1fr;
+
+grid-template-rows:80px 1fr 60px;
+
+grid-template-areas:
+
+"sidebar header"
+
+"sidebar content"
+
+"sidebar footer";
+
+min-height:100vh;
+
+}
+
+/*=========================
+        SIDEBAR
+==========================*/
+
+.sidebar{
+
+grid-area:sidebar;
+
+background:linear-gradient(180deg,#08111f,#13253d);
+
+padding:30px;
+
+color:white;
+
+display:flex;
+
+flex-direction:column;
+
+box-shadow:5px 0 20px rgba(0,0,0,.15);
+
+}
+
+.sidebar h2{
+
+font-size:28px;
+
+margin-bottom:40px;
+
+font-weight:700;
+
+}
+
+.sidebar nav{
+
+flex:1;
+
+}
+
+.sidebar ul{
+
+list-style:none;
+
+}
+
+.sidebar li{
+
+display:flex;
+
+align-items:center;
+
+gap:15px;
+
+padding:16px 20px;
+
+margin-bottom:12px;
+
+border-radius:14px;
+
+cursor:pointer;
+
+transition:.35s;
+
+font-size:15px;
+
+}
+
+.sidebar li:hover{
+
+background:rgba(255,255,255,.08);
+
+transform:translateX(8px);
+
+}
+
+.sidebar li.active{
+
+background:linear-gradient(90deg,#0d6efd,#1ea0ff);
+
+box-shadow:0 10px 20px rgba(13,110,253,.3);
+
+}
+
+.sidebar i{
+
+width:20px;
+
+text-align:center;
+
+}
+
+/*=========================
+        HEADER
+==========================*/
+
+.topbar{
+
+grid-area:header;
+
+background:white;
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+padding:20px 35px;
+
+box-shadow:var(--shadow);
+
+z-index:10;
+
+}
+
+.logo{
+
+display:flex;
+
+align-items:center;
+
+gap:15px;
+
+}
+
+.logo i{
+
+font-size:34px;
+
+color:var(--primary);
+
+}
+
+.logo h1{
+
+font-size:30px;
+
+color:var(--primary);
+
+}
+
+.search{
+
+display:flex;
+
+align-items:center;
+
+gap:10px;
+
+}
+
+.search input{
+
+width:450px;
+
+padding:14px 18px;
+
+border:1px solid var(--border);
+
+border-radius:40px;
+
+outline:none;
+
+font-size:15px;
+
+transition:.3s;
+
+}
+
+.search input:focus{
+
+border-color:var(--primary);
+
+box-shadow:0 0 0 4px rgba(13,110,253,.12);
+
+}
+
+.search button{
+
+width:50px;
+
+height:50px;
+
+border:none;
+
+border-radius:50%;
+
+background:var(--primary);
+
+color:white;
+
+cursor:pointer;
+
+font-size:18px;
+
+transition:.3s;
+
+}
+
+.search button:hover{
+
+transform:scale(1.08);
+
+background:var(--primary-dark);
+
+}
+
+.top-icons{
+
+display:flex;
+
+align-items:center;
+
+gap:20px;
+
+}
+
+.top-icons button{
+
+width:48px;
+
+height:48px;
+
+border:none;
+
+border-radius:50%;
+
+background:#edf4ff;
+
+cursor:pointer;
+
+font-size:18px;
+
+color:var(--primary);
+
+transition:.3s;
+
+}
+
+.top-icons button:hover{
+
+background:var(--primary);
+
+color:white;
+
+}
+
+.profile{
+
+display:flex;
+
+align-items:center;
+
+gap:15px;
+
+}
+
+.profile img{
+
+width:52px;
+
+height:52px;
+
+border-radius:50%;
+
+object-fit:cover;
+
+border:3px solid var(--primary);
+
+}
+
+.profile h4{
+
+font-size:15px;
+
+}
+
+.profile p{
+
+font-size:12px;
+
+color:var(--success);
+
+}
+
+/*=========================
+        MAIN
+==========================*/
+
+.content{
+
+grid-area:content;
+
+padding:35px;
+
+overflow:auto;
+
+}
+
+/*=========================
+        KPI CARDS
+==========================*/
+
+.cards{
+
+display:grid;
+
+grid-template-columns:repeat(4,1fr);
+
+gap:25px;
+
+margin-bottom:35px;
+
+}
+
+.card{
+
+background:white;
+
+border-radius:20px;
+
+padding:25px;
+
+display:flex;
+
+align-items:center;
+
+gap:20px;
+
+box-shadow:var(--shadow);
+
+transition:.35s;
+
+cursor:pointer;
+
+}
+
+.card:hover{
+
+transform:translateY(-10px);
+
+}
+
+.card i{
+
+font-size:38px;
+
+color:white;
+
+width:75px;
+
+height:75px;
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+border-radius:20px;
+
+}
+
+.card h3{
+
+font-size:15px;
+
+color:var(--text-light);
+
+margin-bottom:5px;
+
+}
+
+.card h1{
+
+font-size:32px;
+
+margin-bottom:4px;
+
+}
+
+.card p{
+
+font-size:13px;
+
+color:var(--text-light);
+
+}
+
+.blue i{
+
+background:var(--primary);
+
+}
+
+.green i{
+
+background:var(--success);
+
+}
+
+.orange i{
+
+background:var(--orange);
+
+}
+
+.purple i{
+
+background:var(--purple);
+
+}
